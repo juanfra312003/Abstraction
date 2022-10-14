@@ -1,2 +1,3 @@
-# Abstraction
-Repositorio para la aplicación Abstraction.
+# _Abstraction_ 🕸
+
+Aplicación especializada en el manejo de inventario, gestión e inteligencia de negocio a través de sistemas de información. 
