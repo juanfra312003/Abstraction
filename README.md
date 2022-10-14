@@ -3,7 +3,7 @@
 Aplicación especializada en el manejo de inventario, gestión e inteligencia de negocio a través de sistemas de información. 
 
 
-## Desarroladores 👨‍💻
+## Desarrolladores 👨‍💻
 
 - [Diego Pardo](https://github.com/DiegoPardoMontero)
 - [Esteban Salazar](https://github.com/Estebans441)
