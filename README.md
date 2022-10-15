@@ -5,7 +5,6 @@ Aplicación especializada en el manejo de inventario, gestión e inteligencia de
 ##Tecnologías empleadas
 - Java
 - JavaFX
-- Intellij IDEA
 - MySQL
 
 ## Desarrolladores 👨‍💻
