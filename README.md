@@ -7,6 +7,7 @@ Aplicación especializada en el manejo de inventario, gestión e inteligencia de
 - JavaFX
 - Intellij IDEA
 - MySQL
+- Git
 
 ## Desarrolladores 👨‍💻
 
