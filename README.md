@@ -4,7 +4,7 @@ Aplicación especializada en el manejo de inventario, gestión e inteligencia de
 
 ## Tecnologías empleadas ⚒
 - Java 17: Lenguaje de programación utilizado para la estructuración e implementación del sistema. 
-- JavaFX: Tecnología encargada de mostrar el contenido multimedia e interfaz gráfica.
+- JavaFX 17: Tecnología encargada de mostrar el contenido multimedia e interfaz gráfica.
 - Spring Boot: Framework especializado en Stand Alone Applications o Microservicios.
 - Spring Data JPA: Librería especializada en la capa de acceso a los datoa a través de JPA.
 - Maven: Gestor de proyectos y dependencias.
