@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="815.0" prefWidth="1543.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abstraction.controllers.Controllers_Producto.Controller_Crear_Producto">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="815.0" prefWidth="1549.0" VBox.vgrow="NEVER">
+         <children>
+            <Button layoutX="20.0" layoutY="708.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="276.0" text="                    Cerrar Sesión" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="20.0" layoutY="622.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="276.0" text="Perfil" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="494.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="276.0" text="                      Facturación" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="416.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="276.0" text="                   Cotizaciones" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="334.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="276.0" text="                               Pedidos" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="257.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="276.0" text="                           Productos" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="179.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="276.0" text="                        DashBoard" textAlignment="RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Line endX="-34.0" endY="538.0" layoutX="353.0" layoutY="276.0" startX="-34.0" startY="-277.0" stroke="#00000067" />
+            <Text layoutX="1385.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Line endX="-8.5" layoutX="327.0" layoutY="152.0" startX="-337.0" stroke="#00000079" />
+            <Line endX="-19.5" layoutX="334.0" layoutY="579.0" startX="-337.0" stroke="#00000079" />
+            <Text layoutX="112.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abstraction">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="38.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="64.0" layoutY="187.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/monitor.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="362.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear Producto">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="50.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textNombreProducto" layoutX="650.0" layoutY="308.0" prefHeight="25.0" prefWidth="750.0" />
+            <Button fx:id="crearProductoBoton" layoutX="1233.0" layoutY="670.0" mnemonicParsing="false" onAction="#OnActionCrearBoton" text="Crear Producto">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+            </Button>
+            <TextField fx:id="textReferenciaProducto" layoutX="650.0" layoutY="373.0" prefHeight="25.0" prefWidth="750.0" />
+            <TextField fx:id="textPrecioProducto" layoutX="650.0" layoutY="430.0" prefHeight="25.0" prefWidth="750.0" />
+            <TextField fx:id="textCantidadesExistentes" layoutX="650.0" layoutY="491.0" prefHeight="25.0" prefWidth="750.0" />
+            <TextField fx:id="textDescripcion" layoutX="650.0" layoutY="551.0" prefHeight="25.0" prefWidth="750.0" />
+            <Text fill="#686666" layoutX="376.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="38.0" />
+               </font>
+            </Text>
+            <Text layoutX="362.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Al escribir la información del nuevo producto, oprimir el botón crear producto." wrappingWidth="806.373046875">
+               <font>
+                  <Font name="Franklin Gothic Book" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="419.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="419.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referencia">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="419.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="419.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad Existentes">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="424.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="regresarBoton" layoutX="429.0" layoutY="644.0" mnemonicParsing="false" onAction="#OnActionRegresar" text="Regresar">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="21.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="51.0" layoutX="71.0" layoutY="344.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/caja.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="47.0" fitWidth="51.0" layoutX="69.0" layoutY="424.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/solicitud-de-cotizacion.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="70.0" layoutY="263.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/paquete.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="58.0" layoutX="63.0" layoutY="500.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/factura.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="86.0" layoutX="21.0" layoutY="40.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/abstraction.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="70.0" layoutY="628.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/perfil.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="71.0" layoutY="713.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/cerrar-sesion.png" />
+               </image>
+            </ImageView>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
