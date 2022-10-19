@@ -1,5 +1,6 @@
 package com.abstraction.controllers.Controllers_Cotizacion;
 
+import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
@@ -109,8 +110,17 @@ public class Controller_Ver_Cotizacion {
     }
 
     @FXML
-    void onActionDashBoard(ActionEvent event) {
-
+    void onActionDashBoard(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_DashBoard/MockupDASHBOARD.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_DashBoard controller_dashBoard = fxmlLoader.getController();
+        controller_dashBoard.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML

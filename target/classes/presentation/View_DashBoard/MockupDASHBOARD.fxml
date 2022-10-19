@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="815.0" prefWidth="1543.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="815.0" prefWidth="1549.0" VBox.vgrow="NEVER">
+         <children>
+            <Button fx:id="botonCerrarSesion" layoutX="22.0" layoutY="708.0" mnemonicParsing="false" onAction="#onActionCerrarSesion" prefHeight="50.0" prefWidth="274.0" text="                   Cerrar Sesión">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonPerfil" layoutX="22.0" layoutY="622.0" mnemonicParsing="false" onAction="#onActionPerfil" prefHeight="50.0" prefWidth="274.0" text="                              Perfil">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonFacturacion" layoutX="22.0" layoutY="492.0" mnemonicParsing="false" onAction="#onActionFacturacion" prefHeight="62.0" prefWidth="274.0" text="                       Facturación">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonCotizaciones" layoutX="22.0" layoutY="412.0" mnemonicParsing="false" onAction="#onActionCotizaciones" prefHeight="62.0" prefWidth="274.0" text="                      Cotizaciones">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonPedidos" layoutX="22.0" layoutY="333.0" mnemonicParsing="false" onAction="#onActionPedidos" prefHeight="62.0" prefWidth="274.0" text="                           Pedidos">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonProductos" layoutX="22.0" layoutY="256.0" mnemonicParsing="false" onAction="#onActionProductos" prefHeight="62.0" prefWidth="274.0" text="                        Productos">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonDashBoard" layoutX="22.0" layoutY="184.0" mnemonicParsing="false" onAction="#onActionDashBoard" prefHeight="62.0" prefWidth="274.0" text="                         DashBoard">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="27.0" />
+               </font>
+            </Button>
+            <Line endX="-34.0" endY="538.0" layoutX="353.0" layoutY="276.0" startX="-34.0" startY="-277.0" stroke="#00000067" />
+            <Text layoutX="1344.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Line endX="-8.5" layoutX="327.0" layoutY="152.0" startX="-337.0" stroke="#00000079" />
+            <Line endX="-19.5" layoutX="334.0" layoutY="579.0" startX="-337.0" stroke="#00000079" />
+            <Text layoutX="114.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abstraction">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="38.0" />
+               </font>
+            </Text>
+            <TitledPane animated="false" layoutX="375.0" layoutY="149.0" prefHeight="206.0" prefWidth="330.0" text="Ver ingresos">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="150.0">
+                     <children>
+                        <Line endX="-350.5" endY="-1.0" startX="-350.5" startY="-181.0" stroke="#00000082" />
+                        <Line endX="-173.0" endY="-146.5" startX="-502.0" startY="-146.5" stroke="#00000082" />
+                        <Text fill="#627a798c" layoutX="96.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="26.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Los ingresos para el periodo seleccionado son de:" textAlignment="CENTER" wrappingWidth="261.9375">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="141.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <TextField fx:id="ingresosPeriodoTiempoText" layoutX="89.0" layoutY="85.0" onAction="#onActionIngresosPeriodoTiempoText" />
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <Text layoutX="375.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="38.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="choiceBoxYearIngresosTiempo" layoutX="717.0" layoutY="181.0" prefHeight="25.0" prefWidth="93.0" />
+            <TitledPane animated="false" layoutX="375.0" layoutY="427.0" prefHeight="141.0" prefWidth="330.0" text="Transacción promedio">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="328.0">
+                     <children>
+                        <Text layoutX="22.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El valor de Transacción Promedio es de:" textAlignment="CENTER" wrappingWidth="261.9375">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="valorTransaccionPromedioText" layoutX="90.0" layoutY="45.0" onAction="#onActionValorTransaccionPromedio" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <Text fill="#627a798c" layoutX="375.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver ingresos por periodo de tiempo">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="26.0" />
+               </font>
+            </Text>
+            <Text fill="#3947488c" layoutX="375.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver valor de transacción promedio">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="26.0" />
+               </font>
+            </Text>
+            <Text layoutX="719.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo de análisis">
+               <font>
+                  <Font name="Franklin Gothic Book" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#3947488c" layoutX="960.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver rendimiento de un producto">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="26.0" />
+               </font>
+            </Text>
+            <LineChart fx:id="graficaRendimientoProducto" layoutX="932.0" layoutY="140.0" prefHeight="206.0" prefWidth="359.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <ChoiceBox fx:id="choiceBoxPeriodoAnalisisRendProduc" layoutX="1330.0" layoutY="154.0" onDragDetected="#onActionChoiceBoxPeriodoRendProducto" prefHeight="25.0" prefWidth="93.0" />
+            <ChoiceBox fx:id="choiceBoxProductoAnalisisRendProduc" layoutX="1330.0" layoutY="218.0" onDragDetected="#onActionChoiceBoxSelectProduct" prefHeight="25.0" prefWidth="93.0" />
+            <Text fill="#627a798c" layoutX="977.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver crecimiento de ventas">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="26.0" />
+               </font>
+            </Text>
+            <LineChart fx:id="graficaCrecimientoVentas" layoutX="960.0" layoutY="482.0" prefHeight="234.0" prefWidth="330.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <ChoiceBox fx:id="choiceBoxPeriodoCrecVentas" layoutX="1319.0" layoutY="498.0" onDragDetected="#onActionPeriodoCrecVentas" prefHeight="25.0" prefWidth="93.0" />
+            <Text layoutX="1313.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo de análisis">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#0000008c" layoutX="375.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ver conversión de leads">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="26.0" />
+               </font>
+            </Text>
+            <TitledPane fx:id="panelConversionLeads" animated="false" layoutX="375.0" layoutY="637.0" prefHeight="161.0" prefWidth="330.0" text="Conversión de leads">
+               <content>
+                  <TableView fx:id="tablaConversionLeads" prefHeight="200.0" prefWidth="200.0">
+                     <columns>
+                        <TableColumn fx:id="numeroFacturaColumna" prefWidth="105.60003356933612" text="No. Factura" />
+                        <TableColumn fx:id="numeroCotizacionColumna" prefWidth="98.39996337890625" text="No. Cotización" />
+                        <TableColumn fx:id="valorFacturacionColumna" prefWidth="123.99995422363281" text="Valor Facturación" />
+                     </columns>
+                  </TableView>
+               </content>
+            </TitledPane>
+            <ChoiceBox fx:id="choiceBoxPeriodoIngresosTiempo" layoutX="717.0" layoutY="218.0" prefHeight="25.0" prefWidth="93.0" />
+            <Text layoutX="817.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año">
+               <font>
+                  <Font name="Franklin Gothic Book" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="817.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo">
+               <font>
+                  <Font name="Franklin Gothic Book" size="14.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="choiceBoxYearValorPromedio" layoutX="717.0" layoutY="461.0" prefHeight="25.0" prefWidth="93.0" />
+            <ChoiceBox fx:id="choiceBoxPeriodoValorPromedio" layoutX="717.0" layoutY="498.0" prefHeight="25.0" prefWidth="93.0" />
+            <Text layoutX="817.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año">
+               <font>
+                  <Font name="Franklin Gothic Book" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="817.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo">
+               <font>
+                  <Font name="Franklin Gothic Book" size="16.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="62.0" fitWidth="81.0" layoutX="23.0" layoutY="58.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/abstraction.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="86.0" layoutY="192.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/monitor.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="80.0" layoutY="262.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/paquete.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="47.0" fitWidth="46.0" layoutX="84.0" layoutY="341.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/caja.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="86.0" layoutY="422.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/solicitud-de-cotizacion.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="47.0" fitWidth="46.0" layoutX="84.0" layoutY="502.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/factura.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="38.0" layoutX="87.0" layoutY="626.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/perfil.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="87.0" layoutY="716.0">
+               <image>
+                  <Image url="@../ImagenesRecurso/cerrar-sesion.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="botonCalcularIngresos" layoutX="719.0" layoutY="272.0" mnemonicParsing="false" onAction="#onActionCalcularIngresos" text="Calcular Ingresos por Periodo" />
+            <Text layoutX="1330.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo de análisis">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="1330.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producto a elegir">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="716.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo de análisis">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="16.0" />
+               </font>
+            </Text>
+            <Button layoutX="716.0" layoutY="544.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="172.0" text="Calcular Valor Promedio" />
+            <Button fx:id="botonCalcularLeads" layoutX="719.0" layoutY="774.0" mnemonicParsing="false" onAction="#onActionCalcularLeads" text="Calcular Conversión Leads" />
+            <Button fx:id="botonCalcularRendimiento" layoutX="1330.0" layoutY="301.0" mnemonicParsing="false" onAction="#onActionCalcularRendimiento" text="Calcular Rendimiento" />
+            <Button fx:id="botonCrecVentas" layoutX="1318.0" layoutY="671.0" mnemonicParsing="false" onAction="#onActionCrecVentas" text="Calcular Crecimiento de Ventas" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
