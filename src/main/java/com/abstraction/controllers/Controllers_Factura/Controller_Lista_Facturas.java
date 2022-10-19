@@ -1,20 +1,20 @@
-package com.abstraction.controllers.Controllers_Producto;
+package com.abstraction.controllers.Controllers_Factura;
 
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
-import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
+import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class Controller_Crear_Producto {
+public class Controller_Lista_Facturas {
 
     private Stage stage;
 
@@ -25,6 +25,15 @@ public class Controller_Crear_Producto {
     public Stage getStage() {
         return stage;
     }
+
+    @FXML
+    private TableColumn<?, ?> actualizarColumna;
+
+    @FXML
+    private TableColumn<?, ?> archivarColumna;
+
+    @FXML
+    private Button botonBuscar;
 
     @FXML
     private Button botonCerrarSesion;
@@ -45,37 +54,58 @@ public class Controller_Crear_Producto {
     private Button botonPerfil;
 
     @FXML
-    private Button botonProductos;
+    private Button botonProducto;
 
     @FXML
-    private Button crearProductoBoton;
+    private DatePicker dateSeleccionar;
 
     @FXML
-    private Button regresarBoton;
+    private Text facturaBuscar;
 
     @FXML
-    private TextField textCantidadesExistentes;
+    private TableColumn<?, ?> fechaColumna;
 
     @FXML
-    private TextField textDescripcion;
+    private ComboBox<?> filtrarComboBox;
 
     @FXML
-    private TextField textNombreProducto;
+    private TableColumn<?, ?> nombreClienteColumna;
 
     @FXML
-    private TextField textPrecioProducto;
+    private TableColumn<?, ?> numeroFacturaColumna;
 
     @FXML
-    private TextField textReferenciaProducto;
+    private TableColumn<?, ?> numeroPedidoColumna;
 
     @FXML
-    void OnActionCrearBoton(ActionEvent event) {
+    private TableColumn<?, ?> totalColumna;
+
+    @FXML
+    private TableColumn<?, ?> verColumna;
+
+    @FXML
+    void onActionBuscar(ActionEvent event) {
 
     }
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
 
+    }
+
+    @FXML
+    void onActionCotizacion(ActionEvent event) throws IOException {
+        //Facturacion -> Modelado Equivocacion
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupListaFacturas.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Lista_Facturas controller_lista_facturas = fxmlLoader.getController();
+        controller_lista_facturas.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML
@@ -98,17 +128,13 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
-    void onActionFacturacion(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupListaFacturas.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Facturas controller_lista_facturas = fxmlLoader.getController();
-        controller_lista_facturas.setStage(stage);
-        stage.show();
-        this.stage.close();
+    void onActionDateSeleccionar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionFiltrarComboBox(ActionEvent event) {
+
     }
 
     @FXML
@@ -131,21 +157,7 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
-    void onActionProductos(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
-        controller_lista_productos.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
-
-    @FXML
-    void OnActionRegresar(ActionEvent event) throws IOException {
+    void onActionProducto(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);

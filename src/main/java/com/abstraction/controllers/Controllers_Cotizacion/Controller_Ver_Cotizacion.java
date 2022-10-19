@@ -1,29 +1,30 @@
-package com.abstraction.controllers.Controllers_Producto;
+package com.abstraction.controllers.Controllers_Cotizacion;
 
-import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
+import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class Controller_Crear_Producto {
+public class Controller_Ver_Cotizacion {
 
     private Stage stage;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     public Stage getStage() {
         return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @FXML
@@ -36,6 +37,9 @@ public class Controller_Crear_Producto {
     private Button botonDashBoard;
 
     @FXML
+    private Button botonGenerarPedido;
+
+    @FXML
     private Button botonFacturacion;
 
     @FXML
@@ -45,33 +49,40 @@ public class Controller_Crear_Producto {
     private Button botonPerfil;
 
     @FXML
-    private Button botonProductos;
+    private Button botonProducto;
 
     @FXML
-    private Button crearProductoBoton;
+    private Button botonRegresar;
 
     @FXML
-    private Button regresarBoton;
+    private TextField fechaCotizacionText;
 
     @FXML
-    private TextField textCantidadesExistentes;
+    private TextField nombreClienteText;
 
     @FXML
-    private TextField textDescripcion;
+    private TextField nombreCotizacionText;
 
     @FXML
-    private TextField textNombreProducto;
+    private TableColumn<?, ?> nombreProductoColumna;
 
     @FXML
-    private TextField textPrecioProducto;
+    private TableColumn<?, ?> numProductosColumna;
 
     @FXML
-    private TextField textReferenciaProducto;
+    private TextField numeroDeCotizacionText;
 
     @FXML
-    void OnActionCrearBoton(ActionEvent event) {
+    private TextField precioTotalText;
 
-    }
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableColumn<?, ?> subTotalColumna;
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -90,6 +101,11 @@ public class Controller_Crear_Producto {
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
+    }
+
+    @FXML
+    void onActionGenerarPedido(ActionEvent event) {
+        //Acción Implementada en la Facade
     }
 
     @FXML
@@ -131,7 +147,7 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
-    void onActionProductos(ActionEvent event) throws IOException {
+    void onActionProducto(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
@@ -145,15 +161,15 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
-    void OnActionRegresar(ActionEvent event) throws IOException {
+    void onActionRegresar(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
+        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupListaCotizaciones.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Abstraction");
         stage.setScene(scene);
-        Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
-        controller_lista_productos.setStage(stage);
+        Controller_Lista_Cotizaciones controller_lista_cotizaciones = fxmlLoader.getController();
+        controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
     }

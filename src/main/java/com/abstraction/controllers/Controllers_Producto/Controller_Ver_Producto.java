@@ -1,5 +1,8 @@
 package com.abstraction.controllers.Controllers_Producto;
 
+import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
+import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,8 +68,17 @@ public class Controller_Ver_Producto {
     }
 
     @FXML
-    void onActionCotizaciones(ActionEvent event) {
-
+    void onActionCotizaciones(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupListaCotizaciones.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Lista_Cotizaciones controller_lista_cotizaciones = fxmlLoader.getController();
+        controller_lista_cotizaciones.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML
@@ -75,13 +87,31 @@ public class Controller_Ver_Producto {
     }
 
     @FXML
-    void onActionFacturacion(ActionEvent event) {
-
+    void onActionFacturacion(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupListaFacturas.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Lista_Facturas controller_lista_facturas = fxmlLoader.getController();
+        controller_lista_facturas.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML
-    void onActionPedidos(ActionEvent event) {
-
+    void onActionPedidos(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupListaPedidos.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Lista_Pedidos controller_lista_pedidos = fxmlLoader.getController();
+        controller_lista_pedidos.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML
@@ -90,8 +120,17 @@ public class Controller_Ver_Producto {
     }
 
     @FXML
-    void onActionProductos(ActionEvent event) {
-
+    void onActionProductos(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
+        controller_lista_productos.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML

@@ -1,20 +1,22 @@
-package com.abstraction.controllers.Controllers_Producto;
+package com.abstraction.controllers.Controllers_Pedido;
 
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
-import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
+import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class Controller_Crear_Producto {
+public class Controller_Ver_Pedido {
 
     private Stage stage;
 
@@ -25,6 +27,9 @@ public class Controller_Crear_Producto {
     public Stage getStage() {
         return stage;
     }
+
+    @FXML
+    private ProgressBar barraProgresoEstado;
 
     @FXML
     private Button botonCerrarSesion;
@@ -39,39 +44,49 @@ public class Controller_Crear_Producto {
     private Button botonFacturacion;
 
     @FXML
+    private Button botonGenerarFactura;
+
+    @FXML
     private Button botonPedidos;
 
     @FXML
     private Button botonPerfil;
 
     @FXML
-    private Button botonProductos;
+    private Button botonProducto;
 
     @FXML
-    private Button crearProductoBoton;
+    private Button botonRegresar;
 
     @FXML
-    private Button regresarBoton;
+    private TextField estadoPedidoText;
 
     @FXML
-    private TextField textCantidadesExistentes;
+    private TextField fechaCotizacionText;
 
     @FXML
-    private TextField textDescripcion;
+    private TextField nombreClienteText;
 
     @FXML
-    private TextField textNombreProducto;
+    private TableColumn<?, ?> nombreProductoColumna;
 
     @FXML
-    private TextField textPrecioProducto;
+    private TableColumn<?, ?> numProductosColumna;
 
     @FXML
-    private TextField textReferenciaProducto;
+    private TextField numeroDePedidoText;
 
     @FXML
-    void OnActionCrearBoton(ActionEvent event) {
+    private TextField precioTotalText;
 
-    }
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableColumn<?, ?> subTotalColumna;
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -112,6 +127,12 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
+    void onActionGenerarFactura(ActionEvent event) {
+        //Accion realizada por la Facade
+
+    }
+
+    @FXML
     void onActionPedidos(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupListaPedidos.fxml");
@@ -131,7 +152,7 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
-    void onActionProductos(ActionEvent event) throws IOException {
+    void onActionProducto(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
@@ -145,15 +166,15 @@ public class Controller_Crear_Producto {
     }
 
     @FXML
-    void OnActionRegresar(ActionEvent event) throws IOException {
+    void onActionRegresar(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
+        URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupListaPedidos.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Abstraction");
         stage.setScene(scene);
-        Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
-        controller_lista_productos.setStage(stage);
+        Controller_Lista_Pedidos controller_lista_pedidos = fxmlLoader.getController();
+        controller_lista_pedidos.setStage(stage);
         stage.show();
         this.stage.close();
     }
