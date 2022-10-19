@@ -131,6 +131,22 @@ public class Controller_Lista_Productos {
         this.stage.close();
     }
 
+    public Button getBotonBuscar() {
+        return botonBuscar;
+    }
+
+    public void setBotonBuscar(Button botonBuscar) {
+        this.botonBuscar = botonBuscar;
+    }
+
+    public Text getTextFieldBusquedaProducto() {
+        return textFieldBusquedaProducto;
+    }
+
+    public void setTextFieldBusquedaProducto(Text textFieldBusquedaProducto) {
+        this.textFieldBusquedaProducto = textFieldBusquedaProducto;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

@@ -106,6 +106,38 @@ public class Controller_Crear_Pedido {
         //Acción desempeñada por la Facade
     }
 
+    public TableColumn<?, ?> getAddColumna() {
+        return addColumna;
+    }
+
+    public void setAddColumna(TableColumn<?, ?> addColumna) {
+        this.addColumna = addColumna;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNumeroDePedidoText() {
+        return numeroDePedidoText;
+    }
+
+    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
+        this.numeroDePedidoText = numeroDePedidoText;
+    }
+
+    public TextField getPrecioCotizadoText() {
+        return precioCotizadoText;
+    }
+
+    public void setPrecioCotizadoText(TextField precioCotizadoText) {
+        this.precioCotizadoText = precioCotizadoText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

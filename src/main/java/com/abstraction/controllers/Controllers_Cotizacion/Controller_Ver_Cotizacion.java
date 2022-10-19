@@ -109,6 +109,46 @@ public class Controller_Ver_Cotizacion {
         //Acción Implementada en la Facade
     }
 
+    public TextField getFechaCotizacionText() {
+        return fechaCotizacionText;
+    }
+
+    public void setFechaCotizacionText(TextField fechaCotizacionText) {
+        this.fechaCotizacionText = fechaCotizacionText;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNombreCotizacionText() {
+        return nombreCotizacionText;
+    }
+
+    public void setNombreCotizacionText(TextField nombreCotizacionText) {
+        this.nombreCotizacionText = nombreCotizacionText;
+    }
+
+    public TextField getNumeroDeCotizacionText() {
+        return numeroDeCotizacionText;
+    }
+
+    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
+        this.numeroDeCotizacionText = numeroDeCotizacionText;
+    }
+
+    public TextField getPrecioTotalText() {
+        return precioTotalText;
+    }
+
+    public void setPrecioTotalText(TextField precioTotalText) {
+        this.precioTotalText = precioTotalText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

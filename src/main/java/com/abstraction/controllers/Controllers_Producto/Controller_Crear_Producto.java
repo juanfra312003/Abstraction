@@ -93,6 +93,54 @@ public class Controller_Crear_Producto {
         this.stage.close();
     }
 
+    public Button getBotonCerrarSesion() {
+        return botonCerrarSesion;
+    }
+
+    public void setBotonCerrarSesion(Button botonCerrarSesion) {
+        this.botonCerrarSesion = botonCerrarSesion;
+    }
+
+    public TextField getTextCantidadesExistentes() {
+        return textCantidadesExistentes;
+    }
+
+    public void setTextCantidadesExistentes(TextField textCantidadesExistentes) {
+        this.textCantidadesExistentes = textCantidadesExistentes;
+    }
+
+    public TextField getTextDescripcion() {
+        return textDescripcion;
+    }
+
+    public void setTextDescripcion(TextField textDescripcion) {
+        this.textDescripcion = textDescripcion;
+    }
+
+    public TextField getTextNombreProducto() {
+        return textNombreProducto;
+    }
+
+    public void setTextNombreProducto(TextField textNombreProducto) {
+        this.textNombreProducto = textNombreProducto;
+    }
+
+    public TextField getTextPrecioProducto() {
+        return textPrecioProducto;
+    }
+
+    public void setTextPrecioProducto(TextField textPrecioProducto) {
+        this.textPrecioProducto = textPrecioProducto;
+    }
+
+    public TextField getTextReferenciaProducto() {
+        return textReferenciaProducto;
+    }
+
+    public void setTextReferenciaProducto(TextField textReferenciaProducto) {
+        this.textReferenciaProducto = textReferenciaProducto;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

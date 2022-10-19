@@ -82,6 +82,46 @@ public class Controller_Ver_Producto {
         this.stage.close();
     }
 
+    public Button getBotonCerrarSesion() {
+        return botonCerrarSesion;
+    }
+
+    public void setBotonCerrarSesion(Button botonCerrarSesion) {
+        this.botonCerrarSesion = botonCerrarSesion;
+    }
+
+    public TextField getCantidadesExisText() {
+        return cantidadesExisText;
+    }
+
+    public void setCantidadesExisText(TextField cantidadesExisText) {
+        this.cantidadesExisText = cantidadesExisText;
+    }
+
+    public TextField getNombreProductoText() {
+        return nombreProductoText;
+    }
+
+    public void setNombreProductoText(TextField nombreProductoText) {
+        this.nombreProductoText = nombreProductoText;
+    }
+
+    public TextField getPrecioUnitarioText() {
+        return precioUnitarioText;
+    }
+
+    public void setPrecioUnitarioText(TextField precioUnitarioText) {
+        this.precioUnitarioText = precioUnitarioText;
+    }
+
+    public TextField getReferenciaProductoText() {
+        return referenciaProductoText;
+    }
+
+    public void setReferenciaProductoText(TextField referenciaProductoText) {
+        this.referenciaProductoText = referenciaProductoText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

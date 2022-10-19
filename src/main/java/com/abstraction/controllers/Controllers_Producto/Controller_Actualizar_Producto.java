@@ -114,6 +114,38 @@ public class Controller_Actualizar_Producto {
         this.stage.close();
     }
 
+    public TextField getCantidadesExistentesText() {
+        return cantidadesExistentesText;
+    }
+
+    public void setCantidadesExistentesText(TextField cantidadesExistentesText) {
+        this.cantidadesExistentesText = cantidadesExistentesText;
+    }
+
+    public TextField getNombreProductoText() {
+        return nombreProductoText;
+    }
+
+    public void setNombreProductoText(TextField nombreProductoText) {
+        this.nombreProductoText = nombreProductoText;
+    }
+
+    public TextField getPrecioProductoText() {
+        return precioProductoText;
+    }
+
+    public void setPrecioProductoText(TextField precioProductoText) {
+        this.precioProductoText = precioProductoText;
+    }
+
+    public TextField getReferenciaProductoText() {
+        return referenciaProductoText;
+    }
+
+    public void setReferenciaProductoText(TextField referenciaProductoText) {
+        this.referenciaProductoText = referenciaProductoText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

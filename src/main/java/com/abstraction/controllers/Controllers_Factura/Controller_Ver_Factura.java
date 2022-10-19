@@ -103,6 +103,46 @@ public class Controller_Ver_Factura {
         this.stage.close();
     }
 
+    public TextField getAbonoRealizadoText() {
+        return abonoRealizadoText;
+    }
+
+    public void setAbonoRealizadoText(TextField abonoRealizadoText) {
+        this.abonoRealizadoText = abonoRealizadoText;
+    }
+
+    public TextField getFechaFacturaText() {
+        return fechaFacturaText;
+    }
+
+    public void setFechaFacturaText(TextField fechaFacturaText) {
+        this.fechaFacturaText = fechaFacturaText;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNumeroDeFacturaText() {
+        return numeroDeFacturaText;
+    }
+
+    public void setNumeroDeFacturaText(TextField numeroDeFacturaText) {
+        this.numeroDeFacturaText = numeroDeFacturaText;
+    }
+
+    public TextField getNumeroPedidoText() {
+        return numeroPedidoText;
+    }
+
+    public void setNumeroPedidoText(TextField numeroPedidoText) {
+        this.numeroPedidoText = numeroPedidoText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

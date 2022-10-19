@@ -98,6 +98,38 @@ public class Controller_Actualizar_Cotizacion {
 
     }
 
+    public TableColumn<?, ?> getAddColumna() {
+        return addColumna;
+    }
+
+    public void setAddColumna(TableColumn<?, ?> addColumna) {
+        this.addColumna = addColumna;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNombreCotizacionText() {
+        return nombreCotizacionText;
+    }
+
+    public void setNombreCotizacionText(TextField nombreCotizacionText) {
+        this.nombreCotizacionText = nombreCotizacionText;
+    }
+
+    public TextField getNumeroDeCotizacionText() {
+        return numeroDeCotizacionText;
+    }
+
+    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
+        this.numeroDeCotizacionText = numeroDeCotizacionText;
+    }
+
     @FXML
     void onActionActualizarNombreCliente(ActionEvent event) {
 

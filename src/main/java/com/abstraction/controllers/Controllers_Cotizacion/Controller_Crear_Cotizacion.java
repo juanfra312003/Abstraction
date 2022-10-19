@@ -109,6 +109,38 @@ public class Controller_Crear_Cotizacion {
         //Ejecutar la acción de acuerdo con la facade
     }
 
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNombreCotizacionText() {
+        return nombreCotizacionText;
+    }
+
+    public void setNombreCotizacionText(TextField nombreCotizacionText) {
+        this.nombreCotizacionText = nombreCotizacionText;
+    }
+
+    public TextField getNumeroDeCotizacionText() {
+        return numeroDeCotizacionText;
+    }
+
+    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
+        this.numeroDeCotizacionText = numeroDeCotizacionText;
+    }
+
+    public TextField getPrecioCotizadoText() {
+        return precioCotizadoText;
+    }
+
+    public void setPrecioCotizadoText(TextField precioCotizadoText) {
+        this.precioCotizadoText = precioCotizadoText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();

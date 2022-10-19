@@ -111,6 +111,30 @@ public class Controller_Actualizar_Pedido {
         this.stage.close();
     }
 
+    public TableColumn<?, ?> getAddColumna() {
+        return addColumna;
+    }
+
+    public void setAddColumna(TableColumn<?, ?> addColumna) {
+        this.addColumna = addColumna;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNumeroDePedidoText() {
+        return numeroDePedidoText;
+    }
+
+    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
+        this.numeroDePedidoText = numeroDePedidoText;
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();
