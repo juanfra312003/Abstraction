@@ -1,5 +1,7 @@
 package com.abstraction.demo;
 
+import com.abstraction.business.FacadeGeneral;
+import com.abstraction.business.IProducto_facade;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,6 +38,8 @@ public class DemoApplication extends Application{
 			stage.setScene(scene);
 			Controller_Lista_Productos controladorListaProductos = fxmlLoader.getController();
 			controladorListaProductos.setStage(stage);
+			controladorListaProductos.facade = new FacadeGeneral();
+			controladorListaProductos.facade.listarProductos();
 			stage.show();
 		}
 		catch (Exception e){

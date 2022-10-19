@@ -1,5 +1,7 @@
 package com.abstraction.controllers.Controllers_Producto;
 
+import com.abstraction.business.FacadeGeneral;
+import com.abstraction.business.IProducto_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
@@ -20,6 +22,7 @@ import java.net.URL;
 public class Controller_Lista_Productos {
 
     private Stage stage;
+    public IProducto_facade facade;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -98,6 +101,7 @@ public class Controller_Lista_Productos {
         stage.setScene(scene);
         Controller_Crear_Producto controller_crear_producto = fxmlLoader.getController();
         controller_crear_producto.setStage(stage);
+        controller_crear_producto.facade = this.facade;
         stage.show();
         this.stage.close();
     }
