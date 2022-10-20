@@ -9,10 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -87,6 +84,9 @@ public class Controller_Lista_Pedidos {
 
     @FXML
     private TableColumn<?, ?> verColumna;
+
+    @FXML
+    private TableView<?> tableViewListaPedidos;
 
     @FXML
     void onActionBuscar(ActionEvent event) {
