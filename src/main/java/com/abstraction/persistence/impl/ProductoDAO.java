@@ -40,20 +40,73 @@ public class ProductoDAO implements IProductoDAO {
                     return true;
                 default:
                     return false;
-            }}catch (SQLException ex){
-            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,ex);
+            }
+        }
+        catch (SQLException ex){
+            Logger.getLogger(IProductoDAO.class.getName()).log(Level.SEVERE,null,ex);
             return false;
         }
     }
 
     @Override
     public boolean edit(Long referencia, Producto producto) {
-        return false;
+        try{
+            this.mysql.conectar();
+            String query="UPDATE producto SET"+
+                    "nombre='"+producto.getNombre()+"',"+
+                    "precio= '" +producto.getPrecio() + "'" +
+                    "existencias= '" +producto.getExistencias() + "'" +
+                    "descripcion= '" +producto.getDescripcion() + "'" +
+                    "WHERE referencia='" + referencia + "';";
+
+            System.out.println(query);
+            Statement stmt= this.mysql.getConnection().createStatement();
+            int code=stmt.executeUpdate(query);
+            stmt.close();
+            this.mysql.desconectar();
+
+            switch (code){
+                case 1:
+                    System.out.println("Se actualizo el producto correctamente");
+                    return true;
+                default:
+                    return false;
+            }
+
+        }catch (SQLException ex){
+            Logger.getLogger(IProductoDAO.class.getName()).log(Level.SEVERE,null,ex);
+            return false;
+        }
+
     }
 
     @Override
     public boolean delete(Long referencia) {
-        return false;
+        try{
+            String query = "DELETE FROM telefono WHERE referencia = '" + referencia + "';";
+            System.out.println(query);
+
+            Producto producto = findById(referencia);
+            System.out.println("Eliminando: " + producto);
+
+            this.mysql.conectar();
+            Statement stmt = this.mysql.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.mysql.desconectar();
+
+            switch (code) {
+                case 1:
+                    System.out.println("Se elimino el prodducto");
+                    return true;
+                default:
+                    return false;
+            }
+
+        } catch (SQLException ex){
+            Logger.getLogger(IProductoDAO.class.getName()).log(Level.SEVERE,null,ex);
+            return false;
+        }
     }
 
     @Override
