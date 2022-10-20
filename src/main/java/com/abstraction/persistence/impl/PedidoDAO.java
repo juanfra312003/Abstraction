@@ -1,6 +1,5 @@
 package com.abstraction.persistence.impl;
 
-import com.abstraction.entities.Cotizacion;
 import com.abstraction.entities.Pedido;
 import com.abstraction.persistence.ICotizacionDAO;
 import com.abstraction.persistence.IPedidoDAO;

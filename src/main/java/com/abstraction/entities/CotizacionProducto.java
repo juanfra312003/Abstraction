@@ -10,10 +10,9 @@ public class CotizacionProducto {
     public CotizacionProducto() {
     }
 
-    public CotizacionProducto(Producto producto, int cantidad, float subtotal) {
+    public CotizacionProducto(Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
     }
 
     public Producto getProducto() {
