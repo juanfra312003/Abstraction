@@ -1,6 +1,6 @@
 package com.abstraction.entities;
 
-import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +11,7 @@ public class Cotizacion {
     private float precio;
     private String nombreCliente;
 
-    @OneToMany
+
     private ArrayList<CotizacionProducto> productos;
 
     public Cotizacion() {

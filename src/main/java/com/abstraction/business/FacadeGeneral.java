@@ -1,9 +1,7 @@
 package com.abstraction.business;
 
-import com.abstraction.business.service.ProductoBO;
 import com.abstraction.entities.*;
 import javafx.scene.control.Alert;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,9 +13,6 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     public ArrayList<Pedido> listaPedidos;
     public ArrayList<Factura> listaFacturas;
     public Dashboard dashboard1;
-
-    @Autowired
-    private ProductoBO producto;
 
     @Override
     public boolean crearProducto(Producto product) {
