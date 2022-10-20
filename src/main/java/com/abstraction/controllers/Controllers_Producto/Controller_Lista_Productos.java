@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.*;
 import javafx.scene.control.TableColumn;
@@ -90,6 +91,10 @@ public class Controller_Lista_Productos {
 
     @FXML
     private Text textFieldBusquedaProducto;
+
+
+    @FXML
+    private TableView<?> tableViewListarProductos;
 
     @FXML
     void OnActionComboBoxFiltrar(ActionEvent event) {

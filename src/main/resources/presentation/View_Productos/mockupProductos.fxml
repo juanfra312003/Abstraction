@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="815.0" prefWidth="1543.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos">
+<VBox prefHeight="815.0" prefWidth="1543.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="815.0" prefWidth="1549.0" VBox.vgrow="NEVER">
          <children>
@@ -138,7 +138,7 @@
                   <Image url="@../ImagenesRecurso/factura.png" />
                </image>
             </ImageView>
-            <TableView layoutX="457.0" layoutY="210.0" prefHeight="586.0" prefWidth="926.0">
+            <TableView fx:id="tableViewListarProductos" layoutX="457.0" layoutY="210.0" prefHeight="586.0" prefWidth="926.0">
                <columns>
                   <TableColumn fx:id="columnaReferencia" prefWidth="141.60003662109375" text="Referencia" />
                   <TableColumn fx:id="columnaNombre" prefWidth="159.99993896484375" text="Nombre" />
