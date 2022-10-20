@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class CotizacionDAO implements ICotizacionDAO {
     private final MySQL mysql;
 
-    public CotizacionDAO(MySQL mysql) {
-        this.mysql = mysql;
+    public CotizacionDAO() {
+        this.mysql = new MySQL();
     }
 
 
@@ -34,7 +34,7 @@ public class CotizacionDAO implements ICotizacionDAO {
             String query = "INSERT INTO cotizacion(numero, nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
                     "'" + cotizacion.getNumero() + "'," +
                     "'" + cotizacion.getNombre() + "'," +
-                    "'" + cotizacion.getFecha().toString() + "'," +
+                    "TO_DATE('" + dateToString + "','" + pattern + "')," +
                     "'" + cotizacion.getPrecio() + "'," +
                     "'" + cotizacion.getNombreCliente() + "'," +
                     "'0';";

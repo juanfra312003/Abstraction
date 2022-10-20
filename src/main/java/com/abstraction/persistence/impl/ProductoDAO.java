@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,8 +15,8 @@ import java.util.logging.Logger;
 public class ProductoDAO implements IProductoDAO {
     private final MySQL mysql;
 
-    public ProductoDAO(MySQL mysql) {
-        this.mysql = mysql;
+    public ProductoDAO() {
+        this.mysql = new MySQL();
     }
 
     @Override
