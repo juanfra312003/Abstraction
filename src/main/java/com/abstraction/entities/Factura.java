@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 public class Factura {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long numero;
     private Date fecha;
     private float valorTotal;
@@ -16,6 +14,7 @@ public class Factura {
     public Factura() {
 
     }
+
     public Factura(Long numero, Date fecha, float valorTotal, float abonoTotal, Pedido pedidoFactura) {
         this.numero = numero;
         this.fecha = fecha;
