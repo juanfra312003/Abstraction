@@ -18,7 +18,7 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Long numero, String nombre, Date fecha, float valor, String nombreCliente, String estado, Cotizacion cotizacionPedido) {
+    public Pedido(Long numero, String nombre, Date fecha, float valor, String estado, Cotizacion cotizacionPedido) {
         this.numero = numero;
         this.nombre = nombre;
         this.fecha = fecha;
