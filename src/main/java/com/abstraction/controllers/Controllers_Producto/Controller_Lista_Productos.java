@@ -251,6 +251,7 @@ public class Controller_Lista_Productos {
     public void actualizarTabla()  throws  IOException {
         ArrayList<Producto> productos = facade.listarProductos();
         final ObservableList<ProductoObservable> data = FXCollections.observableArrayList();
+        if (productos == null) return;
         for(Producto producto : productos) {
             Button buttonVer = new Button();
             buttonVer.setText("Ver");
