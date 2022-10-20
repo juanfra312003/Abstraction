@@ -1,7 +1,5 @@
 package com.abstraction.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 public class Producto {
     private Long referencia;
