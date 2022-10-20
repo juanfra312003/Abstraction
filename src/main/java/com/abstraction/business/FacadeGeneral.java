@@ -1,6 +1,8 @@
 package com.abstraction.business;
 
 import com.abstraction.entities.*;
+import com.abstraction.persistence.IProductoDAO;
+import com.abstraction.persistence.impl.ProductoDAO;
 import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
@@ -16,7 +18,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public boolean crearProducto(Producto product) {
-        return false;
+        IProductoDAO productoDAO = new ProductoDAO();
+        return productoDAO.create(product);
     }
 
     @Override
@@ -36,6 +39,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public ArrayList<Producto> listarProductos() {
+        IProductoDAO productoDAO = new ProductoDAO();
+        inventarioProductos = productoDAO.findAll();
         return inventarioProductos;
     }
 
