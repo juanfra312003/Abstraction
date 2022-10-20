@@ -83,7 +83,7 @@ public class CotizacionDAO implements ICotizacionDAO {
     public Cotizacion findById(Long numero) {
         try{
             this.mysql.conectar();
-            String query = "SELECT * FROM cotizacion WHERE numero = " + numero + ";";
+            String query = "SELECT * FROM cotizacion WHERE numero = '" + numero + "';";
             System.out.println(query);
 
             Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -168,7 +168,7 @@ public class CotizacionDAO implements ICotizacionDAO {
         try{
             ArrayList<CotizacionProducto> cotizacionesProd = new ArrayList<>();
             this.mysql.conectar();
-            String query = "SELECT * FROM CotizacionProducto WHERE Cotizacion_numero = " + num + ";";
+            String query = "SELECT * FROM CotizacionProducto WHERE Cotizacion_numero = '" + num + "';";
             System.out.println(query);
             Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = stmt.executeQuery(query);
