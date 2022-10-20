@@ -2,6 +2,7 @@ package com.abstraction.persistence;
 
 import com.abstraction.entities.Producto;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface IProductoDAO{

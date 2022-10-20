@@ -1,11 +1,10 @@
 package com.abstraction.entities;
 
-import javax.persistence.*;
+
 import java.util.Date;
 
 public class Factura {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long numero;
     private Date fecha;
     private float valorTotal;
