@@ -1,6 +1,5 @@
 package com.abstraction.entities;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,20 +9,18 @@ public class Cotizacion {
     private Date fecha;
     private float precio;
     private String nombreCliente;
-
+    private int archivado;
 
     private ArrayList<CotizacionProducto> productos;
 
-    public Cotizacion() {
-    }
 
-    public Cotizacion(Long numero, String nombre, Date fecha, float precio, String nombreCliente, ArrayList<CotizacionProducto> productos) {
+    public Cotizacion(Long numero, String nombre, Date fecha, float precio, String nombreCliente, int archivado) {
         this.numero = numero;
         this.nombre = nombre;
         this.fecha = fecha;
         this.precio = precio;
         this.nombreCliente = nombreCliente;
-        this.productos = productos;
+        this.archivado = archivado;
     }
 
     public Long getNumero() {
@@ -64,6 +61,14 @@ public class Cotizacion {
 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
+    }
+
+    public int getArchivado() {
+        return archivado;
+    }
+
+    public void setArchivado(int archivado) {
+        this.archivado = archivado;
     }
 
     public ArrayList<CotizacionProducto> getProductos() {
