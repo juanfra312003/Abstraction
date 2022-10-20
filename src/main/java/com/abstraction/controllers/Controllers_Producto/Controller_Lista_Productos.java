@@ -7,6 +7,9 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.entities.Producto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,7 @@ import javafx.scene.control.TableColumn;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Controller_Lista_Productos {
 
@@ -215,5 +219,10 @@ public class Controller_Lista_Productos {
         controller_lista_productos.setStage(stage);
         stage.show();
         this.stage.close();
+    }
+
+    void actualizarTabla(){
+        ArrayList<Producto> productos = facade.listarProductos();
+        final ObservableList<Producto> data = FXCollections.observableArrayList();
     }
 }

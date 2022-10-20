@@ -23,11 +23,12 @@ public class ProductoDAO implements IProductoDAO {
     public boolean create(Producto producto) {
         try{
             this.mysql.conectar();
-            String query="INSERT INTO producto(referencia, nombre, precio, existencias,descripcion,pathImage)VALUES("+
-                    "'"+producto.getReferencia()+","+
-                    "'"+producto.getPrecio()+","+
-                    "'"+producto.getExistencias()+","+
-                    "'"+producto.getDescripcion()+","+
+            String query="INSERT INTO producto(referencia, nombre, precio, existencias,descripcion,pathImagen)VALUES("+
+                    "'"+producto.getReferencia()+"',"+
+                    "'"+producto.getNombre()+"',"+
+                    "'"+producto.getPrecio()+"',"+
+                    "'"+producto.getExistencias()+"',"+
+                    "'"+producto.getDescripcion()+"',"+
                     "'"+producto.getPathImage()+"'"+
                     ");";
             System.out.println(query);
