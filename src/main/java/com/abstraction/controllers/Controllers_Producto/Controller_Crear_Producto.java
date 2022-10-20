@@ -6,6 +6,7 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.entities.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 public class Controller_Crear_Producto {
 
@@ -74,7 +79,13 @@ public class Controller_Crear_Producto {
 
     @FXML
     void OnActionCrearBoton(ActionEvent event) {
-
+        facade.crearProducto(
+          new Producto(parseLong(textReferenciaProducto.getText()),
+                  textNombreProducto.getText(),
+                  parseFloat(textPrecioProducto.getText()),
+                  parseInt(textCantidadesExistentes.getText()),
+                  textDescripcion.getText())
+        );
     }
 
     @FXML

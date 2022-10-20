@@ -25,11 +25,16 @@ public class FacturaDAO implements IFacturaDAO {
     @Override
     public boolean create(Factura factura) {
         try{
+            String pattern = "DD/MM/YYYY";
+            DateFormat df = new SimpleDateFormat(pattern);
+            String dateToString = df.format(factura.getFecha());
+            
+            
             this.mysql.conectar();
             String query = "INSERT INTO factura(numero, Pedido_numero, fecha, valor, abonosTotal) VALUES("+
                     "'" + factura.getNumero()+ "'," +
                     "'" + factura.getPedidoFactura() + "'," +
-                    "'" + factura.getFecha() + "'," +
+                    "TO_DATE('" + dateToString + "','" + pattern + "')," +
                     "'" + factura.getValorTotal() + "'," +
                     "'" + factura.getAbonoTotal() + "'" +
                     ");";
