@@ -3,6 +3,7 @@ package com.abstraction.controllers.Controllers_Pedido;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
+import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -181,8 +182,17 @@ public class Controller_Crear_Pedido {
     }
 
     @FXML
-    void onActionPerfil(ActionEvent event) {
-
+    void onActionPerfil(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Perfil_Aux/mockupVerPerfil.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Ver_Perfil controller_ver_perfil = fxmlLoader.getController();
+        controller_ver_perfil.setStage(stage);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML

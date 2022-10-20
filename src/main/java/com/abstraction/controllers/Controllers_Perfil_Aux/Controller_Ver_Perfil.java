@@ -1,25 +1,21 @@
-package com.abstraction.controllers.Controllers_Producto;
+package com.abstraction.controllers.Controllers_Perfil_Aux;
 
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
-import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.text.Text;
-import javafx.stage.*;
-import javafx.scene.control.TableColumn;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class Controller_Lista_Productos {
-
+public class Controller_Ver_Perfil {
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -31,16 +27,10 @@ public class Controller_Lista_Productos {
     }
 
     @FXML
-    private Button botonBuscar;
-
-    @FXML
     private Button botonCerrarSesion;
 
     @FXML
     private Button botonCotizaciones;
-
-    @FXML
-    private Button botonCrearProducto;
 
     @FXML
     private Button botonDashBoard;
@@ -55,75 +45,11 @@ public class Controller_Lista_Productos {
     private Button botonPerfil;
 
     @FXML
-    private Button botonProductos;
+    private Button botonProducto;
+
 
     @FXML
-    private TableColumn<?, ?> columnaActualizarP;
-
-    @FXML
-    private TableColumn<?, ?> columnaEliminarP;
-
-    @FXML
-    private TableColumn<?, ?> columnaNombre;
-
-    @FXML
-    private TableColumn<?, ?> columnaNumeroExistencias;
-
-    @FXML
-    private TableColumn<?, ?> columnaPrecio;
-
-    @FXML
-    private TableColumn<?, ?> columnaReferencia;
-
-    @FXML
-    private TableColumn<?, ?> columnaVerProducto;
-
-    @FXML
-    private ComboBox<?> comboBoxFiltrar;
-
-    @FXML
-    private Text textFieldBusquedaProducto;
-
-    @FXML
-    void OnActionComboBoxFiltrar(ActionEvent event) {
-
-    }
-
-    @FXML
-    void OnActionCrearProducto(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/MockupCrearProducto.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Crear_Producto controller_crear_producto = fxmlLoader.getController();
-        controller_crear_producto.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
-
-    @FXML
-    void OnActionLogOut(ActionEvent event) {
-
-    }
-
-    @FXML
-    void OnActionPerfil(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Perfil_Aux/mockupVerPerfil.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Ver_Perfil controller_ver_perfil = fxmlLoader.getController();
-        controller_ver_perfil.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
-
-    @FXML
-    void onActionBuscar(ActionEvent event) {
+    void onActionCerrarSesion(ActionEvent event) {
 
     }
 
@@ -139,22 +65,6 @@ public class Controller_Lista_Productos {
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
-    }
-
-    public Button getBotonBuscar() {
-        return botonBuscar;
-    }
-
-    public void setBotonBuscar(Button botonBuscar) {
-        this.botonBuscar = botonBuscar;
-    }
-
-    public Text getTextFieldBusquedaProducto() {
-        return textFieldBusquedaProducto;
-    }
-
-    public void setTextFieldBusquedaProducto(Text textFieldBusquedaProducto) {
-        this.textFieldBusquedaProducto = textFieldBusquedaProducto;
     }
 
     @FXML
@@ -200,7 +110,21 @@ public class Controller_Lista_Productos {
     }
 
     @FXML
-    void onActionProductos(ActionEvent event) throws IOException {
+    void onActionPerfil(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Perfil_Aux/mockupVerPerfil.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Ver_Perfil controller_ver_perfil = fxmlLoader.getController();
+        controller_ver_perfil.setStage(stage);
+        stage.show();
+        this.stage.close();
+    }
+
+    @FXML
+    void onActionProducto(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
