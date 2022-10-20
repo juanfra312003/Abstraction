@@ -1,6 +1,5 @@
 package com.abstraction.entities;
 
-import javax.persistence.*;
 import java.util.Date;
 
 public class Factura {
