@@ -235,6 +235,8 @@ public class Controller_Crear_Producto {
         stage.setScene(scene);
         Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
         controller_lista_productos.setStage(stage);
+        controller_lista_productos.facade = this.facade;
+        controller_lista_productos.actualizarTabla();
         stage.show();
         this.stage.close();
     }
