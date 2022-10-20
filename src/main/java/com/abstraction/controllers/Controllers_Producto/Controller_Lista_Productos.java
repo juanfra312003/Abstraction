@@ -1,6 +1,5 @@
 package com.abstraction.controllers.Controllers_Producto;
 
-import com.abstraction.business.FacadeGeneral;
 import com.abstraction.business.IProducto_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
@@ -17,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.*;
 import javafx.scene.control.TableColumn;
@@ -66,25 +66,25 @@ public class Controller_Lista_Productos {
     private Button botonProductos;
 
     @FXML
-    private TableColumn<?, ?> columnaActualizarP;
+    private TableColumn<ProductoObservable, String> columnaActualizarP;
 
     @FXML
-    private TableColumn<?, ?> columnaEliminarP;
+    private TableColumn<ProductoObservable, String> columnaEliminarP;
 
     @FXML
-    private TableColumn<?, ?> columnaNombre;
+    private TableColumn<ProductoObservable, String> columnaNombre;
 
     @FXML
-    private TableColumn<?, ?> columnaNumeroExistencias;
+    private TableColumn<ProductoObservable, String> columnaNumeroExistencias;
 
     @FXML
-    private TableColumn<?, ?> columnaPrecio;
+    private TableColumn<ProductoObservable,String> columnaPrecio;
 
     @FXML
-    private TableColumn<?, ?> columnaReferencia;
+    private TableColumn<ProductoObservable,String> columnaReferencia;
 
     @FXML
-    private TableColumn<?, ?> columnaVerProducto;
+    private TableColumn<ProductoObservable,String> columnaVerProducto;
 
     @FXML
     private ComboBox<?> comboBoxFiltrar;
@@ -94,7 +94,7 @@ public class Controller_Lista_Productos {
 
 
     @FXML
-    private TableView<?> tableViewListarProductos;
+    private TableView<ProductoObservable> tableViewListarProductos;
 
     @FXML
     void OnActionComboBoxFiltrar(ActionEvent event) {
@@ -226,8 +226,60 @@ public class Controller_Lista_Productos {
         this.stage.close();
     }
 
-    void actualizarTabla(){
+    @FXML
+    void onActionVer(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupVerProducto.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Ver_Producto controller_ver_producto = fxmlLoader.getController();
+        controller_ver_producto.setStage(stage);
+        stage.show();
+        this.stage.close();
+    }
+
+    @FXML
+    void onActionActualizar(ActionEvent event) throws IOException {
+
+    }
+
+    @FXML
+    void onActionBorrar(ActionEvent event) throws IOException {
+    }
+    public void actualizarTabla()  throws  IOException {
         ArrayList<Producto> productos = facade.listarProductos();
-        final ObservableList<Producto> data = FXCollections.observableArrayList();
+        final ObservableList<ProductoObservable> data = FXCollections.observableArrayList();
+        for(Producto producto : productos) {
+            Button buttonVer = new Button();
+            buttonVer.setText("Ver");
+            //buttonVer.setOnAction(this::onActionVer);
+            Button buttonActualizar = new Button();
+            buttonActualizar.setText("Acualizar");
+            //buttonActualizar.setOnAction(this::onActionActualizar);
+            Button buttonBorrar = new Button();
+            buttonBorrar.setText("Borrar");
+            //buttonBorrar.setOnAction(this::onActionBorrar);
+            data.add(new ProductoObservable(
+                    producto.getReferencia(),
+                    producto.getNombre(),
+                    producto.getPrecio(),
+                    producto.getExistencias(),
+                    buttonVer,
+                    buttonActualizar,
+                    buttonBorrar
+            ));
+
+            columnaReferencia.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("referencia"));
+            columnaNombre.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("nombre"));
+            columnaPrecio.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("precio"));
+            columnaNumeroExistencias.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("existencias"));
+            columnaVerProducto.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("botonVer"));
+            columnaActualizarP.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("botonActualizar"));
+            columnaEliminarP.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("botonBorrar"));
+
+            tableViewListarProductos.setItems(data);
+        }
     }
 }
