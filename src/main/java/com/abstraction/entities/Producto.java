@@ -3,9 +3,7 @@ package com.abstraction.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class Producto {
-    @Id
     private Long referencia;
     private String nombre;
     private Float precio;

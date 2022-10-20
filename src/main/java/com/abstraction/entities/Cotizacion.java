@@ -4,11 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-@Entity
-@Table(name = "Cotizacion", schema = "abstraction")
 public class Cotizacion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long numero;
     private String nombre;
     private Date fecha;
@@ -17,7 +13,6 @@ public class Cotizacion {
 
     @OneToMany
     private ArrayList<CotizacionProducto> productos;
-
 
     public Cotizacion() {
     }

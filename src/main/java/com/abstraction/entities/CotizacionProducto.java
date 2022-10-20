@@ -1,15 +1,7 @@
 package com.abstraction.entities;
 
-import javax.persistence.*;
-import java.io.Serializable;
+public class CotizacionProducto {
 
-@Entity
-@Table(name = "CotizacionProducto", schema = "abstraction")
-public class CotizacionProducto{
-
-    @Id
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Producto_referencia")
     private Producto producto;
     private int cantidad;
     private float subtotal;
@@ -57,7 +49,6 @@ public class CotizacionProducto{
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
-
 
 
 }

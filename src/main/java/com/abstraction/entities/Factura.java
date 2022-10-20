@@ -1,11 +1,8 @@
 package com.abstraction.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 
-@Entity
-@Table(name = "Factura", schema = "abstraction")
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,8 +10,7 @@ public class Factura {
     private Date fecha;
     private float valorTotal;
     private float abonoTotal;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_numero", unique = true)
+
     private Pedido pedidoFactura;
 
     public Factura() {

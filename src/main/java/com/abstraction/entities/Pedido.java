@@ -3,10 +3,9 @@ package com.abstraction.entities;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "Pedido", schema = "abstraction")
+
 public class Pedido {
-    @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long numero;
     private String nombre;
@@ -14,8 +13,6 @@ public class Pedido {
     private float valor;
     private String nombreCliente;
     private String estado;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cotizacion_numero", unique = false)
     private Cotizacion cotizacionPedido;
 
     public Pedido() {

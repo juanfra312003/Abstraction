@@ -4,13 +4,10 @@ import com.abstraction.business.service.ProductoBO;
 import com.abstraction.entities.*;
 import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-@Controller
 public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade{
 
     public ArrayList<Producto> inventarioProductos;
@@ -24,7 +21,6 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public boolean crearProducto(Producto product) {
-        producto.save(product);
         return false;
     }
 
@@ -45,7 +41,6 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public ArrayList<Producto> listarProductos() {
-        inventarioProductos = producto.listarProductos();
         return inventarioProductos;
     }
 
