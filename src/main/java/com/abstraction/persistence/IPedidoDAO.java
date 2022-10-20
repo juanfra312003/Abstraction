@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface IPedidoDAO {
     public boolean create(Pedido pedido);
-    public boolean edit(Long numero, Pedido producto);
+    public boolean edit(Long numero, Pedido pedido);
     public boolean delete(Long numero);
     public Pedido findById(Long numero);
     public ArrayList<Pedido> findAll();
