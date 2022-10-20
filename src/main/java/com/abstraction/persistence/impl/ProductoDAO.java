@@ -3,9 +3,12 @@ package com.abstraction.persistence.impl;
 import com.abstraction.entities.Producto;
 import com.abstraction.persistence.IProductoDAO;
 import com.abstraction.persistence.MySQL;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -111,16 +114,98 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public Producto findById(Long referencia) {
-        return null;
+        try{
+            this.mysql.conectar();
+            String query = "SELECT * FROM producto WHERE numero = '"+ referencia +"';";
+            System.out.println(query);
+
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.first())
+            {
+                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"));
+                rs.close();
+                stmt.close();
+                this.mysql.desconectar();
+
+                return producto;
+            }
+            else
+            {
+                rs.close();
+                stmt.close();
+                this.mysql.desconectar();
+
+                return null;
+            }
+
+        } catch (SQLException ex){
+            Logger.getLogger(IProductoDAO.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override
     public ArrayList<Producto> findAll() {
-        return null;
+        try{
+
+            ArrayList<Producto> productos = new ArrayList<>();
+
+            this.mysql.conectar();
+            String query = "SELECT * FROM producto;";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            if(!rs.next()) return null;
+            rs.previous();
+            do
+            {
+                rs.next();
+
+                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"));
+                productos.add(producto);
+            }
+            while(!rs.isLast());
+
+            rs.close();
+            stmt.close();
+            this.mysql.desconectar();
+
+            return productos;
+
+        } catch (SQLException ex){
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override
     public Integer count() {
-        return null;
+        try{
+
+            Integer n = 0;
+
+            this.mysql.conectar();
+            String query = "SELECT * FROM producto;";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            do
+            {
+                rs.next();
+                n++;
+            }
+            while(!rs.isLast());
+
+            rs.close();
+            stmt.close();
+            this.mysql.desconectar();
+
+            return n;
+
+        } catch (SQLException ex){
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 }
