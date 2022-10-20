@@ -1,12 +1,12 @@
 package com.abstraction.entities;
 
-import javax.persistence.*;
+
 import java.util.Date;
 
 
 public class Pedido {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long numero;
     private String nombre;
     private Date fecha;

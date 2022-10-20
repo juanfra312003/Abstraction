@@ -7,13 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import org.springframework.boot.SpringApplication;
+
 import javafx.application.Application;
-import org.springframework.context.ConfigurableApplicationContext;
+
 
 import java.net.URL;
 public class DemoApplication extends Application{
-	public static ConfigurableApplicationContext applicationContext;
 	public static Parent rootNode;
 	public static Stage stage;
 
