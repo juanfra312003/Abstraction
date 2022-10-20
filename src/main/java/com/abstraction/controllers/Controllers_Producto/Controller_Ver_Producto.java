@@ -7,6 +7,7 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.entities.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -126,6 +127,13 @@ public class Controller_Ver_Producto {
         this.referenciaProductoText = referenciaProductoText;
     }
 
+    public void mostrarProducto(Producto producto){
+        referenciaProductoText.setText(producto.getReferencia().toString());
+        nombreProductoText.setText(producto.getNombre());
+        precioUnitarioText.setText(producto.getPrecio().toString());
+        cantidadesExisText.setText(String.valueOf(producto.getExistencias()));
+    }
+
     @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -206,6 +214,8 @@ public class Controller_Ver_Producto {
         stage.setScene(scene);
         Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
         controller_lista_productos.setStage(stage);
+        controller_lista_productos.facade = this.facade;
+        controller_lista_productos.actualizarTabla();
         stage.show();
         this.stage.close();
     }
