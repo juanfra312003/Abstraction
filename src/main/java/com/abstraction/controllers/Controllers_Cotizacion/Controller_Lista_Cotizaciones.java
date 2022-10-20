@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.*;
 
@@ -80,6 +81,10 @@ public class Controller_Lista_Cotizaciones {
 
     @FXML
     private TableColumn<?, ?> verColumna;
+
+    @FXML
+    private TableView<?> tableViewListaCotizaciones;
+
 
     @FXML
     void onActionBuscar(ActionEvent event) {
