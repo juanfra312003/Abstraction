@@ -219,5 +219,4 @@ public class Controller_Ver_Producto {
         stage.show();
         this.stage.close();
     }
-
 }

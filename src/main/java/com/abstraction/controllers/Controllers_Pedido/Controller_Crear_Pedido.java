@@ -61,7 +61,7 @@ public class Controller_Crear_Pedido {
     private Button botonRegresar;
 
     @FXML
-    private TableColumn<?, ?> eliminarColumna;
+    private TableColumn<?, ?> confirmarColumna;
 
     @FXML
     private TableColumn<?, ?> existenciasColumna;
@@ -86,12 +86,6 @@ public class Controller_Crear_Pedido {
 
     @FXML
     private TableView<?> tableViewCrearPedido;
-
-
-    @FXML
-    void onActionCerrarSesion(ActionEvent event) {
-
-    }
 
     @FXML
     void onActionCotizaciones(ActionEvent event) throws IOException {
@@ -226,6 +220,11 @@ public class Controller_Crear_Pedido {
         controller_lista_pedidos.setStage(stage);
         stage.show();
         this.stage.close();
+    }
+
+    @FXML
+    void onActionCerrarSesion(ActionEvent event) {
+
     }
 
 }

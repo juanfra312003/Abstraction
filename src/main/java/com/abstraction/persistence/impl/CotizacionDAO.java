@@ -30,14 +30,14 @@ public class CotizacionDAO implements ICotizacionDAO {
             String pattern = "DD/MM/YYYY";
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(cotizacion.getFecha());
-
+            //"STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
             String query = "INSERT INTO cotizacion(numero, nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
                     "'" + cotizacion.getNumero() + "'," +
                     "'" + cotizacion.getNombre() + "'," +
-                    "TO_DATE('" + dateToString + "','" + pattern + "')," +
+                    "NULL," +
                     "'" + cotizacion.getPrecio() + "'," +
                     "'" + cotizacion.getNombreCliente() + "'," +
-                    "'0';";
+                    "'0');";
             System.out.println(query);
             Statement stmt = this.mysql.getConnection().createStatement();
             int code = stmt.executeUpdate(query);

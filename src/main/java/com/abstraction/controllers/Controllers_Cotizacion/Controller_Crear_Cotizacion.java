@@ -1,10 +1,19 @@
 package com.abstraction.controllers.Controllers_Cotizacion;
 
+import com.abstraction.business.FacadeGeneral;
+import com.abstraction.business.ICotizacion_facade;
+import com.abstraction.business.IProducto_facade;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.controllers.Controllers_Producto.ProductoObservable;
+import com.abstraction.entities.Cotizacion;
+import com.abstraction.entities.CotizacionProducto;
+import com.abstraction.entities.Producto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,14 +22,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 public class Controller_Crear_Cotizacion {
 
     private Stage stage;
+    public ICotizacion_facade facade;
+
 
     public Stage getStage() {
         return stage;
@@ -31,7 +49,7 @@ public class Controller_Crear_Cotizacion {
     }
 
     @FXML
-    private TableColumn<?, ?> addColumna;
+    private TableColumn<ProductoObservable2, TextField> addColumna;
 
     @FXML
     private Button botonCerrarSesion;
@@ -61,10 +79,10 @@ public class Controller_Crear_Cotizacion {
     private Button botonRegresar;
 
     @FXML
-    private TableColumn<?, ?> eliminarColumna;
+    private TableColumn<ProductoObservable2, Button> confirmarColumna;
 
     @FXML
-    private TableColumn<?, ?> existenciasColumna;
+    private TableColumn<ProductoObservable2, String> existenciasColumna;
 
     @FXML
     private TextField nombreClienteText;
@@ -73,23 +91,28 @@ public class Controller_Crear_Cotizacion {
     private TextField nombreCotizacionText;
 
     @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
+    private TableColumn<ProductoObservable2, String> nombreProductoColumna;
 
     @FXML
     private TextField numeroDeCotizacionText;
 
     @FXML
-    private TableColumn<?, ?> precioColumna;
+    private TableColumn<ProductoObservable2, String> precioColumna;
 
     @FXML
     private TextField precioCotizadoText;
 
     @FXML
-    private TableColumn<?, ?> referenciaColumna;
-
+    private TableColumn<ProductoObservable2, String> referenciaColumna;
 
     @FXML
-    private TableView<?> tableViewCrearCotizacion;
+    private TableView<ProductoObservable2> tableViewCrearCotizacion;
+
+    ArrayList<Producto> productos;
+    ArrayList<CotizacionProducto> productosCotizados = new ArrayList<>();
+    Button[] buttonsAdd;
+    TextField[] textFieldsConfirmar;
+    int numProds = 0;
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -112,7 +135,64 @@ public class Controller_Crear_Cotizacion {
 
     @FXML
     void onActionCrearCotizacion(ActionEvent event) {
-        //Ejecutar la acción de acuerdo con la facade
+        Cotizacion  cotizacion = new Cotizacion(
+                parseLong(numeroDeCotizacionText.getText()),
+                nombreCotizacionText.getText(),
+                new Date(),
+                parseFloat(precioCotizadoText.getText()),
+                nombreClienteText.getText(),
+                0);
+        cotizacion.setProductos(productosCotizados);
+        facade.crearCotizacion(cotizacion);
+    }
+
+    @FXML
+    public void onActionAgregar(ActionEvent event) {
+        for (int i = 0; i < numProds; i++) {
+            if (event.getSource() == buttonsAdd[i]) {
+                productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
+            }
+        }
+    }
+
+    @FXML
+    void actualizarTabla() {
+        IProducto_facade facadeProd = new FacadeGeneral();
+        productos = facadeProd.listarProductos();
+        final ObservableList<ProductoObservable2> data = FXCollections.observableArrayList();
+
+        numProds = productos.size();
+        buttonsAdd = new Button[numProds];
+        textFieldsConfirmar = new TextField[numProds];
+
+        for (int i = 0; i < numProds; i++) {
+            buttonsAdd[i] = new Button();
+            buttonsAdd[i].setText("Agregar");
+            buttonsAdd[i].setOnAction(this::onActionAgregar);
+
+            textFieldsConfirmar[i] = new TextField();
+        }
+
+        int i = 0;
+        for (Producto producto : productos) {
+            data.add(new ProductoObservable2(
+                    producto.getReferencia(),
+                    producto.getNombre(),
+                    producto.getPrecio(),
+                    producto.getExistencias(),
+                    textFieldsConfirmar[i],
+                    buttonsAdd[i]
+            ));
+            i++;
+        }
+        referenciaColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, String>("referencia"));
+        nombreProductoColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, String>("nombre"));
+        precioColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, String>("precio"));
+        existenciasColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, String>("cantidades"));
+        addColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, TextField>("agregarTexto"));
+        confirmarColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, Button>("buttonConfirmarAgregar"));
+        tableViewCrearCotizacion.setItems(data);
+
     }
 
     public TextField getNombreClienteText() {
@@ -227,6 +307,8 @@ public class Controller_Crear_Cotizacion {
         stage.setScene(scene);
         Controller_Lista_Cotizaciones controller_lista_cotizaciones = fxmlLoader.getController();
         controller_lista_cotizaciones.setStage(stage);
+        controller_lista_cotizaciones.facade = this.facade;
+        controller_lista_cotizaciones.actualizarTabla();
         stage.show();
         this.stage.close();
     }

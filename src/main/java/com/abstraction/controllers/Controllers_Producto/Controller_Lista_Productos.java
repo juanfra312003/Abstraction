@@ -1,5 +1,6 @@
 package com.abstraction.controllers.Controllers_Producto;
 
+import com.abstraction.business.FacadeGeneral;
 import com.abstraction.business.IProducto_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
@@ -158,6 +159,8 @@ public class Controller_Lista_Productos {
         stage.setTitle("Abstraction");
         stage.setScene(scene);
         Controller_Lista_Cotizaciones controller_lista_cotizaciones = fxmlLoader.getController();
+        controller_lista_cotizaciones.facade = new FacadeGeneral();
+        controller_lista_cotizaciones.actualizarTabla();
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();

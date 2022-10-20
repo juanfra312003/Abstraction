@@ -1,10 +1,12 @@
 package com.abstraction.controllers.Controllers_Cotizacion;
 
+import com.abstraction.business.ICotizacion_facade;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Cotizacion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ import java.net.URL;
 public class Controller_Ver_Cotizacion {
 
     private Stage stage;
+    public ICotizacion_facade facade;
 
     public Stage getStage() {
         return stage;
@@ -109,6 +112,9 @@ public class Controller_Ver_Cotizacion {
         this.stage.close();
     }
 
+    public void mostrarCotizacion(Cotizacion cotizacion){
+
+    }
     @FXML
     void onActionGenerarPedido(ActionEvent event) {
         //Acción Implementada en la Facade

@@ -1,7 +1,9 @@
 package com.abstraction.business;
 
 import com.abstraction.entities.*;
+import com.abstraction.persistence.ICotizacionDAO;
 import com.abstraction.persistence.IProductoDAO;
+import com.abstraction.persistence.impl.CotizacionDAO;
 import com.abstraction.persistence.impl.ProductoDAO;
 import javafx.scene.control.Alert;
 
@@ -24,17 +26,20 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public Producto verProducto(Long id) {
-        return null;
+        IProductoDAO productoDAO =  new ProductoDAO();
+        return productoDAO.findById(id);
     }
 
     @Override
     public boolean actualizarProducto(Producto producto) {
-        return false;
+        IProductoDAO productoDAO =  new ProductoDAO();
+        return productoDAO.edit(producto.getReferencia(), producto);
     }
 
     @Override
     public boolean eliminarProducto(Long id) {
-        return false;
+        IProductoDAO productoDAO =  new ProductoDAO();
+        return productoDAO.delete(id);
     }
 
     @Override
@@ -46,32 +51,43 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public ArrayList<Producto> findByPrecio(float precioMin, float precioMax) {
-        return null;
+        ArrayList<Producto> productos = listarProductos();
+        ArrayList<Producto> filtrados = new ArrayList<>();
+        for(Producto p : productos)
+            if(p.getPrecio() >= precioMin && p.getPrecio() <= precioMax) filtrados.add(p);
+        return filtrados;
     }
 
     @Override
-    public boolean crearCotizacion(ArrayList<CotizacionProducto> prods) {
-        return false;
+    public boolean crearCotizacion(Cotizacion cotizacion) {
+        ICotizacionDAO cotizacionDAO = new CotizacionDAO();
+        return cotizacionDAO.create(cotizacion);
     }
 
     @Override
     public Cotizacion verCotizacion(Long id) {
-        return null;
+        ICotizacionDAO cotizacionDAO = new CotizacionDAO();
+        return cotizacionDAO.findById(id);
     }
 
     @Override
     public ArrayList<Cotizacion> listarCotizaciones() {
-        return null;
+        ICotizacionDAO cotizacionDAO = new CotizacionDAO();
+         return  cotizacionDAO.findAll();
     }
 
     @Override
     public boolean actualizarCotizacion(Cotizacion cotizacion) {
-        return false;
+        ICotizacionDAO cotizacionDAO = new CotizacionDAO();
+        return cotizacionDAO.edit(cotizacion.getNumero(), cotizacion);
     }
 
     @Override
     public boolean archivarCotizacion(Long id) {
-        return false;
+        ICotizacionDAO cotizacionDAO = new CotizacionDAO();
+        Cotizacion cotizacion = cotizacionDAO.findById(id);
+        cotizacion.setArchivado(1);
+        return cotizacionDAO.edit(cotizacion.getNumero(),cotizacion);
     }
 
     @Override

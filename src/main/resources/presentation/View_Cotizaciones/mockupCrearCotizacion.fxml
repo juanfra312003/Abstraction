@@ -121,8 +121,8 @@
                   <TableColumn fx:id="nombreProductoColumna" prefWidth="126.4000244140625" text="Nombre " />
                   <TableColumn fx:id="precioColumna" prefWidth="108.79998779296875" text="Precio Unit." />
                   <TableColumn fx:id="existenciasColumna" prefWidth="132.800048828125" text="# Existencias" />
-                  <TableColumn fx:id="addColumna" prefWidth="146.4000244140625" text="Añadir Existencia" />
-                  <TableColumn fx:id="eliminarColumna" prefWidth="154.39990234375" text="Eliminar Existencia" />
+                  <TableColumn fx:id="addColumna" prefWidth="146.4000244140625" text="Agregar (Cantidad)" />
+                  <TableColumn fx:id="confirmarColumna" prefWidth="154.39990234375" text="Confirmar" />
                   <TableColumn prefWidth="178.39990234375" text="Generar Pedido" />
                   <TableColumn prefWidth="174.39990234375" text="Archivar Cotización" />
                </columns>
