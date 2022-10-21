@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -34,6 +35,9 @@ public class Controller_Actualizar_Factura {
 
     @FXML
     private Button actualizarAbono;
+
+    @FXML
+    private TableView<?> tableViewActualizarFactura;
 
     @FXML
     private Button botonActualizar;

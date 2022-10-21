@@ -38,6 +38,9 @@ public class Controller_Lista_Facturas {
     private Button botonBuscar;
 
     @FXML
+    private TableView<?> tableViewListaFacturas;
+
+    @FXML
     private Button botonCerrarSesion;
 
     @FXML

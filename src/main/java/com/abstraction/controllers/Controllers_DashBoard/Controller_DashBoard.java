@@ -108,6 +108,12 @@ public class Controller_DashBoard {
     private TitledPane panelConversionLeads;
 
     @FXML
+    private TitledPane panelValTransProm;
+
+    @FXML
+    private TitledPane panelVerIngresos;
+
+    @FXML
     private TableView<?> tablaConversionLeads;
 
     @FXML

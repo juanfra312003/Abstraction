@@ -110,7 +110,7 @@
                   <Image url="@../ImagenesRecurso/cerrar-sesion.png" />
                </image>
             </ImageView>
-            <TableView layoutX="374.0" layoutY="402.0" prefHeight="370.0" prefWidth="958.0">
+            <TableView fx:id="tableViewActualizarFactura" layoutX="374.0" layoutY="402.0" prefHeight="370.0" prefWidth="958.0">
                <columns>
                   <TableColumn fx:id="referenciaColumna" prefWidth="165.60000610351562" text="Referencia" />
                   <TableColumn fx:id="nombreProductoColumna" prefWidth="164.80001831054688" text="Nombre " />
