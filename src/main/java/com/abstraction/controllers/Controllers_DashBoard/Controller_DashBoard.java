@@ -1,5 +1,6 @@
 package com.abstraction.controllers.Controllers_DashBoard;
 
+import com.abstraction.business.IDashboard_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
@@ -25,102 +26,11 @@ import java.net.URL;
 
 public class Controller_DashBoard {
 
-    private Stage stage;
+    public IDashboard_facade facade;
 
-    public Stage getStage() {
-        return stage;
+    public void initialize(IDashboard_facade facade){
+        this.facade = facade;
     }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML
-    private Button botonCalcularIngresos;
-
-    @FXML
-    private Button botonCalcularLeads;
-
-    @FXML
-    private Button botonCalcularRendimiento;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonCrecVentas;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProductos;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxPeriodoAnalisisRendProduc;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxPeriodoCrecVentas;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxPeriodoIngresosTiempo;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxPeriodoValorPromedio;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxProductoAnalisisRendProduc;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxYearIngresosTiempo;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxYearValorPromedio;
-
-    @FXML
-    private LineChart<?, ?> graficaCrecimientoVentas;
-
-    @FXML
-    private LineChart<?, ?> graficaRendimientoProducto;
-
-    @FXML
-    private TextField ingresosPeriodoTiempoText;
-
-    @FXML
-    private TableColumn<?, ?> numeroCotizacionColumna;
-
-    @FXML
-    private TableColumn<?, ?> numeroFacturaColumna;
-
-    @FXML
-    private TitledPane panelConversionLeads;
-
-    @FXML
-    private TitledPane panelValTransProm;
-
-    @FXML
-    private TitledPane panelVerIngresos;
-
-    @FXML
-    private TableView<?> tablaConversionLeads;
-
-    @FXML
-    private TableColumn<?, ?> valorFacturacionColumna;
-
-    @FXML
-    private TextField valorTransaccionPromedioText;
 
     @FXML
     void onActionCalcularIngresos(ActionEvent event) {
@@ -256,4 +166,106 @@ public class Controller_DashBoard {
 
     }
 
+    /**
+     * Getters y Setters
+     */
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private Button botonCalcularIngresos;
+
+    @FXML
+    private Button botonCalcularLeads;
+
+    @FXML
+    private Button botonCalcularRendimiento;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonCrecVentas;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProductos;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxPeriodoAnalisisRendProduc;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxPeriodoCrecVentas;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxPeriodoIngresosTiempo;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxPeriodoValorPromedio;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxProductoAnalisisRendProduc;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxYearIngresosTiempo;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxYearValorPromedio;
+
+    @FXML
+    private LineChart<?, ?> graficaCrecimientoVentas;
+
+    @FXML
+    private LineChart<?, ?> graficaRendimientoProducto;
+
+    @FXML
+    private TextField ingresosPeriodoTiempoText;
+
+    @FXML
+    private TableColumn<?, ?> numeroCotizacionColumna;
+
+    @FXML
+    private TableColumn<?, ?> numeroFacturaColumna;
+
+    @FXML
+    private TitledPane panelConversionLeads;
+
+    @FXML
+    private TitledPane panelValTransProm;
+
+    @FXML
+    private TitledPane panelVerIngresos;
+
+    @FXML
+    private TableView<?> tablaConversionLeads;
+
+    @FXML
+    private TableColumn<?, ?> valorFacturacionColumna;
+
+    @FXML
+    private TextField valorTransaccionPromedioText;
 }

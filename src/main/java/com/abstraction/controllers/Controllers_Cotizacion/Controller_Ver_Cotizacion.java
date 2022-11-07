@@ -21,77 +21,12 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Controller_Ver_Cotizacion {
-
-    private Stage stage;
     public ICotizacion_facade facade;
 
-    public Stage getStage() {
-        return stage;
+    public void initialize(ICotizacion_facade facade, Cotizacion cotizacion){
+        this.facade = facade;
+        this.mostrarCotizacion(cotizacion);
     }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonGenerarPedido;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TextField fechaCotizacionText;
-
-    @FXML
-    private TextField nombreClienteText;
-
-    @FXML
-    private TextField nombreCotizacionText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
-
-    @FXML
-    private TableColumn<?, ?> numProductosColumna;
-
-    @FXML
-    private TextField numeroDeCotizacionText;
-
-    @FXML
-    private TextField precioTotalText;
-
-    @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
-
-    @FXML
-    private TableColumn<?, ?> referenciaColumna;
-
-    @FXML
-    private TableColumn<?, ?> subTotalColumna;
-
-    @FXML
-    private TableView<?> tableViewVerCotizacion;
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -118,46 +53,6 @@ public class Controller_Ver_Cotizacion {
     @FXML
     void onActionGenerarPedido(ActionEvent event) {
         //Acción Implementada en la Facade
-    }
-
-    public TextField getFechaCotizacionText() {
-        return fechaCotizacionText;
-    }
-
-    public void setFechaCotizacionText(TextField fechaCotizacionText) {
-        this.fechaCotizacionText = fechaCotizacionText;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNombreCotizacionText() {
-        return nombreCotizacionText;
-    }
-
-    public void setNombreCotizacionText(TextField nombreCotizacionText) {
-        this.nombreCotizacionText = nombreCotizacionText;
-    }
-
-    public TextField getNumeroDeCotizacionText() {
-        return numeroDeCotizacionText;
-    }
-
-    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
-        this.numeroDeCotizacionText = numeroDeCotizacionText;
-    }
-
-    public TextField getPrecioTotalText() {
-        return precioTotalText;
-    }
-
-    public void setPrecioTotalText(TextField precioTotalText) {
-        this.precioTotalText = precioTotalText;
     }
 
     @FXML
@@ -244,4 +139,121 @@ public class Controller_Ver_Cotizacion {
         this.stage.close();
     }
 
+    /**
+     *
+     * Getters y Setters
+     */
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public TextField getFechaCotizacionText() {
+        return fechaCotizacionText;
+    }
+
+    public void setFechaCotizacionText(TextField fechaCotizacionText) {
+        this.fechaCotizacionText = fechaCotizacionText;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNombreCotizacionText() {
+        return nombreCotizacionText;
+    }
+
+    public void setNombreCotizacionText(TextField nombreCotizacionText) {
+        this.nombreCotizacionText = nombreCotizacionText;
+    }
+
+    public TextField getNumeroDeCotizacionText() {
+        return numeroDeCotizacionText;
+    }
+
+    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
+        this.numeroDeCotizacionText = numeroDeCotizacionText;
+    }
+
+    public TextField getPrecioTotalText() {
+        return precioTotalText;
+    }
+
+    public void setPrecioTotalText(TextField precioTotalText) {
+        this.precioTotalText = precioTotalText;
+    }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonGenerarPedido;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TextField fechaCotizacionText;
+
+    @FXML
+    private TextField nombreClienteText;
+
+    @FXML
+    private TextField nombreCotizacionText;
+
+    @FXML
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TableColumn<?, ?> numProductosColumna;
+
+    @FXML
+    private TextField numeroDeCotizacionText;
+
+    @FXML
+    private TextField precioTotalText;
+
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableColumn<?, ?> subTotalColumna;
+
+    @FXML
+    private TableView<?> tableViewVerCotizacion;
 }

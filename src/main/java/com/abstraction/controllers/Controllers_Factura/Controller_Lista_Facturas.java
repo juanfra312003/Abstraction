@@ -1,5 +1,6 @@
 package com.abstraction.controllers.Controllers_Factura;
 
+import com.abstraction.business.IFactura_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
@@ -18,75 +19,11 @@ import java.net.URL;
 
 public class Controller_Lista_Facturas {
 
-    private Stage stage;
+    public IFactura_facade facade;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(IFactura_facade facade){
+        this.facade = facade;
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    @FXML
-    private TableColumn<?, ?> actualizarColumna;
-
-    @FXML
-    private TableColumn<?, ?> archivarColumna;
-
-    @FXML
-    private Button botonBuscar;
-
-    @FXML
-    private TableView<?> tableViewListaFacturas;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private DatePicker dateSeleccionar;
-
-    @FXML
-    private Text facturaBuscar;
-
-    @FXML
-    private TableColumn<?, ?> fechaColumna;
-
-    @FXML
-    private ComboBox<?> filtrarComboBox;
-
-    @FXML
-    private TableColumn<?, ?> nombreClienteColumna;
-
-    @FXML
-    private TableColumn<?, ?> numeroFacturaColumna;
-
-    @FXML
-    private TableColumn<?, ?> numeroPedidoColumna;
-
-    @FXML
-    private TableColumn<?, ?> totalColumna;
-
-    @FXML
-    private TableColumn<?, ?> verColumna;
 
     @FXML
     void onActionBuscar(ActionEvent event) {
@@ -193,4 +130,80 @@ public class Controller_Lista_Facturas {
         this.stage.close();
     }
 
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private TableColumn<?, ?> actualizarColumna;
+
+    @FXML
+    private TableColumn<?, ?> archivarColumna;
+
+    @FXML
+    private Button botonBuscar;
+
+    @FXML
+    private TableView<?> tableViewListaFacturas;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private DatePicker dateSeleccionar;
+
+    @FXML
+    private Text facturaBuscar;
+
+    @FXML
+    private TableColumn<?, ?> fechaColumna;
+
+    @FXML
+    private ComboBox<?> filtrarComboBox;
+
+    @FXML
+    private TableColumn<?, ?> nombreClienteColumna;
+
+    @FXML
+    private TableColumn<?, ?> numeroFacturaColumna;
+
+    @FXML
+    private TableColumn<?, ?> numeroPedidoColumna;
+
+    @FXML
+    private TableColumn<?, ?> totalColumna;
+
+    @FXML
+    private TableColumn<?, ?> verColumna;
 }

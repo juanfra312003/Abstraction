@@ -1,10 +1,12 @@
 package com.abstraction.controllers.Controllers_Pedido;
 
+import com.abstraction.business.IPedido_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Pedido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,72 +22,12 @@ import java.net.URL;
 
 public class Controller_Actualizar_Pedido {
 
-    private Stage stage;
+    public IPedido_facade facade;
 
-    public Stage getStage() {
-        return stage;
+
+    public void initialize(IPedido_facade facade, Pedido pedido){
+        this.facade = facade;
     }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML
-    private TableColumn<?, ?> addColumna;
-
-    @FXML
-    private Button botonActNombreCliente;
-
-    @FXML
-    private Button botonActualizarGeneral;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TableColumn<?, ?> eliminarColumna;
-
-    @FXML
-    private TableColumn<?, ?> existenciasColumna;
-
-    @FXML
-    private TextField nombreClienteText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
-
-    @FXML
-    private TextField numeroDePedidoText;
-
-    @FXML
-    private TableColumn<?, ?> precioColumna;
-
-    @FXML
-    private TableColumn<?, ?> referenciaColumna;
-
-    @FXML
-    private TableView<?> tableViewActPedido;
 
     @FXML
     void onActionActualizarGeneral(ActionEvent event) {
@@ -114,30 +56,6 @@ public class Controller_Actualizar_Pedido {
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
-    }
-
-    public TableColumn<?, ?> getAddColumna() {
-        return addColumna;
-    }
-
-    public void setAddColumna(TableColumn<?, ?> addColumna) {
-        this.addColumna = addColumna;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNumeroDePedidoText() {
-        return numeroDePedidoText;
-    }
-
-    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
-        this.numeroDePedidoText = numeroDePedidoText;
     }
 
     @FXML
@@ -224,4 +142,102 @@ public class Controller_Actualizar_Pedido {
         this.stage.close();
     }
 
+    /**
+     * Getters y Setters
+     */
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public TableColumn<?, ?> getAddColumna() {
+        return addColumna;
+    }
+
+    public void setAddColumna(TableColumn<?, ?> addColumna) {
+        this.addColumna = addColumna;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNumeroDePedidoText() {
+        return numeroDePedidoText;
+    }
+
+    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
+        this.numeroDePedidoText = numeroDePedidoText;
+    }
+
+    /**
+     * FXML Elements
+     */
+
+    private Stage stage;
+
+    @FXML
+    private TableColumn<?, ?> addColumna;
+
+    @FXML
+    private Button botonActNombreCliente;
+
+    @FXML
+    private Button botonActualizarGeneral;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TableColumn<?, ?> eliminarColumna;
+
+    @FXML
+    private TableColumn<?, ?> existenciasColumna;
+
+    @FXML
+    private TextField nombreClienteText;
+
+    @FXML
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TextField numeroDePedidoText;
+
+    @FXML
+    private TableColumn<?, ?> precioColumna;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableView<?> tableViewActPedido;
 }

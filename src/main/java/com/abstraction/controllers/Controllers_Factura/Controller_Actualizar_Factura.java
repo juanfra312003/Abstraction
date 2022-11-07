@@ -1,10 +1,12 @@
 package com.abstraction.controllers.Controllers_Factura;
 
+import com.abstraction.business.IFactura_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Factura;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,81 +22,11 @@ import java.net.URL;
 
 public class Controller_Actualizar_Factura {
 
-    private Stage stage;
+    public IFactura_facade facade;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(IFactura_facade facade , Factura factura){
+        this.facade = facade;
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    @FXML
-    private TextField abonoRealizadoText;
-
-    @FXML
-    private Button actualizarAbono;
-
-    @FXML
-    private TableView<?> tableViewActualizarFactura;
-
-    @FXML
-    private Button botonActualizar;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TextField fechaFacturaText;
-
-    @FXML
-    private TextField nombreClienteText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
-
-    @FXML
-    private TableColumn<?, ?> numProductosColumna;
-
-    @FXML
-    private TextField numeroDeFacturaText;
-
-    @FXML
-    private TextField numeroPedidoText;
-
-    @FXML
-    private TextField precioTotalText;
-
-    @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
-
-    @FXML
-    private TableColumn<?, ?> referenciaColumna;
-
-    @FXML
-    private TableColumn<?, ?> subTotalColumna;
 
     @FXML
     void onActionActualizar(ActionEvent event) {
@@ -209,6 +141,17 @@ public class Controller_Actualizar_Factura {
         this.stage.close();
     }
 
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
     public void setAbonoRealizadoText(TextField abonoRealizadoText) {
         this.abonoRealizadoText = abonoRealizadoText;
     }
@@ -256,4 +199,75 @@ public class Controller_Actualizar_Factura {
     public TextField getPrecioTotalText() {
         return precioTotalText;
     }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private TextField abonoRealizadoText;
+
+    @FXML
+    private Button actualizarAbono;
+
+    @FXML
+    private TableView<?> tableViewActualizarFactura;
+
+    @FXML
+    private Button botonActualizar;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TextField fechaFacturaText;
+
+    @FXML
+    private TextField nombreClienteText;
+
+    @FXML
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TableColumn<?, ?> numProductosColumna;
+
+    @FXML
+    private TextField numeroDeFacturaText;
+
+    @FXML
+    private TextField numeroPedidoText;
+
+    @FXML
+    private TextField precioTotalText;
+
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableColumn<?, ?> subTotalColumna;
 }

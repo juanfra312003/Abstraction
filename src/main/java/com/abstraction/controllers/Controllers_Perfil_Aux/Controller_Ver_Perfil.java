@@ -16,37 +16,10 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Controller_Ver_Perfil {
-    private Stage stage;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(){
+
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -136,4 +109,40 @@ public class Controller_Ver_Perfil {
         stage.show();
         this.stage.close();
     }
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
 }

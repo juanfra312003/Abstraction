@@ -36,83 +36,12 @@ import static java.lang.Long.parseLong;
 
 public class Controller_Crear_Cotizacion {
 
-    private Stage stage;
     public ICotizacion_facade facade;
-
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML
-    private TableColumn<ProductoObservable2, TextField> addColumna;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonCrearCotizacion;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TableColumn<ProductoObservable2, Button> confirmarColumna;
-
-    @FXML
-    private TableColumn<ProductoObservable2, String> existenciasColumna;
-
-    @FXML
-    private TextField nombreClienteText;
-
-    @FXML
-    private TextField nombreCotizacionText;
-
-    @FXML
-    private TableColumn<ProductoObservable2, String> nombreProductoColumna;
-
-    @FXML
-    private TextField numeroDeCotizacionText;
-
-    @FXML
-    private TableColumn<ProductoObservable2, String> precioColumna;
-
-    @FXML
-    private TextField precioCotizadoText;
-
-    @FXML
-    private TableColumn<ProductoObservable2, String> referenciaColumna;
-
-    @FXML
-    private TableView<ProductoObservable2> tableViewCrearCotizacion;
-
-    ArrayList<Producto> productos;
-    ArrayList<CotizacionProducto> productosCotizados = new ArrayList<>();
-    Button[] buttonsAdd;
-    TextField[] textFieldsConfirmar;
     int numProds = 0;
+
+    public void initialize(ICotizacion_facade facade){
+        this.facade = facade;
+    }
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -193,38 +122,6 @@ public class Controller_Crear_Cotizacion {
         confirmarColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, Button>("buttonConfirmarAgregar"));
         tableViewCrearCotizacion.setItems(data);
 
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNombreCotizacionText() {
-        return nombreCotizacionText;
-    }
-
-    public void setNombreCotizacionText(TextField nombreCotizacionText) {
-        this.nombreCotizacionText = nombreCotizacionText;
-    }
-
-    public TextField getNumeroDeCotizacionText() {
-        return numeroDeCotizacionText;
-    }
-
-    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
-        this.numeroDeCotizacionText = numeroDeCotizacionText;
-    }
-
-    public TextField getPrecioCotizadoText() {
-        return precioCotizadoText;
-    }
-
-    public void setPrecioCotizadoText(TextField precioCotizadoText) {
-        this.precioCotizadoText = precioCotizadoText;
     }
 
     @FXML
@@ -313,4 +210,118 @@ public class Controller_Crear_Cotizacion {
         this.stage.close();
     }
 
+    /**
+     * Getters y Setters
+     */
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNombreCotizacionText() {
+        return nombreCotizacionText;
+    }
+
+    public void setNombreCotizacionText(TextField nombreCotizacionText) {
+        this.nombreCotizacionText = nombreCotizacionText;
+    }
+
+    public TextField getNumeroDeCotizacionText() {
+        return numeroDeCotizacionText;
+    }
+
+    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
+        this.numeroDeCotizacionText = numeroDeCotizacionText;
+    }
+
+    public TextField getPrecioCotizadoText() {
+        return precioCotizadoText;
+    }
+
+    public void setPrecioCotizadoText(TextField precioCotizadoText) {
+        this.precioCotizadoText = precioCotizadoText;
+    }
+
+    /**
+     * FXML Elements
+     */
+
+    private Stage stage;
+
+    @FXML
+    private TableColumn<ProductoObservable2, TextField> addColumna;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonCrearCotizacion;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TableColumn<ProductoObservable2, Button> confirmarColumna;
+
+    @FXML
+    private TableColumn<ProductoObservable2, String> existenciasColumna;
+
+    @FXML
+    private TextField nombreClienteText;
+
+    @FXML
+    private TextField nombreCotizacionText;
+
+    @FXML
+    private TableColumn<ProductoObservable2, String> nombreProductoColumna;
+
+    @FXML
+    private TextField numeroDeCotizacionText;
+
+    @FXML
+    private TableColumn<ProductoObservable2, String> precioColumna;
+
+    @FXML
+    private TextField precioCotizadoText;
+
+    @FXML
+    private TableColumn<ProductoObservable2, String> referenciaColumna;
+
+    @FXML
+    private TableView<ProductoObservable2> tableViewCrearCotizacion;
+
+    ArrayList<Producto> productos;
+    ArrayList<CotizacionProducto> productosCotizados = new ArrayList<>();
+    Button[] buttonsAdd;
+    TextField[] textFieldsConfirmar;
 }

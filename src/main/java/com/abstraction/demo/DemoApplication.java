@@ -31,8 +31,7 @@ public class DemoApplication extends Application{
 			stage.setScene(scene);
 			Controller_Lista_Productos controladorListaProductos = fxmlLoader.getController();
 			controladorListaProductos.setStage(stage);
-			controladorListaProductos.facade = new FacadeGeneral();
-			controladorListaProductos.actualizarTabla();
+			controladorListaProductos.intialize(new FacadeGeneral());
 			stage.show();
 		}
 		catch (Exception e){

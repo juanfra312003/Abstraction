@@ -20,53 +20,19 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Controller_Ver_Producto {
-
-    private Stage stage;
     IProducto_facade facade;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(IProducto_facade facade, Producto producto){
+        this.facade = facade;
+        this.mostrarProducto(producto);
     }
 
-    public Stage getStage() {
-        return stage;
+    public void mostrarProducto(Producto producto){
+        referenciaProductoText.setText(producto.getReferencia().toString());
+        nombreProductoText.setText(producto.getNombre());
+        precioUnitarioText.setText(producto.getPrecio().toString());
+        cantidadesExisText.setText(String.valueOf(producto.getExistencias()));
     }
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProductos;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TextField cantidadesExisText;
-
-    @FXML
-    private TextField nombreProductoText;
-
-    @FXML
-    private TextField precioUnitarioText;
-
-    @FXML
-    private TextField referenciaProductoText;
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -85,53 +51,6 @@ public class Controller_Ver_Producto {
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
-    }
-
-    public Button getBotonCerrarSesion() {
-        return botonCerrarSesion;
-    }
-
-    public void setBotonCerrarSesion(Button botonCerrarSesion) {
-        this.botonCerrarSesion = botonCerrarSesion;
-    }
-
-    public TextField getCantidadesExisText() {
-        return cantidadesExisText;
-    }
-
-    public void setCantidadesExisText(TextField cantidadesExisText) {
-        this.cantidadesExisText = cantidadesExisText;
-    }
-
-    public TextField getNombreProductoText() {
-        return nombreProductoText;
-    }
-
-    public void setNombreProductoText(TextField nombreProductoText) {
-        this.nombreProductoText = nombreProductoText;
-    }
-
-    public TextField getPrecioUnitarioText() {
-        return precioUnitarioText;
-    }
-
-    public void setPrecioUnitarioText(TextField precioUnitarioText) {
-        this.precioUnitarioText = precioUnitarioText;
-    }
-
-    public TextField getReferenciaProductoText() {
-        return referenciaProductoText;
-    }
-
-    public void setReferenciaProductoText(TextField referenciaProductoText) {
-        this.referenciaProductoText = referenciaProductoText;
-    }
-
-    public void mostrarProducto(Producto producto){
-        referenciaProductoText.setText(producto.getReferencia().toString());
-        nombreProductoText.setText(producto.getNombre());
-        precioUnitarioText.setText(producto.getPrecio().toString());
-        cantidadesExisText.setText(String.valueOf(producto.getExistencias()));
     }
 
     @FXML
@@ -200,6 +119,7 @@ public class Controller_Ver_Producto {
         stage.setScene(scene);
         Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
         controller_lista_productos.setStage(stage);
+        controller_lista_productos.intialize(this.facade);
         stage.show();
         this.stage.close();
     }
@@ -219,4 +139,96 @@ public class Controller_Ver_Producto {
         stage.show();
         this.stage.close();
     }
+
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public Button getBotonCerrarSesion() {
+        return botonCerrarSesion;
+    }
+
+    public void setBotonCerrarSesion(Button botonCerrarSesion) {
+        this.botonCerrarSesion = botonCerrarSesion;
+    }
+
+    public TextField getCantidadesExisText() {
+        return cantidadesExisText;
+    }
+
+    public void setCantidadesExisText(TextField cantidadesExisText) {
+        this.cantidadesExisText = cantidadesExisText;
+    }
+
+    public TextField getNombreProductoText() {
+        return nombreProductoText;
+    }
+
+    public void setNombreProductoText(TextField nombreProductoText) {
+        this.nombreProductoText = nombreProductoText;
+    }
+
+    public TextField getPrecioUnitarioText() {
+        return precioUnitarioText;
+    }
+
+    public void setPrecioUnitarioText(TextField precioUnitarioText) {
+        this.precioUnitarioText = precioUnitarioText;
+    }
+
+    public TextField getReferenciaProductoText() {
+        return referenciaProductoText;
+    }
+
+    public void setReferenciaProductoText(TextField referenciaProductoText) {
+        this.referenciaProductoText = referenciaProductoText;
+    }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProductos;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TextField cantidadesExisText;
+
+    @FXML
+    private TextField nombreProductoText;
+
+    @FXML
+    private TextField precioUnitarioText;
+
+    @FXML
+    private TextField referenciaProductoText;
 }

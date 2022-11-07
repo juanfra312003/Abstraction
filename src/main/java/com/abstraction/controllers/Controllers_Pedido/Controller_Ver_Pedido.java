@@ -1,10 +1,12 @@
 package com.abstraction.controllers.Controllers_Pedido;
 
+import com.abstraction.business.IPedido_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Pedido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,78 +19,11 @@ import java.net.URL;
 
 public class Controller_Ver_Pedido {
 
-    private Stage stage;
+    public IPedido_facade facade;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(IPedido_facade facade, Pedido pedido){
+        this.facade = facade;
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    @FXML
-    private ProgressBar barraProgresoEstado;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonGenerarFactura;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TextField estadoPedidoText;
-
-    @FXML
-    private TextField fechaCotizacionText;
-
-    @FXML
-    private TextField nombreClienteText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
-
-    @FXML
-    private TableColumn<?, ?> numProductosColumna;
-
-    @FXML
-    private TextField numeroDePedidoText;
-
-    @FXML
-    private TextField precioTotalText;
-
-    @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
-
-    @FXML
-    private TableColumn<?, ?> referenciaColumna;
-
-    @FXML
-    private TableColumn<?, ?> subTotalColumna;
-
-    @FXML
-    private TableView<?> tableViewVerProducto;
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -107,54 +42,6 @@ public class Controller_Ver_Pedido {
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
-    }
-
-    public ProgressBar getBarraProgresoEstado() {
-        return barraProgresoEstado;
-    }
-
-    public void setBarraProgresoEstado(ProgressBar barraProgresoEstado) {
-        this.barraProgresoEstado = barraProgresoEstado;
-    }
-
-    public TextField getEstadoPedidoText() {
-        return estadoPedidoText;
-    }
-
-    public void setEstadoPedidoText(TextField estadoPedidoText) {
-        this.estadoPedidoText = estadoPedidoText;
-    }
-
-    public TextField getFechaCotizacionText() {
-        return fechaCotizacionText;
-    }
-
-    public void setFechaCotizacionText(TextField fechaCotizacionText) {
-        this.fechaCotizacionText = fechaCotizacionText;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNumeroDePedidoText() {
-        return numeroDePedidoText;
-    }
-
-    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
-        this.numeroDePedidoText = numeroDePedidoText;
-    }
-
-    public TextField getPrecioTotalText() {
-        return precioTotalText;
-    }
-
-    public void setPrecioTotalText(TextField precioTotalText) {
-        this.precioTotalText = precioTotalText;
     }
 
     @FXML
@@ -247,4 +134,130 @@ public class Controller_Ver_Pedido {
         this.stage.close();
     }
 
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public ProgressBar getBarraProgresoEstado() {
+        return barraProgresoEstado;
+    }
+
+    public void setBarraProgresoEstado(ProgressBar barraProgresoEstado) {
+        this.barraProgresoEstado = barraProgresoEstado;
+    }
+
+    public TextField getEstadoPedidoText() {
+        return estadoPedidoText;
+    }
+
+    public void setEstadoPedidoText(TextField estadoPedidoText) {
+        this.estadoPedidoText = estadoPedidoText;
+    }
+
+    public TextField getFechaCotizacionText() {
+        return fechaCotizacionText;
+    }
+
+    public void setFechaCotizacionText(TextField fechaCotizacionText) {
+        this.fechaCotizacionText = fechaCotizacionText;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNumeroDePedidoText() {
+        return numeroDePedidoText;
+    }
+
+    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
+        this.numeroDePedidoText = numeroDePedidoText;
+    }
+
+    public TextField getPrecioTotalText() {
+        return precioTotalText;
+    }
+
+    public void setPrecioTotalText(TextField precioTotalText) {
+        this.precioTotalText = precioTotalText;
+    }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private ProgressBar barraProgresoEstado;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonGenerarFactura;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TextField estadoPedidoText;
+
+    @FXML
+    private TextField fechaCotizacionText;
+
+    @FXML
+    private TextField nombreClienteText;
+
+    @FXML
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TableColumn<?, ?> numProductosColumna;
+
+    @FXML
+    private TextField numeroDePedidoText;
+
+    @FXML
+    private TextField precioTotalText;
+
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableColumn<?, ?> subTotalColumna;
+
+    @FXML
+    private TableView<?> tableViewVerProducto;
 }

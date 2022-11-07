@@ -1,5 +1,6 @@
 package com.abstraction.controllers.Controllers_Pedido;
 
+import com.abstraction.business.IPedido_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
@@ -20,72 +21,11 @@ import java.net.URL;
 
 public class Controller_Crear_Pedido {
 
-    private Stage stage;
+    public IPedido_facade facade;
 
-    public Stage getStage() {
-        return stage;
+    public void initialize(IPedido_facade facade){
+        this.facade = facade;
     }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML
-    private TableColumn<?, ?> addColumna;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonCrearPedido;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProducto;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TableColumn<?, ?> confirmarColumna;
-
-    @FXML
-    private TableColumn<?, ?> existenciasColumna;
-
-    @FXML
-    private TextField nombreClienteText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
-
-    @FXML
-    private TextField numeroDePedidoText;
-
-    @FXML
-    private TableColumn<?, ?> precioColumna;
-
-    @FXML
-    private TextField precioCotizadoText;
-
-    @FXML
-    private TableColumn<?, ?> referenciaColumna;
-
-    @FXML
-    private TableView<?> tableViewCrearPedido;
 
     @FXML
     void onActionCotizaciones(ActionEvent event) throws IOException {
@@ -104,38 +44,6 @@ public class Controller_Crear_Pedido {
     @FXML
     void onActionCrearPedido(ActionEvent event) {
         //Acción desempeñada por la Facade
-    }
-
-    public TableColumn<?, ?> getAddColumna() {
-        return addColumna;
-    }
-
-    public void setAddColumna(TableColumn<?, ?> addColumna) {
-        this.addColumna = addColumna;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNumeroDePedidoText() {
-        return numeroDePedidoText;
-    }
-
-    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
-        this.numeroDePedidoText = numeroDePedidoText;
-    }
-
-    public TextField getPrecioCotizadoText() {
-        return precioCotizadoText;
-    }
-
-    public void setPrecioCotizadoText(TextField precioCotizadoText) {
-        this.precioCotizadoText = precioCotizadoText;
     }
 
     @FXML
@@ -227,4 +135,108 @@ public class Controller_Crear_Pedido {
 
     }
 
+    /**
+     * Getters y Setters
+     */
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public TableColumn<?, ?> getAddColumna() {
+        return addColumna;
+    }
+
+    public void setAddColumna(TableColumn<?, ?> addColumna) {
+        this.addColumna = addColumna;
+    }
+
+    public TextField getNombreClienteText() {
+        return nombreClienteText;
+    }
+
+    public void setNombreClienteText(TextField nombreClienteText) {
+        this.nombreClienteText = nombreClienteText;
+    }
+
+    public TextField getNumeroDePedidoText() {
+        return numeroDePedidoText;
+    }
+
+    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
+        this.numeroDePedidoText = numeroDePedidoText;
+    }
+
+    public TextField getPrecioCotizadoText() {
+        return precioCotizadoText;
+    }
+
+    public void setPrecioCotizadoText(TextField precioCotizadoText) {
+        this.precioCotizadoText = precioCotizadoText;
+    }
+
+    /**
+     * FXML Elements
+     */
+    private Stage stage;
+
+    @FXML
+    private TableColumn<?, ?> addColumna;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonCrearPedido;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProducto;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TableColumn<?, ?> confirmarColumna;
+
+    @FXML
+    private TableColumn<?, ?> existenciasColumna;
+
+    @FXML
+    private TextField nombreClienteText;
+
+    @FXML
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TextField numeroDePedidoText;
+
+    @FXML
+    private TableColumn<?, ?> precioColumna;
+
+    @FXML
+    private TextField precioCotizadoText;
+
+    @FXML
+    private TableColumn<?, ?> referenciaColumna;
+
+    @FXML
+    private TableView<?> tableViewCrearPedido;
 }

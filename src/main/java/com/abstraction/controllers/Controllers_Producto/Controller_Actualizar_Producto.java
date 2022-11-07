@@ -1,10 +1,12 @@
 package com.abstraction.controllers.Controllers_Producto;
 
+import com.abstraction.business.IProducto_facade;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.entities.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,63 +20,11 @@ import java.net.URL;
 
 public class Controller_Actualizar_Producto {
 
-    private Stage stage;
+    public IProducto_facade facade;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(IProducto_facade facade, Producto producto){
+        this.facade = facade;
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    @FXML
-    private Button botonActualizarCant;
-
-    @FXML
-    private Button botonActualizarNombre;
-
-    @FXML
-    private Button botonActualizarPrecio;
-
-    @FXML
-    private Button botonActualizarReferencia;
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProductos;
-
-    @FXML
-    private Button botonRegresar;
-
-    @FXML
-    private TextField cantidadesExistentesText;
-
-    @FXML
-    private TextField nombreProductoText;
-
-    @FXML
-    private TextField precioProductoText;
-
-    @FXML
-    private TextField referenciaProductoText;
 
     @FXML
     void onActionActualizarCant(ActionEvent event) {
@@ -113,38 +63,6 @@ public class Controller_Actualizar_Producto {
         controller_lista_cotizaciones.setStage(stage);
         stage.show();
         this.stage.close();
-    }
-
-    public TextField getCantidadesExistentesText() {
-        return cantidadesExistentesText;
-    }
-
-    public void setCantidadesExistentesText(TextField cantidadesExistentesText) {
-        this.cantidadesExistentesText = cantidadesExistentesText;
-    }
-
-    public TextField getNombreProductoText() {
-        return nombreProductoText;
-    }
-
-    public void setNombreProductoText(TextField nombreProductoText) {
-        this.nombreProductoText = nombreProductoText;
-    }
-
-    public TextField getPrecioProductoText() {
-        return precioProductoText;
-    }
-
-    public void setPrecioProductoText(TextField precioProductoText) {
-        this.precioProductoText = precioProductoText;
-    }
-
-    public TextField getReferenciaProductoText() {
-        return referenciaProductoText;
-    }
-
-    public void setReferenciaProductoText(TextField referenciaProductoText) {
-        this.referenciaProductoText = referenciaProductoText;
     }
 
     @FXML
@@ -230,4 +148,100 @@ public class Controller_Actualizar_Producto {
         stage.show();
         this.stage.close();
     }
+
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public TextField getCantidadesExistentesText() {
+        return cantidadesExistentesText;
+    }
+
+    public void setCantidadesExistentesText(TextField cantidadesExistentesText) {
+        this.cantidadesExistentesText = cantidadesExistentesText;
+    }
+
+    public TextField getNombreProductoText() {
+        return nombreProductoText;
+    }
+
+    public void setNombreProductoText(TextField nombreProductoText) {
+        this.nombreProductoText = nombreProductoText;
+    }
+
+    public TextField getPrecioProductoText() {
+        return precioProductoText;
+    }
+
+    public void setPrecioProductoText(TextField precioProductoText) {
+        this.precioProductoText = precioProductoText;
+    }
+
+    public TextField getReferenciaProductoText() {
+        return referenciaProductoText;
+    }
+
+    public void setReferenciaProductoText(TextField referenciaProductoText) {
+        this.referenciaProductoText = referenciaProductoText;
+    }
+
+    /**
+     * FXML Elements
+     */
+
+    private Stage stage;
+    @FXML
+    private Button botonActualizarCant;
+
+    @FXML
+    private Button botonActualizarNombre;
+
+    @FXML
+    private Button botonActualizarPrecio;
+
+    @FXML
+    private Button botonActualizarReferencia;
+
+    @FXML
+    private Button botonCerrarSesion;
+
+    @FXML
+    private Button botonCotizaciones;
+
+    @FXML
+    private Button botonDashBoard;
+
+    @FXML
+    private Button botonFacturacion;
+
+    @FXML
+    private Button botonPedidos;
+
+    @FXML
+    private Button botonPerfil;
+
+    @FXML
+    private Button botonProductos;
+
+    @FXML
+    private Button botonRegresar;
+
+    @FXML
+    private TextField cantidadesExistentesText;
+
+    @FXML
+    private TextField nombreProductoText;
+
+    @FXML
+    private TextField precioProductoText;
+
+    @FXML
+    private TextField referenciaProductoText;
 }
