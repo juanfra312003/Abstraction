@@ -41,6 +41,7 @@ public class Controller_Lista_Productos {
     //Actualiza la tabla de la pantalla
     public void actualizarTabla() {
         productos = facade.listarProductos();
+        if(productos == null) return;
         final ObservableList<ProductoObservable> data = FXCollections.observableArrayList();
         numProds = productos.size();
         buttonsVer = new Button[productos.size()];
