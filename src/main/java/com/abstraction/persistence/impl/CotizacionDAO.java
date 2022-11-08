@@ -27,14 +27,13 @@ public class CotizacionDAO implements ICotizacionDAO {
     public boolean create(Cotizacion cotizacion){
         this.mysql.conectar();
         try{
-            String pattern = "DD/MM/YYYY";
+            String pattern = "dd/MM/YYYY";
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(cotizacion.getFecha());
-            //"STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
-            String query = "INSERT INTO cotizacion(numero, nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
-                    "'" + cotizacion.getNumero() + "'," +
+
+            String query = "INSERT INTO cotizacion(nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
                     "'" + cotizacion.getNombre() + "'," +
-                    "NULL," +
+                    "STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
                     "'" + cotizacion.getPrecio() + "'," +
                     "'" + cotizacion.getNombreCliente() + "'," +
                     "'0');";
@@ -185,18 +184,30 @@ public class CotizacionDAO implements ICotizacionDAO {
                 cotizacionesProd.add(cotizacionProd);
             }
             while(!rs.isLast());
-
-
+            return cotizacionesProd;
         }catch (SQLException ex){
             Logger.getLogger(CotizacionDAO.class.getName()).log(Level.SEVERE,null,ex);
             return null;
         }
-
-        return null;
     }
 
     @Override
     public Integer count() {
         return null;
+    }
+
+    @Override
+    public Long nextId() {
+        try{
+            this.mysql.conectar();
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'abstraction'  AND   TABLE_NAME   = 'cotizacion';";
+            ResultSet rs = stmt.executeQuery(query);
+            if(!rs.next()) return null;
+            return rs.getLong("AUTO_INCREMENT");
+        }catch (SQLException ex){
+            Logger.getLogger(CotizacionDAO.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 }

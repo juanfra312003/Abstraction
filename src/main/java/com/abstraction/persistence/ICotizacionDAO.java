@@ -14,4 +14,5 @@ public interface ICotizacionDAO {
     public Cotizacion findById(Long numero);
     public ArrayList<Cotizacion> findAll();
     public Integer count();
+    public Long nextId();
 }

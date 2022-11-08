@@ -96,6 +96,12 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     }
 
     @Override
+    public Long nextCotId() {
+        ICotizacionDAO cotizacionDAO = new CotizacionDAO();
+        return cotizacionDAO.nextId();
+    }
+
+    @Override
     public float verLeads() {
         return 0;
     }
