@@ -7,6 +7,9 @@ import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import com.abstraction.entities.Cotizacion;
+import com.abstraction.entities.CotizacionProducto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +18,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Controller_Ver_Cotizacion {
     public ICotizacion_facade facade;
@@ -26,6 +33,45 @@ public class Controller_Ver_Cotizacion {
     public void initialize(ICotizacion_facade facade, Cotizacion cotizacion){
         this.facade = facade;
         this.mostrarCotizacion(cotizacion);
+    }
+
+    public void mostrarCotizacion(Cotizacion cotizacion){
+
+        String pattern = "dd/MM/YYYY";
+        DateFormat df = new SimpleDateFormat(pattern);
+        String dateToString = df.format(cotizacion.getFecha());
+
+        nombreCotizacionText.setText(cotizacion.getNombre());
+        nombreClienteText.setText(cotizacion.getNombreCliente());
+        numeroDeCotizacionText.setText(String.valueOf(cotizacion.getNumero()));
+        fechaCotizacionText.setText(dateToString);
+        precioTotalText.setText(String.valueOf(cotizacion.getPrecio()));
+
+        actualizarTabla(cotizacion);
+    }
+
+    public void actualizarTabla(Cotizacion cotizacion){
+        ArrayList<CotizacionProducto> productos = cotizacion.getProductos();
+        if(productos == null) return;
+        final ObservableList<CotProductoObservable> data = FXCollections.observableArrayList();
+
+        for(CotizacionProducto p : productos){
+            data.add(new CotProductoObservable(
+                    p.getProducto().getReferencia(),
+                    p.getProducto().getNombre(),
+                    p.getCantidad(),
+                    p.getProducto().getPrecio(),
+                    p.getSubtotal()
+            ));
+        }
+
+        referenciaColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("referencia"));
+        nombreProductoColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("nombre"));
+        numProductosColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("cantidad"));
+        precioUnitarioColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("precioUnitario"));
+        subTotalColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("subtotal"));
+
+        tableViewVerCotizacion.setItems(data);
     }
 
     @FXML
@@ -38,9 +84,6 @@ public class Controller_Ver_Cotizacion {
         cargarListaCotizaciones();
     }
 
-    public void mostrarCotizacion(Cotizacion cotizacion){
-
-    }
     @FXML
     void onActionGenerarPedido(ActionEvent event) {
         //Acción Implementada en la Facade
@@ -289,10 +332,10 @@ public class Controller_Ver_Cotizacion {
     private TextField nombreCotizacionText;
 
     @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
+    private TableColumn<CotProductoObservable, String> nombreProductoColumna;
 
     @FXML
-    private TableColumn<?, ?> numProductosColumna;
+    private TableColumn<CotProductoObservable, String> numProductosColumna;
 
     @FXML
     private TextField numeroDeCotizacionText;
@@ -301,14 +344,14 @@ public class Controller_Ver_Cotizacion {
     private TextField precioTotalText;
 
     @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
+    private TableColumn<CotProductoObservable, String> precioUnitarioColumna;
 
     @FXML
-    private TableColumn<?, ?> referenciaColumna;
+    private TableColumn<CotProductoObservable, String> referenciaColumna;
 
     @FXML
-    private TableColumn<?, ?> subTotalColumna;
+    private TableColumn<CotProductoObservable, String> subTotalColumna;
 
     @FXML
-    private TableView<?> tableViewVerCotizacion;
+    private TableView<CotProductoObservable> tableViewVerCotizacion;
 }

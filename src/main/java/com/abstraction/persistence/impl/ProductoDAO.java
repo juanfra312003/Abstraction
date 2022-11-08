@@ -116,7 +116,7 @@ public class ProductoDAO implements IProductoDAO {
     public Producto findById(Long referencia) {
         try{
             this.mysql.conectar();
-            String query = "SELECT * FROM producto WHERE numero = '"+ referencia +"';";
+            String query = "SELECT * FROM producto WHERE referencia = '"+ referencia +"';";
             System.out.println(query);
 
             Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

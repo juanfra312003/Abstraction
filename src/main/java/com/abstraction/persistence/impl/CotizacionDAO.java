@@ -27,14 +27,14 @@ public class CotizacionDAO implements ICotizacionDAO {
     public boolean create(Cotizacion cotizacion){
         this.mysql.conectar();
         try{
-            String pattern = "DD/MM/YYYY";
+            String pattern = "dd/MM/YYYY";
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(cotizacion.getFecha());
-            //"STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
-            String query = "INSERT INTO cotizacion(numero, nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
+
+            String query = "INSERT INTO cotizacion(nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
                     "'" + cotizacion.getNumero() + "'," +
                     "'" + cotizacion.getNombre() + "'," +
-                    "NULL," +
+                    "STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
                     "'" + cotizacion.getPrecio() + "'," +
                     "'" + cotizacion.getNombreCliente() + "'," +
                     "'0');";
@@ -185,14 +185,11 @@ public class CotizacionDAO implements ICotizacionDAO {
                 cotizacionesProd.add(cotizacionProd);
             }
             while(!rs.isLast());
-
-
+            return cotizacionesProd;
         }catch (SQLException ex){
             Logger.getLogger(CotizacionDAO.class.getName()).log(Level.SEVERE,null,ex);
             return null;
         }
-
-        return null;
     }
 
     @Override
