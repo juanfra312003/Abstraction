@@ -304,8 +304,7 @@ public class Controller_Lista_Cotizaciones {
         stage.setTitle("Abstraction");
         stage.setScene(scene);
         Controller_Crear_Cotizacion controller_crear_cotizacion = fxmlLoader.getController();
-        controller_crear_cotizacion.facade = this.facade;
-        controller_crear_cotizacion.actualizarTabla();
+        controller_crear_cotizacion.initialize((ICotizacion_facade) this.facade);
         controller_crear_cotizacion.setStage(stage);
         stage.show();
         this.stage.close();

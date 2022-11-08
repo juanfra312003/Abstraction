@@ -39,6 +39,8 @@ public class Controller_Crear_Cotizacion {
 
     public void initialize(ICotizacion_facade facade){
         this.facade = facade;
+        numeroDeCotizacionText.setText(String.valueOf(facade.nextCotId()));
+        actualizarTabla();
     }
 
 
@@ -60,7 +62,7 @@ public class Controller_Crear_Cotizacion {
     @FXML
     void onActionCrearCotizacion(ActionEvent event) {
         Cotizacion  cotizacion = new Cotizacion(
-                parseLong(numeroDeCotizacionText.getText()),
+                facade.nextCotId(),
                 nombreCotizacionText.getText(),
                 new Date(),
                 parseFloat(precioCotizadoText.getText()),

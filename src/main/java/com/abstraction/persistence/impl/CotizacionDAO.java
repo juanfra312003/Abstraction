@@ -32,7 +32,6 @@ public class CotizacionDAO implements ICotizacionDAO {
             String dateToString = df.format(cotizacion.getFecha());
 
             String query = "INSERT INTO cotizacion(nombre, fecha, precioTotal, nombreCliente, archivado) VALUES(" +
-                    "'" + cotizacion.getNumero() + "'," +
                     "'" + cotizacion.getNombre() + "'," +
                     "STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
                     "'" + cotizacion.getPrecio() + "'," +
@@ -195,5 +194,20 @@ public class CotizacionDAO implements ICotizacionDAO {
     @Override
     public Integer count() {
         return null;
+    }
+
+    @Override
+    public Long nextId() {
+        try{
+            this.mysql.conectar();
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'abstraction'  AND   TABLE_NAME   = 'cotizacion';";
+            ResultSet rs = stmt.executeQuery(query);
+            if(!rs.next()) return null;
+            return rs.getLong("AUTO_INCREMENT");
+        }catch (SQLException ex){
+            Logger.getLogger(CotizacionDAO.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 }

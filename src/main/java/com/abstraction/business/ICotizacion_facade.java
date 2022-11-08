@@ -12,4 +12,5 @@ public interface ICotizacion_facade {
     boolean actualizarCotizacion(Cotizacion cotizacion);
     boolean archivarCotizacion(Long id);
     boolean crearPedido(Cotizacion cotizacion);
+    Long nextCotId();
 }
