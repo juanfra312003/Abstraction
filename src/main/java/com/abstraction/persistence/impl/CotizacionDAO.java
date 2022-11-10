@@ -93,7 +93,7 @@ public class CotizacionDAO implements ICotizacionDAO {
                 Cotizacion cotizacion = new Cotizacion(rs.getLong("numero"),
                         rs.getString("nombre"),
                         rs.getDate("fecha"),
-                        rs.getShort("precioTotal"),
+                        rs.getLong("precioTotal"),
                         rs.getString("nombreCliente"),
                         rs.getInt("archivado"));
 
@@ -141,7 +141,7 @@ public class CotizacionDAO implements ICotizacionDAO {
                 Cotizacion cotizacion = new Cotizacion(rs.getLong("numero"),
                         rs.getString("nombre"),
                         rs.getDate("fecha"),
-                        rs.getShort("precioTotal"),
+                        rs.getLong("precioTotal"),
                         rs.getString("nombreCliente"),
                         rs.getInt("archivado"));
 
