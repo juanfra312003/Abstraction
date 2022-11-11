@@ -124,13 +124,11 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="numeroDeFacturaText" layoutX="373.0" layoutY="141.0" />
             <Text fill="#00000091" layoutX="865.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número del Pedido" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="numeroPedidoText" layoutX="865.0" layoutY="139.0" prefHeight="26.0" prefWidth="125.0" />
             <TextField fx:id="nombreClienteText" layoutX="373.0" layoutY="242.0" />
             <Text fill="#00000091" layoutX="373.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Cliente" wrappingWidth="354.8751831054687">
                <font>
@@ -147,21 +145,49 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="precioTotalText" layoutX="374.0" layoutY="337.0" />
             <Text fill="#00000091" layoutX="865.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha del Pedido" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="fechaFacturaText" layoutX="865.0" layoutY="242.0" />
-            <Text fill="#00000091" layoutX="865.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abono Realizado" wrappingWidth="354.8751831054687">
+            <Text fill="#00000091" layoutX="860.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abono Realizado" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="abonoRealizadoText" layoutX="866.0" layoutY="337.0" />
+            <TextField fx:id="abonoRealizadoText" layoutX="860.0" layoutY="305.0" />
             <Button fx:id="botonActualizar" layoutX="544.0" layoutY="242.0" mnemonicParsing="false" onAction="#onActionActualizar" text="Actualizar" />
-            <Button fx:id="actualizarAbono" layoutX="1031.0" layoutY="337.0" mnemonicParsing="false" onAction="#onActionActualizarAbono" text="Actualizar" />
+            <Button fx:id="actualizarAbono" layoutX="1021.0" layoutY="305.0" mnemonicParsing="false" onAction="#onActionActualizarAbono" text="Actualizar" />
+            <Text fx:id="numeroDeFacturaText" layoutX="374.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroDeFacturaText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="precioTotalText" layoutX="374.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="precioTotalText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="numeroPedidoText" layoutX="865.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroPedidoText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="fechaFacturaText" layoutX="865.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fechaFacturaText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="860.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Excedente de Venta:">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="excedenteText" layoutX="860.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="excedenteText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="16.0" />
+               </font>
+            </Text>
          </children>
     </AnchorPane>
   </children>

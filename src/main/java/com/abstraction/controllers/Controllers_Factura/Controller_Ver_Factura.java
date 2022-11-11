@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -197,45 +198,7 @@ public class Controller_Ver_Factura {
         this.stage = stage;
     }
 
-    public TextField getAbonoRealizadoText() {
-        return abonoRealizadoText;
-    }
 
-    public void setAbonoRealizadoText(TextField abonoRealizadoText) {
-        this.abonoRealizadoText = abonoRealizadoText;
-    }
-
-    public TextField getFechaFacturaText() {
-        return fechaFacturaText;
-    }
-
-    public void setFechaFacturaText(TextField fechaFacturaText) {
-        this.fechaFacturaText = fechaFacturaText;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNumeroDeFacturaText() {
-        return numeroDeFacturaText;
-    }
-
-    public void setNumeroDeFacturaText(TextField numeroDeFacturaText) {
-        this.numeroDeFacturaText = numeroDeFacturaText;
-    }
-
-    public TextField getNumeroPedidoText() {
-        return numeroPedidoText;
-    }
-
-    public void setNumeroPedidoText(TextField numeroPedidoText) {
-        this.numeroPedidoText = numeroPedidoText;
-    }
 
     /**
      * FXML Elements
@@ -243,7 +206,7 @@ public class Controller_Ver_Factura {
     private Stage stage;
 
     @FXML
-    private TextField abonoRealizadoText;
+    private Text abonoRealizadoText;
 
     @FXML
     private Button botonCerrarSesion;
@@ -273,10 +236,10 @@ public class Controller_Ver_Factura {
     private Button botonRegresar;
 
     @FXML
-    private TextField fechaFacturaText;
+    private Text fechaFacturaText;
 
     @FXML
-    private TextField nombreClienteText;
+    private Text nombreClienteText;
 
     @FXML
     private TableColumn<?, ?> nombreProductoColumna;
@@ -285,13 +248,13 @@ public class Controller_Ver_Factura {
     private TableColumn<?, ?> numProductosColumna;
 
     @FXML
-    private TextField numeroDeFacturaText;
+    private Text numeroDeFacturaText;
 
     @FXML
-    private TextField numeroPedidoText;
+    private Text numeroPedidoText;
 
     @FXML
-    private TextField precioTotalText;
+    private Text precioTotalText;
 
     @FXML
     private TableColumn<?, ?> precioUnitarioColumna;

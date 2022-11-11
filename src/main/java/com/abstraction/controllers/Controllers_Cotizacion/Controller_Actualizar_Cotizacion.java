@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -236,14 +237,6 @@ public class Controller_Actualizar_Cotizacion {
         this.nombreCotizacionText = nombreCotizacionText;
     }
 
-    public TextField getNumeroDeCotizacionText() {
-        return numeroDeCotizacionText;
-    }
-
-    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
-        this.numeroDeCotizacionText = numeroDeCotizacionText;
-    }
-
     /**
      * FXML Elements
      */
@@ -301,7 +294,7 @@ public class Controller_Actualizar_Cotizacion {
     private TableColumn<?, ?> nombreProductoColumna;
 
     @FXML
-    private TextField numeroDeCotizacionText;
+    private Text numeroDeCotizacionText;
 
     @FXML
     private TableColumn<?, ?> precioColumna;

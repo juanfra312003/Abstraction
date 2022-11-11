@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -207,54 +208,6 @@ public class Controller_Actualizar_Factura {
         return stage;
     }
 
-    public void setAbonoRealizadoText(TextField abonoRealizadoText) {
-        this.abonoRealizadoText = abonoRealizadoText;
-    }
-
-    public TextField getAbonoRealizadoText() {
-        return abonoRealizadoText;
-    }
-
-    public void setFechaFacturaText(TextField fechaFacturaText) {
-        this.fechaFacturaText = fechaFacturaText;
-    }
-
-    public TextField getFechaFacturaText() {
-        return fechaFacturaText;
-    }
-
-    public void setNumeroPedidoText(TextField numeroPedidoText) {
-        this.numeroPedidoText = numeroPedidoText;
-    }
-
-    public TextField getNumeroPedidoText() {
-        return numeroPedidoText;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public void setNumeroDeFacturaText(TextField numeroDeFacturaText) {
-        this.numeroDeFacturaText = numeroDeFacturaText;
-    }
-
-    public TextField getNumeroDeFacturaText() {
-        return numeroDeFacturaText;
-    }
-
-    public void setPrecioTotalText(TextField precioTotalText) {
-        this.precioTotalText = precioTotalText;
-    }
-
-    public TextField getPrecioTotalText() {
-        return precioTotalText;
-    }
-
     /**
      * FXML Elements
      */
@@ -297,7 +250,10 @@ public class Controller_Actualizar_Factura {
     private Button botonRegresar;
 
     @FXML
-    private TextField fechaFacturaText;
+    private Text excedenteText;
+
+    @FXML
+    private Text fechaFacturaText;
 
     @FXML
     private TextField nombreClienteText;
@@ -309,13 +265,13 @@ public class Controller_Actualizar_Factura {
     private TableColumn<?, ?> numProductosColumna;
 
     @FXML
-    private TextField numeroDeFacturaText;
+    private Text numeroDeFacturaText;
 
     @FXML
-    private TextField numeroPedidoText;
+    private Text numeroPedidoText;
 
     @FXML
-    private TextField precioTotalText;
+    private Text precioTotalText;
 
     @FXML
     private TableColumn<?, ?> precioUnitarioColumna;

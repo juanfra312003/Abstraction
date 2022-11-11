@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -250,46 +251,6 @@ public class Controller_Ver_Cotizacion {
         this.stage = stage;
     }
 
-    public TextField getFechaCotizacionText() {
-        return fechaCotizacionText;
-    }
-
-    public void setFechaCotizacionText(TextField fechaCotizacionText) {
-        this.fechaCotizacionText = fechaCotizacionText;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNombreCotizacionText() {
-        return nombreCotizacionText;
-    }
-
-    public void setNombreCotizacionText(TextField nombreCotizacionText) {
-        this.nombreCotizacionText = nombreCotizacionText;
-    }
-
-    public TextField getNumeroDeCotizacionText() {
-        return numeroDeCotizacionText;
-    }
-
-    public void setNumeroDeCotizacionText(TextField numeroDeCotizacionText) {
-        this.numeroDeCotizacionText = numeroDeCotizacionText;
-    }
-
-    public TextField getPrecioTotalText() {
-        return precioTotalText;
-    }
-
-    public void setPrecioTotalText(TextField precioTotalText) {
-        this.precioTotalText = precioTotalText;
-    }
-
     /**
      * FXML Elements
      */
@@ -323,13 +284,14 @@ public class Controller_Ver_Cotizacion {
     private Button botonRegresar;
 
     @FXML
-    private TextField fechaCotizacionText;
+    private Text fechaCotizacionText;
 
     @FXML
-    private TextField nombreClienteText;
+    private Text nombreClienteText;
 
     @FXML
-    private TextField nombreCotizacionText;
+    private Text nombreCotizacionText;
+
 
     @FXML
     private TableColumn<CotProductoObservable, String> nombreProductoColumna;
@@ -338,11 +300,10 @@ public class Controller_Ver_Cotizacion {
     private TableColumn<CotProductoObservable, String> numProductosColumna;
 
     @FXML
-    private TextField numeroDeCotizacionText;
+    private Text numeroDeCotizacionText;
 
     @FXML
-    private TextField precioTotalText;
-
+    private Text precioTotalText;
     @FXML
     private TableColumn<CotProductoObservable, String> precioUnitarioColumna;
 

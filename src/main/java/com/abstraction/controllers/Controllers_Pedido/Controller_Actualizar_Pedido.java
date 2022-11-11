@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -216,21 +217,6 @@ public class Controller_Actualizar_Pedido {
         this.addColumna = addColumna;
     }
 
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNumeroDePedidoText() {
-        return numeroDePedidoText;
-    }
-
-    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
-        this.numeroDePedidoText = numeroDePedidoText;
-    }
 
     /**
      * FXML Elements
@@ -284,7 +270,7 @@ public class Controller_Actualizar_Pedido {
     private TableColumn<?, ?> nombreProductoColumna;
 
     @FXML
-    private TextField numeroDePedidoText;
+    private Text numeroDePedidoText;
 
     @FXML
     private TableColumn<?, ?> precioColumna;

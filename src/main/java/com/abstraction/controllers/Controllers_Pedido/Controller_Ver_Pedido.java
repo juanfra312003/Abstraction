@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -208,45 +209,6 @@ public class Controller_Ver_Pedido {
         this.barraProgresoEstado = barraProgresoEstado;
     }
 
-    public TextField getEstadoPedidoText() {
-        return estadoPedidoText;
-    }
-
-    public void setEstadoPedidoText(TextField estadoPedidoText) {
-        this.estadoPedidoText = estadoPedidoText;
-    }
-
-    public TextField getFechaCotizacionText() {
-        return fechaCotizacionText;
-    }
-
-    public void setFechaCotizacionText(TextField fechaCotizacionText) {
-        this.fechaCotizacionText = fechaCotizacionText;
-    }
-
-    public TextField getNombreClienteText() {
-        return nombreClienteText;
-    }
-
-    public void setNombreClienteText(TextField nombreClienteText) {
-        this.nombreClienteText = nombreClienteText;
-    }
-
-    public TextField getNumeroDePedidoText() {
-        return numeroDePedidoText;
-    }
-
-    public void setNumeroDePedidoText(TextField numeroDePedidoText) {
-        this.numeroDePedidoText = numeroDePedidoText;
-    }
-
-    public TextField getPrecioTotalText() {
-        return precioTotalText;
-    }
-
-    public void setPrecioTotalText(TextField precioTotalText) {
-        this.precioTotalText = precioTotalText;
-    }
 
     /**
      * FXML Elements
@@ -284,13 +246,13 @@ public class Controller_Ver_Pedido {
     private Button botonRegresar;
 
     @FXML
-    private TextField estadoPedidoText;
+    private Text estadoPedidoText;
 
     @FXML
-    private TextField fechaCotizacionText;
+    private Text fechaCotizacionText;
 
     @FXML
-    private TextField nombreClienteText;
+    private Text nombreClienteText;
 
     @FXML
     private TableColumn<?, ?> nombreProductoColumna;
@@ -299,10 +261,10 @@ public class Controller_Ver_Pedido {
     private TableColumn<?, ?> numProductosColumna;
 
     @FXML
-    private TextField numeroDePedidoText;
+    private Text numeroDePedidoText;
 
     @FXML
-    private TextField precioTotalText;
+    private Text precioTotalText;
 
     @FXML
     private TableColumn<?, ?> precioUnitarioColumna;

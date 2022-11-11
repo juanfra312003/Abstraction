@@ -35,7 +35,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -156,14 +155,11 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="numeroDeCotizacionText" layoutX="373.0" layoutY="141.0" />
             <Text fill="#00000091" layoutX="865.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de la Cotización" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="nombreCotizacionText" layoutX="865.0" layoutY="139.0" />
-            <TextField fx:id="nombreClienteText" layoutX="373.0" layoutY="242.0" />
             <Text fill="#00000091" layoutX="373.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Cliente" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
@@ -179,14 +175,37 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="precioTotalText" layoutX="374.0" layoutY="337.0" />
             <Text fill="#00000091" layoutX="865.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de la Cotización" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="fechaCotizacionText" layoutX="865.0" layoutY="242.0" />
             <Button fx:id="botonGenerarPedido" layoutX="1356.0" layoutY="746.0" mnemonicParsing="false" onAction="#onActionGenerarPedido" text="Generar Pedido" />
+            <Text fx:id="numeroDeCotizacionText" layoutX="374.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroDeCotizacionText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="nombreClienteText" layoutX="373.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombreClienteText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="precioTotalText" layoutX="374.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="precioTotalText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="nombreCotizacionText" layoutX="865.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombreCotizacionText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="fechaCotizacionText" layoutX="865.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fechaCotizacionText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Text>
          </children>
     </AnchorPane>
   </children>

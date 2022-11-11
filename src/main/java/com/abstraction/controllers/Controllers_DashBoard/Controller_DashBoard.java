@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -307,7 +308,7 @@ public class Controller_DashBoard {
     private LineChart<?, ?> graficaRendimientoProducto;
 
     @FXML
-    private TextField ingresosPeriodoTiempoText;
+    private Text ingresosPeriodoTiempoText;
 
     @FXML
     private TableColumn<?, ?> numeroCotizacionColumna;
@@ -331,5 +332,5 @@ public class Controller_DashBoard {
     private TableColumn<?, ?> valorFacturacionColumna;
 
     @FXML
-    private TextField valorTransaccionPromedioText;
+    private Text valorTransaccionPromedioText;
 }

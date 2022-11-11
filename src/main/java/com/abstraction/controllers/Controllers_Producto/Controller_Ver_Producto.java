@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class Controller_Ver_Producto {
         nombreProductoText.setText(producto.getNombre());
         precioUnitarioText.setText(producto.getPrecio().toString());
         cantidadesExisText.setText(String.valueOf(producto.getExistencias()));
+        descripcionText.setText(producto.getDescripcion().toString());
     }
 
     @FXML
@@ -210,38 +212,6 @@ public class Controller_Ver_Producto {
         this.botonCerrarSesion = botonCerrarSesion;
     }
 
-    public TextField getCantidadesExisText() {
-        return cantidadesExisText;
-    }
-
-    public void setCantidadesExisText(TextField cantidadesExisText) {
-        this.cantidadesExisText = cantidadesExisText;
-    }
-
-    public TextField getNombreProductoText() {
-        return nombreProductoText;
-    }
-
-    public void setNombreProductoText(TextField nombreProductoText) {
-        this.nombreProductoText = nombreProductoText;
-    }
-
-    public TextField getPrecioUnitarioText() {
-        return precioUnitarioText;
-    }
-
-    public void setPrecioUnitarioText(TextField precioUnitarioText) {
-        this.precioUnitarioText = precioUnitarioText;
-    }
-
-    public TextField getReferenciaProductoText() {
-        return referenciaProductoText;
-    }
-
-    public void setReferenciaProductoText(TextField referenciaProductoText) {
-        this.referenciaProductoText = referenciaProductoText;
-    }
-
     /**
      * FXML Elements
      */
@@ -272,14 +242,18 @@ public class Controller_Ver_Producto {
     private Button botonRegresar;
 
     @FXML
-    private TextField cantidadesExisText;
+    private Text cantidadesExisText;
 
     @FXML
-    private TextField nombreProductoText;
+    private Text descripcionText;
 
     @FXML
-    private TextField precioUnitarioText;
+    private Text nombreProductoText;
 
     @FXML
-    private TextField referenciaProductoText;
+    private Text precioUnitarioText;
+
+    @FXML
+    private Text referenciaProductoText;
+
 }
