@@ -35,11 +35,15 @@ import static java.lang.Long.parseLong;
 public class Controller_Crear_Cotizacion {
 
     public ICotizacion_facade facade;
-    int numProds = 0;
+    int numProds;
+    float costoTotal;
 
     public void initialize(ICotizacion_facade facade){
         this.facade = facade;
         numeroDeCotizacionText.setText(String.valueOf(facade.nextCotId()));
+        numProds = 0;
+        costoTotal = 0;
+        precioCotizadoText.setText(String.valueOf(costoTotal));
         actualizarTabla();
     }
 
@@ -77,6 +81,8 @@ public class Controller_Crear_Cotizacion {
         for (int i = 0; i < numProds; i++) {
             if (event.getSource() == buttonsAdd[i]) {
                 productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
+                costoTotal += productos.get(i).getPrecio()*parseInt(textFieldsConfirmar[i].getText());
+                precioCotizadoText.setText(String.valueOf(costoTotal));
             }
         }
     }
