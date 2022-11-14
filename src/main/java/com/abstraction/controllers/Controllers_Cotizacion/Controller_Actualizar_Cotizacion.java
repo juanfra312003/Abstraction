@@ -15,10 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -100,19 +97,79 @@ public class Controller_Actualizar_Cotizacion {
 
     @FXML
     void onActionActualizarGeneral(ActionEvent event) {
-        for (int i = 0; i < numProds; i++){
-            cotizacion.getProductos().get(i).setCantidad(Integer.parseInt(fieldsExistencias[i].getText()));
+        boolean errorEnProceso = false;
+        String productosFalla = "";
+
+        for (int i = 0; i < numProds; i++) {
+            int cantidadProducto = Integer.parseInt(fieldsExistencias[i].getText());
+            if (cantidadProducto > 0) {
+                cotizacion.getProductos().get(i).setCantidad(cantidadProducto);
+            }
+            else {
+                productosFalla = productosFalla + cotizacion.getProductos().get(i).getProducto().getNombre() + " ";
+            }
         }
 
-        if (!nombreCotizacionText.getText().isBlank()){
+        /*
+             -- ERRORES EN LA EJECUCION
+         */
+
+        if (!nombreCotizacionText.getText().isBlank()) {
             cotizacion.setNombre(nombreCotizacionText.getText());
+        } else {
+            //Arrojar la alerta del espacio en blanco
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error, espacio en blanco.");
+            alert.setTitle("Error en el proceso");
+            alert.setContentText("No es posible asignar un espacio en blanco cómo nombre de Cotización.");
+            alert.show();
+
+            //Anunciar que se presento un error en el proceso mediante la variable booleana
+            errorEnProceso = true;
+
+            //Reasignar en el espacio el nombre de la cotizacion anterior.
+            nombreCotizacionText.setText(cotizacion.getNombre());
         }
 
-        if (!nombreClienteText.getText().isBlank()){
+        if (!nombreClienteText.getText().isBlank()) {
             cotizacion.setNombreCliente(nombreClienteText.getText());
         }
+        else {
+            //Arrojar la alerta del espacio en blanco
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error, espacio en blanco.");
+            alert.setTitle("Error en el proceso");
+            alert.setContentText("No es posible asignar un espacio en blanco cómo nombre del cliente que realiza la cotización.");
+            alert.show();
 
-        facade.actualizarCotizacion(cotizacion);
+            //Anunciar que se presento un error en el proceso mediante la variable booleana
+            errorEnProceso = true;
+
+            //Reasignar en el espacio el nombre del cliente anterior.
+            nombreClienteText.setText(cotizacion.getNombreCliente());
+        }
+
+        if (!productosFalla.isEmpty()){
+            //Arrojar la alerta de los productos que presentan falla
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error, cantidades negativas o en ceros.");
+            alert.setTitle("Error en el proceso");
+            alert.setContentText("No es posible asignar cantidades en ceros o negativas para uno o mas productos");
+            alert.setContentText("Productos que presentan inconsistencias: " + productosFalla);
+            alert.show();
+        }
+
+        if (!errorEnProceso && productosFalla.isEmpty()) {
+            //Realizar la actualizacion correspondiente
+            facade.actualizarCotizacion(cotizacion);
+
+            //Lanzar mensaje de confirmacion de exito en el proceso
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Cotizacion Actualizada Exitosamente");
+            alert.setTitle("Exito en el proceso");
+            alert.setContentText("La cotización seleccionada se ha actualizado de manera satisfactoria con base a los datos ingresados.");
+            alert.show();
+        }
     }
 
     @FXML
