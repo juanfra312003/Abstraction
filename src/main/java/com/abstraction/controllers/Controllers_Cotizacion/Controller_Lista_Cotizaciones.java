@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -156,8 +157,19 @@ public class Controller_Lista_Cotizaciones {
         try {
             for(int i = 0; i < numCots; i++){
                 if(event.getSource() == buttonsArch[i]){
-                    facade.archivarCotizacion(cotizaciones.get(i).getNumero());
-                    actualizarTabla();
+                    if (facade.archivarCotizacion(cotizaciones.get(i).getNumero())) {
+
+                        //Actualizar tabla con los datos de manera respectiva.
+                        actualizarTabla();
+
+                        //Arrojar la confirmación del proceso.
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Cotizacion Archivada Exitosamente");
+                        alert.setTitle("Exito en el proceso");
+                        alert.setContentText("La cotización seleccionada se ha archivado de manera satisfactoria.");
+                        alert.show();
+
+                    }
                 }
             }
         } catch (Exception e) {
