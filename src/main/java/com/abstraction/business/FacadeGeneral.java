@@ -87,7 +87,7 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         ICotizacionDAO cotizacionDAO = new CotizacionDAO();
         Cotizacion cotizacion = cotizacionDAO.findById(id);
         cotizacion.setArchivado(1);
-        return cotizacionDAO.edit(cotizacion.getNumero(),cotizacion);
+        return cotizacionDAO.archivar(cotizacion);
     }
 
     @Override

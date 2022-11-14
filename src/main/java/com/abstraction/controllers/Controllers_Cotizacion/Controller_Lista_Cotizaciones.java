@@ -53,11 +53,11 @@ public class Controller_Lista_Cotizaciones {
 
             buttonsAct[i] = new Button();
             buttonsAct[i].setText("Actualizar");
-            //buttonsAct[i].setOnAction(this::onActionActualizar);
+            buttonsAct[i].setOnAction(this::onActionActualizar);
 
             buttonsArch[i] = new Button();
             buttonsArch[i].setText("Archivar");
-            //buttonsArch[i].setOnAction(this::onActionArch);
+            buttonsArch[i].setOnAction(this::onActionElim);
 
             buttonsGenerar[i] = new Button();
             buttonsGenerar[i].setText("Generar");
@@ -66,17 +66,19 @@ public class Controller_Lista_Cotizaciones {
 
         int i = 0;
         for(Cotizacion cotizacion : cotizaciones){
-            data.add(new CotizacionObservable(
-                    cotizacion.getNumero(),
-                    cotizacion.getNombre(),
-                    cotizacion.getFecha(),
-                    cotizacion.getPrecio(),
-                    buttonsVer[i],
-                    buttonsAct[i],
-                    buttonsGenerar[i],
-                    buttonsArch[i]
-            ));
-            i++;
+            if (cotizacion.getArchivado() == 0) {
+                data.add(new CotizacionObservable(
+                        cotizacion.getNumero(),
+                        cotizacion.getNombre(),
+                        cotizacion.getFecha(),
+                        cotizacion.getPrecio(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsGenerar[i],
+                        buttonsArch[i]
+                ));
+                i++;
+            }
         }
         numeroColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("numero"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("nombre"));
@@ -144,7 +146,33 @@ public class Controller_Lista_Cotizaciones {
                     cargarVer(cotizaciones.get(i));
                 }
             }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
+    @FXML
+    public void onActionElim(ActionEvent event) {
+        try {
+            for(int i = 0; i < numCots; i++){
+                if(event.getSource() == buttonsArch[i]){
+                    facade.archivarCotizacion(cotizaciones.get(i).getNumero());
+                    actualizarTabla();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onActionActualizar(ActionEvent event) {
+        try {
+            for(int i = 0; i < numCots; i++){
+                if(event.getSource() == buttonsAct[i]){
+                    cargarActualizar(cotizaciones.get(i));
+                }
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -292,6 +320,20 @@ public class Controller_Lista_Cotizaciones {
         Controller_Ver_Cotizacion controller_ver_cotizacion = fxmlLoader.getController();
         controller_ver_cotizacion.setStage(stage);
         controller_ver_cotizacion.initialize((ICotizacion_facade) this.facade, cotizacion);
+        stage.show();
+        this.stage.close();
+    }
+
+    public void cargarActualizar (Cotizacion cotizacion) throws IOException{
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupActualizarCotizacion.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Actualizar_Cotizacion controller_actualizar_cotizacion = fxmlLoader.getController();
+        controller_actualizar_cotizacion.setStage(stage);
+        controller_actualizar_cotizacion.initialize((ICotizacion_facade) this.facade, cotizacion);
         stage.show();
         this.stage.close();
     }
