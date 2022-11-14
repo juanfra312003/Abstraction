@@ -45,6 +45,10 @@ public class Cotizacion {
     }
 
     public float getPrecio() {
+        precio = 0F;
+        for (CotizacionProducto cotizacionProducto : productos){
+            precio += cotizacionProducto.getSubtotal();
+        }
         return precio;
     }
 

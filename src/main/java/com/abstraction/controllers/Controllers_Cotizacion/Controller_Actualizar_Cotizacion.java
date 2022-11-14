@@ -7,6 +7,10 @@ import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import com.abstraction.entities.Cotizacion;
+import com.abstraction.entities.CotizacionProducto;
+import com.google.protobuf.StringValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,33 +19,100 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Controller_Actualizar_Cotizacion {
 
     ICotizacion_facade facade;
+    Cotizacion cotizacion;
+    int numProds;
 
     public void initialize(ICotizacion_facade facade, Cotizacion cotizacion){
         this.facade = facade;
+        this.cotizacion = cotizacion;
+        numeroDeCotizacionText.setText(String.valueOf(cotizacion.getNumero()));
+        actualizarTabla();
+    }
+
+    public void actualizarTabla(){
+        nombreCotizacionText.setText(cotizacion.getNombre());
+        nombreClienteText.setText(cotizacion.getNombreCliente());
+
+        ArrayList<CotizacionProducto> productos = cotizacion.getProductos();
+        if(productos == null) return;
+        numProds = productos.size();
+
+        final ObservableList<CotProdEditObs> data = FXCollections.observableArrayList();
+
+        buttonsEliminar = new Button[numProds];
+        fieldsExistencias = new TextField[numProds];
+
+        for(int i = 0; i < numProds; i++){
+            buttonsEliminar[i] = new Button();
+            buttonsEliminar[i].setText("Eliminar");
+            buttonsEliminar[i].setOnAction(this::onActionEliminar);
+
+            fieldsExistencias[i] = new TextField();
+            fieldsExistencias[i].setText(String.valueOf(productos.get(i).getCantidad()));
+        }
+
+        int i = 0;
+        for(CotizacionProducto p : productos){
+            data.add(new CotProdEditObs(
+                    p.getProducto().getReferencia(),
+                    p.getProducto().getNombre(),
+                    p.getProducto().getPrecio(),
+                    fieldsExistencias[i],
+                    buttonsEliminar[i]
+                    ));
+            i++;
+        }
+
+        referenciaColumna.setCellValueFactory(new PropertyValueFactory<CotProdEditObs, String>("referencia"));
+        nombreProductoColumna.setCellValueFactory(new PropertyValueFactory<CotProdEditObs, String>("nombre"));
+        precioColumna.setCellValueFactory(new PropertyValueFactory<CotProdEditObs, String>("precioUnitario"));
+        existenciasColumna.setCellValueFactory(new PropertyValueFactory<CotProdEditObs, TextField>("existencias"));
+        eliminarColumna.setCellValueFactory(new PropertyValueFactory<CotProdEditObs, Button>("botonEliminar"));
+
+        tableViewActualizarCotizacion.setItems(data);
     }
 
     @FXML
-    void onAction(ActionEvent event) {
-
+    void onActionEliminar(ActionEvent event) {
+        try {
+            for(int i = 0; i < numProds; i++){
+                if(event.getSource() == buttonsEliminar[i]){
+                    cotizacion.getProductos().remove(cotizacion.getProductos().get(i));
+                    actualizarTabla();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
     @FXML
     void onActionActualizarGeneral(ActionEvent event) {
+        for (int i = 0; i < numProds; i++){
+            cotizacion.getProductos().get(i).setCantidad(Integer.parseInt(fieldsExistencias[i].getText()));
+        }
 
-    }
+        if (!nombreCotizacionText.getText().isBlank()){
+            cotizacion.setNombre(nombreCotizacionText.getText());
+        }
 
-    @FXML
-    void onActionActualizarNombreCliente(ActionEvent event) {
+        if (!nombreClienteText.getText().isBlank()){
+            cotizacion.setNombreCliente(nombreClienteText.getText());
+        }
 
+        facade.actualizarCotizacion(cotizacion);
     }
 
     @FXML
@@ -213,13 +284,6 @@ public class Controller_Actualizar_Cotizacion {
         return stage;
     }
 
-    public TableColumn<?, ?> getAddColumna() {
-        return addColumna;
-    }
-
-    public void setAddColumna(TableColumn<?, ?> addColumna) {
-        this.addColumna = addColumna;
-    }
 
     public TextField getNombreClienteText() {
         return nombreClienteText;
@@ -241,15 +305,6 @@ public class Controller_Actualizar_Cotizacion {
      * FXML Elements
      */
     private Stage stage;
-
-    @FXML
-    private TableColumn<?, ?> addColumna;
-
-    @FXML
-    private Button botonActNombreCliente;
-
-    @FXML
-    private Button botonActnomCotizacion;
 
     @FXML
     private Button botonActualizarGeneral;
@@ -279,10 +334,10 @@ public class Controller_Actualizar_Cotizacion {
     private Button botonRegresar;
 
     @FXML
-    private TableColumn<?, ?> eliminarColumna;
+    private TableColumn<CotProdEditObs, Button> eliminarColumna;
 
     @FXML
-    private TableColumn<?, ?> existenciasColumna;
+    private TableColumn<CotProdEditObs, TextField> existenciasColumna;
 
     @FXML
     private TextField nombreClienteText;
@@ -291,17 +346,20 @@ public class Controller_Actualizar_Cotizacion {
     private TextField nombreCotizacionText;
 
     @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
+    private TableColumn<CotProdEditObs, String> nombreProductoColumna;
 
     @FXML
     private Text numeroDeCotizacionText;
 
     @FXML
-    private TableColumn<?, ?> precioColumna;
+    private TableColumn<CotProdEditObs, String> precioColumna;
 
     @FXML
-    private TableColumn<?, ?> referenciaColumna;
+    private TableColumn<CotProdEditObs, String> referenciaColumna;
 
     @FXML
-    private TableView<?> tableViewActualizarCotizacion;
+    private TableView<CotProdEditObs> tableViewActualizarCotizacion;
+
+    Button[] buttonsEliminar;
+    TextField[] fieldsExistencias;
 }

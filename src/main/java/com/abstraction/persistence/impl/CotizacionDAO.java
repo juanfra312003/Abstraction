@@ -70,13 +70,74 @@ public class CotizacionDAO implements ICotizacionDAO {
 
     @Override
     public boolean edit(Long numero, Cotizacion cotizacion) {
-        return false;
+        this.mysql.conectar();
+        try{
+            String query = "UPDATE  cotizacion SET " +
+                    "nombre = '" + cotizacion.getNombre() + "', " +
+                    "precioTotal = '" + cotizacion.getPrecio() + "'," +
+                    "nombreCliente = '" + cotizacion.getNombreCliente() + "' " +
+                    "WHERE numero = " + numero + ";";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+
+            String queryDelete = "DELETE FROM cotizacionProducto WHERE Cotizacion_numero = " + numero + ";";
+            Statement stmtDelete = this.mysql.getConnection().createStatement();
+            int codeDelete = stmtDelete.executeUpdate(queryDelete);
+            stmtDelete.close();
+
+            ArrayList<CotizacionProducto> cotProds = cotizacion.getProductos();
+            for (CotizacionProducto cotProd : cotProds) {
+                String query2 = "INSERT INTO cotizacionProducto(Cotizacion_numero, Producto_referencia, cantidad) VALUES(" +
+                        "'" + numero + "'," +
+                        "'" + cotProd.getProducto().getReferencia() + "'," +
+                        "'" + cotProd.getCantidad() + "');";
+
+                Statement stmt2 = this.mysql.getConnection().createStatement();
+                int code2 = stmt2.executeUpdate(query2);
+                stmt2.close();
+            }
+
+            this.mysql.desconectar();
+
+            if (code == 1) {
+                System.out.println("Se creo la cotizacion!");
+                return true;
+            }
+            return false;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(Cotizacion.class.getName()).log(Level.SEVERE,null,ex);
+            return false;
+        }
     }
 
     @Override
-    public boolean delete(Long numero) {
-        return false;
+    public boolean archivar(Cotizacion cotizacion) {
+        this.mysql.conectar();
+        try{
+            String query = "UPDATE  cotizacion SET " +
+                    "archivado = '" + cotizacion.getArchivado() + "' " +
+                    "WHERE numero = " + cotizacion.getNumero() + ";";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.mysql.desconectar();
+
+            if (code == 1) {
+                System.out.println("Se archivo la cotizacion!");
+                return true;
+            }
+            return false;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(Cotizacion.class.getName()).log(Level.SEVERE,null,ex);
+            return false;
+        }
     }
+
 
     @Override
     public Cotizacion findById(Long numero) {
