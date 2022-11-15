@@ -1,52 +1,52 @@
 USE abstraction;
 
 -- Insercion productos
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('1', 'W91', '8500', '200', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('2', 'W86', '9600', '150', 'Sueco dama 36/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('3', 'W60', '9000', '300', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('4', 'W72', '9600', '200', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('5', 'W93', '9800', '200', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('6', '1907', '9200', '500', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('7', '028', '10900', '200', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('8', '825', '9000', '200', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('9', '666', '9000', '200', 'Sueco dama con camara de aire 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('10', 'W37', '11500', '420', 'Sueco dama 35/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('11', '018', '12800', '200', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('12', 'W72', '9600', '200', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('13', 'M75', '10500', '100', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('14', 'W93', '9800', '300', 'Sueco hombre 36/40');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('15', '001', '12800', '200', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('16', '1915', '9500', '200', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('17', '028', '11500', '500', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('18', '007', '12800', '200', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('19', '022H', '9000', '100', 'Sueco hombre 39/44');
-INSERT INTO producto(referencia, nombre, precio, existencias, descripcion)
-VALUES('20', 'M91', '9500', '350', 'Sueco hombre 39/44');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('1', 'W91', '8500', '200', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('2', 'W86', '9600', '150', 'Sueco dama 36/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('3', 'W60', '9000', '300', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('4', 'W72', '9600', '200', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('5', 'W93', '9800', '200', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('6', '1907', '9200', '500', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('7', '028', '10900', '200', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('8', '825', '9000', '200', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('9', '666', '9000', '200', 'Sueco dama con camara de aire 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('10', 'W37', '11500', '420', 'Sueco dama 35/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('11', '018', '12800', '200', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('12', 'W72', '9600', '200', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('13', 'M75', '10500', '100', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('14', 'W93', '9800', '300', 'Sueco hombre 36/40', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('15', '001', '12800', '200', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('16', '1915', '9500', '200', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('17', '028', '11500', '500', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('18', '007', '12800', '200', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('19', '022H', '9000', '100', 'Sueco hombre 39/44', '0');
+INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
+VALUES('20', 'M91', '9500', '350', 'Sueco hombre 39/44', '0');
 
 -- Insercion Cotizaciones
 INSERT INTO cotizacion(numero, nombre, fecha, precioTotal, nombreCliente, archivado)
 VALUES ('1', 'Arequipe', STR_TO_DATE('08/10/2022','%d/%m/%Y'), '666000', 'Carlos' , '0');
 INSERT INTO cotizacion(nombre, fecha, precioTotal, nombreCliente, archivado)
-VALUES ('2', 'Diane & Geordi', STR_TO_DATE('20/09/2022','%d/%m/%Y'), '1570000', 'Diana' , '0');
+VALUES ('Diane & Geordi', STR_TO_DATE('20/09/2022','%d/%m/%Y'), '1570000', 'Diana' , '0');
 INSERT INTO cotizacion(nombre, fecha, precioTotal, nombreCliente, archivado)
 VALUES ('Todo a mil Suba', STR_TO_DATE('05/11/2022','%d/%m/%Y'), '332000', 'Felipe' , '0');
 INSERT INTO cotizacion(nombre, fecha, precioTotal, nombreCliente, archivado)

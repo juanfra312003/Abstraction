@@ -30,7 +30,7 @@ public class ProductoDAO implements IProductoDAO {
                     "'"+producto.getExistencias()+"',"+
                     "'"+producto.getDescripcion()+"',"+
                     "'"+producto.getPathImage()+"'"+
-                    ");";
+                    "'0');";
             System.out.println(query);
             Statement stmt= this.mysql.getConnection().createStatement();
             int code=stmt.executeUpdate(query);
@@ -123,7 +123,7 @@ public class ProductoDAO implements IProductoDAO {
             ResultSet rs = stmt.executeQuery(query);
             if(rs.first())
             {
-                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"));
+                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"), rs.getInt("archivado"));
                 rs.close();
                 stmt.close();
                 this.mysql.desconectar();
@@ -162,7 +162,7 @@ public class ProductoDAO implements IProductoDAO {
             {
                 rs.next();
 
-                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"));
+                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"), rs.getInt("archivado"));
                 productos.add(producto);
             }
             while(!rs.isLast());

@@ -7,6 +7,7 @@ public class Factura {
     private Date fecha;
     private float valorTotal;
     private float abonoTotal;
+    private int archivado;
 
     private Pedido pedidoFactura;
 
@@ -14,11 +15,12 @@ public class Factura {
 
     }
 
-    public Factura(Long numero, Date fecha, float valorTotal, float abonoTotal, Pedido pedidoFactura) {
+    public Factura(Long numero, Date fecha, float valorTotal, float abonoTotal, int archivado, Pedido pedidoFactura) {
         this.numero = numero;
         this.fecha = fecha;
         this.valorTotal = valorTotal;
         this.abonoTotal = abonoTotal;
+        this.archivado = archivado;
         this.pedidoFactura = pedidoFactura;
     }
 

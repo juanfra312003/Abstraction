@@ -37,7 +37,8 @@ public class Controller_Crear_Producto {
                   textNombreProducto.getText(),
                   parseFloat(textPrecioProducto.getText()),
                   parseInt(textCantidadesExistentes.getText()),
-                  textDescripcion.getText())
+                  textDescripcion.getText(),
+                  0)
         );
     }
 
