@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -62,7 +62,7 @@
                   <Font name="Franklin Gothic Demi" size="50.0" />
                </font>
             </Text>
-            <Text fill="#686666" layoutX="367.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Producto">
+            <Text fill="#686666" layoutX="355.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Producto">
                <font>
                   <Font name="Franklin Gothic Demi" size="30.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Font name="Franklin Gothic Demi" size="23.0" />
                </font>
             </Text>
-            <Text fill="#686666" layoutX="363.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Unitario">
+            <Text fill="#686666" layoutX="359.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Unitario">
                <font>
                   <Font name="Franklin Gothic Demi" size="23.0" />
                </font>
@@ -92,10 +92,6 @@
                   <Image url="@../ImagenesRecurso/verProducto.png" />
                </image>
             </ImageView>
-            <TextField fx:id="nombreProductoText" layoutX="368.0" layoutY="186.0" prefHeight="26.0" prefWidth="247.0" />
-            <TextField fx:id="referenciaProductoText" layoutX="438.0" layoutY="244.0" prefHeight="26.0" prefWidth="174.0" />
-            <TextField fx:id="precioUnitarioText" layoutX="363.0" layoutY="567.0" />
-            <TextField fx:id="cantidadesExisText" layoutX="363.0" layoutY="682.0" />
             <Button fx:id="botonRegresar" layoutX="1275.0" layoutY="695.0" mnemonicParsing="false" onAction="#onActionRegresar" prefHeight="26.0" prefWidth="137.0" text="Regresar">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="27.0" />
@@ -136,6 +132,36 @@
                   <Image url="@../ImagenesRecurso/monitor.png" />
                </image>
             </ImageView>
+            <Text fx:id="nombreProductoText" layoutX="371.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombreProductoText">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Text>
+            <Text fx:id="referenciaProductoText" layoutX="428.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="referenciaProductoText">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Text>
+            <Text fx:id="precioUnitarioText" layoutX="359.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="precioUnitarioText">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Text>
+            <Text fx:id="cantidadesExisText" layoutX="359.0" layoutY="703.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cantidadesExisText">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#686666" layoutX="727.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="descripcionText" layoutX="727.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="descripcionText">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Text>
          </children>
     </AnchorPane>
   </children>

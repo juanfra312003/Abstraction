@@ -32,6 +32,7 @@ public class CotizacionProducto {
     }
 
     public float getSubtotal() {
+        subtotal = cantidad * producto.getPrecio();
         return subtotal;
     }
 

@@ -121,8 +121,8 @@
                   <TableColumn fx:id="nombreProductoColumna" prefWidth="126.4000244140625" text="Nombre " />
                   <TableColumn fx:id="precioColumna" prefWidth="108.79998779296875" text="Precio Unit." />
                   <TableColumn fx:id="existenciasColumna" prefWidth="132.800048828125" text="# Existencias" />
-                  <TableColumn fx:id="addColumna" prefWidth="146.4000244140625" text="Añadir Existencia" />
-                  <TableColumn fx:id="eliminarColumna" prefWidth="154.39990234375" text="Eliminar Existencia" />
+                  <TableColumn fx:id="addColumna" prefWidth="146.4000244140625" text="Agregar (Cantidad)" />
+                  <TableColumn fx:id="confirmarColumna" prefWidth="154.39990234375" text="Confirmar" />
                   <TableColumn prefWidth="178.39990234375" text="Generar Pedido" />
                   <TableColumn prefWidth="174.39990234375" text="Archivar Cotización" />
                </columns>
@@ -137,7 +137,6 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="numeroDeCotizacionText" layoutX="373.0" layoutY="217.0" />
             <Text fill="#00000091" layoutX="373.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de la Cotización" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
@@ -155,12 +154,21 @@
                   <Font name="Franklin Gothic Demi" size="23.0" />
                </font>
             </Text>
-            <TextField fx:id="precioCotizadoText" layoutX="374.0" layoutY="566.0" />
             <Button fx:id="botonRegresar" layoutX="373.0" layoutY="658.0" mnemonicParsing="false" onAction="#onActionRegresar" prefHeight="26.0" prefWidth="193.0" text="Regresar a Lista Cotizaciones">
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
             </Button>
+            <Text fx:id="numeroDeCotizacionText" layoutX="373.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroDeCotizacionText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="precioCotizadoText" layoutX="383.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="21.0" />
+               </font>
+            </Text>
          </children>
     </AnchorPane>
   </children>

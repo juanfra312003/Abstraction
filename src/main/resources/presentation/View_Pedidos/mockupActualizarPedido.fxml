@@ -135,7 +135,6 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="numeroDePedidoText" layoutX="373.0" layoutY="243.0" />
             <TextField fx:id="nombreClienteText" layoutX="373.0" layoutY="456.0" />
             <Text fill="#00000091" layoutX="366.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Cliente" wrappingWidth="354.8751831054687">
                <font>
@@ -148,6 +147,11 @@
                </font>
             </Button>
             <Button fx:id="botonActNombreCliente" layoutX="373.0" layoutY="494.0" mnemonicParsing="false" onAction="#onActionActualizarNombreCliente" text="Actualizar nombre del Cliente" />
+            <Text fx:id="numeroDePedidoText" layoutX="375.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroDePedidoText">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="20.0" />
+               </font>
+            </Text>
          </children>
     </AnchorPane>
   </children>

@@ -31,14 +31,14 @@ public class PedidoDAO implements IPedidoDAO {
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(pedido.getFecha());
 
-            String query = "INSERT INTO Pedido(numero, Cotizacion_numero, nombre, fecha, valor, estado) VALUES(" +
+            String query = "INSERT INTO Pedido(numero, Cotizacion_numero, nombre, fecha, valor, estado, archivado) VALUES(" +
                     "'" + pedido.getNumero() + "'," +
                     "'" + pedido.getCotizacionPedido().getNumero() + "'," +
                     "'" + pedido.getNombre() + "'," +
                     "TO_DATE('" + dateToString + "','" + pattern + "')," +
                     "'" + pedido.getValor() + "'," +
                     "'" + pedido.getEstado() + "'" +
-                    ");";
+                    "'0');";
             System.out.println(query);
 
             Statement stmt = this.mysql.getConnection().createStatement();
@@ -117,6 +117,7 @@ public class PedidoDAO implements IPedidoDAO {
                         rs.getDate("fecha"),
                         rs.getFloat("valor"),
                         rs.getString("estado"),
+                        rs.getInt("archivado"),
                         cotizacionDAO.findById(rs.getLong("Cotizacion_numero")));
                 pedido.setNombreCliente(pedido.getCotizacionPedido().getNombreCliente());
 
@@ -159,6 +160,7 @@ public class PedidoDAO implements IPedidoDAO {
                         rs.getDate("fecha"),
                         rs.getFloat("valor"),
                         rs.getString("estado"),
+                        rs.getInt("archivado"),
                         cotizacionDAO.findById(rs.getLong("Cotizacion_numero")));
                 pedido.setNombreCliente(pedido.getCotizacionPedido().getNombreCliente());
 

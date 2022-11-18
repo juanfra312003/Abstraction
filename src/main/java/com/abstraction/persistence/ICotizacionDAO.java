@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public interface ICotizacionDAO {
     public boolean create(Cotizacion cotizacion);
     public boolean edit(Long numero, Cotizacion cotizacion);
-    public boolean delete(Long numero);
+    public boolean archivar (Cotizacion cotizacion);
     public Cotizacion findById(Long numero);
     public ArrayList<Cotizacion> findAll();
     public Integer count();
+    public Long nextId();
 }

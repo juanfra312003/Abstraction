@@ -1,6 +1,6 @@
 package com.abstraction.controllers.Controllers_Producto;
 
-import com.abstraction.business.IProducto_facade;
+import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
@@ -24,58 +24,11 @@ import static java.lang.Long.parseLong;
 
 public class Controller_Crear_Producto {
 
-    private Stage stage;
     public IProducto_facade facade;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void initialize(IProducto_facade facade){
+        this.facade = facade;
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    @FXML
-    private Button botonCerrarSesion;
-
-    @FXML
-    private Button botonCotizaciones;
-
-    @FXML
-    private Button botonDashBoard;
-
-    @FXML
-    private Button botonFacturacion;
-
-    @FXML
-    private Button botonPedidos;
-
-    @FXML
-    private Button botonPerfil;
-
-    @FXML
-    private Button botonProductos;
-
-    @FXML
-    private Button crearProductoBoton;
-
-    @FXML
-    private Button regresarBoton;
-
-    @FXML
-    private TextField textCantidadesExistentes;
-
-    @FXML
-    private TextField textDescripcion;
-
-    @FXML
-    private TextField textNombreProducto;
-
-    @FXML
-    private TextField textPrecioProducto;
-
-    @FXML
-    private TextField textReferenciaProducto;
 
     @FXML
     void OnActionCrearBoton(ActionEvent event) {
@@ -84,7 +37,8 @@ public class Controller_Crear_Producto {
                   textNombreProducto.getText(),
                   parseFloat(textPrecioProducto.getText()),
                   parseInt(textCantidadesExistentes.getText()),
-                  textDescripcion.getText())
+                  textDescripcion.getText(),
+                  0)
         );
     }
 
@@ -95,16 +49,175 @@ public class Controller_Crear_Producto {
 
     @FXML
     void onActionCotizaciones(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupListaCotizaciones.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Cotizaciones controller_lista_cotizaciones = fxmlLoader.getController();
-        controller_lista_cotizaciones.setStage(stage);
-        stage.show();
-        this.stage.close();
+        cargarListaCotizaciones();
+    }
+
+    @FXML
+    void onActionDashBoard(ActionEvent event) throws IOException {
+        cargarDashboard();
+    }
+
+    @FXML
+    void onActionFacturacion(ActionEvent event) throws IOException {
+        cargarListaFacturas();
+    }
+
+    @FXML
+    void onActionPedidos(ActionEvent event) throws IOException {
+        cargarListaPedidos();
+    }
+
+    @FXML
+    void onActionPerfil(ActionEvent event) throws IOException {
+        cargarPerfil();
+    }
+
+    @FXML
+    void onActionProductos(ActionEvent event) throws IOException {
+        cargarListaProductos();
+    }
+
+    @FXML
+    void OnActionRegresar(ActionEvent event) throws IOException {
+        cargarListaProductos();
+    }
+
+
+    /**
+     *
+     * Cambios de pantalla
+     *
+     */
+
+    // Cambio a Lista_productos
+    void cargarListaProductos (){
+        try{
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
+            controller_lista_productos.initialize((IProducto_facade) this.facade);
+            controller_lista_productos.setStage(stage);
+            stage.show();
+            this.stage.close();
+        }
+        catch(IOException e){
+            System.out.printf(e.getMessage());
+        }
+    }
+
+    //Cambio a perfil
+    void cargarPerfil() {
+        try {
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_Perfil_Aux/mockupVerPerfil.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Ver_Perfil controller_ver_perfil = fxmlLoader.getController();
+            controller_ver_perfil.initialize((FacadeGeneral) this.facade);
+            controller_ver_perfil.setStage(stage);
+            stage.show();
+            this.stage.close();
+        } catch (IOException e) {
+            System.out.printf(e.getMessage());
+        }
+    }
+
+    //Cambio a Lista_pedidos
+    void cargarListaPedidos(){
+        try{
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupListaPedidos.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Lista_Pedidos controller_lista_pedidos = fxmlLoader.getController();
+            controller_lista_pedidos.initialize((IPedido_facade) this.facade);
+            controller_lista_pedidos.setStage(stage);
+            stage.show();
+            this.stage.close();
+        }
+        catch(IOException e){
+            System.out.printf(e.getMessage());
+        }
+    }
+
+    //Cargar Lista_facturas
+    void cargarListaFacturas(){
+        try{
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupListaFacturas.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Lista_Facturas controller_lista_facturas = fxmlLoader.getController();
+            controller_lista_facturas.initialize((IFactura_facade) this.facade);
+            controller_lista_facturas.setStage(stage);
+            stage.show();
+            this.stage.close();
+        }
+        catch(IOException e){
+            System.out.printf(e.getMessage());
+        }
+    }
+
+    //Cargar Dashboard
+    void cargarDashboard(){
+        try{
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_DashBoard/MockupDASHBOARD.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_DashBoard controller_dashBoard = fxmlLoader.getController();
+            controller_dashBoard.initialize((IDashboard_facade) this.facade);
+            controller_dashBoard.setStage(stage);
+            stage.show();
+            this.stage.close();
+        }
+        catch(IOException e){
+            System.out.printf(e.getMessage());
+        }
+    }
+
+    //Cargar Lista_cotizaciones
+    void cargarListaCotizaciones(){
+        try{
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupListaCotizaciones.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Lista_Cotizaciones controller_lista_cotizaciones = fxmlLoader.getController();
+            controller_lista_cotizaciones.initialize((ICotizacion_facade) this.facade);
+            controller_lista_cotizaciones.setStage(stage);
+            stage.show();
+            this.stage.close();
+        }
+        catch(IOException e){
+            System.out.printf(e.getMessage());
+        }
+    }
+
+
+    /**
+     * Getters y Setters
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 
     public Button getBotonCerrarSesion() {
@@ -155,88 +268,50 @@ public class Controller_Crear_Producto {
         this.textReferenciaProducto = textReferenciaProducto;
     }
 
+    /**
+     * FXML Elements
+     */
+
+    private Stage stage;
     @FXML
-    void onActionDashBoard(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_DashBoard/MockupDASHBOARD.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_DashBoard controller_dashBoard = fxmlLoader.getController();
-        controller_dashBoard.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
+    private Button botonCerrarSesion;
 
     @FXML
-    void onActionFacturacion(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupListaFacturas.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Facturas controller_lista_facturas = fxmlLoader.getController();
-        controller_lista_facturas.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
+    private Button botonCotizaciones;
 
     @FXML
-    void onActionPedidos(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupListaPedidos.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Pedidos controller_lista_pedidos = fxmlLoader.getController();
-        controller_lista_pedidos.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
+    private Button botonDashBoard;
 
     @FXML
-    void onActionPerfil(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Perfil_Aux/mockupVerPerfil.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Ver_Perfil controller_ver_perfil = fxmlLoader.getController();
-        controller_ver_perfil.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
+    private Button botonFacturacion;
 
     @FXML
-    void onActionProductos(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
-        controller_lista_productos.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
+    private Button botonPedidos;
 
     @FXML
-    void OnActionRegresar(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
-        controller_lista_productos.setStage(stage);
-        stage.show();
-        this.stage.close();
-    }
+    private Button botonPerfil;
 
+    @FXML
+    private Button botonProductos;
+
+    @FXML
+    private Button crearProductoBoton;
+
+    @FXML
+    private Button regresarBoton;
+
+    @FXML
+    private TextField textCantidadesExistentes;
+
+    @FXML
+    private TextField textDescripcion;
+
+    @FXML
+    private TextField textNombreProducto;
+
+    @FXML
+    private TextField textPrecioProducto;
+
+    @FXML
+    private TextField textReferenciaProducto;
 }

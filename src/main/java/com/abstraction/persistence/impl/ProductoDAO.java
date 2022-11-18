@@ -22,15 +22,15 @@ public class ProductoDAO implements IProductoDAO {
     @Override
     public boolean create(Producto producto) {
         try{
+
             this.mysql.conectar();
-            String query="INSERT INTO producto(referencia, nombre, precio, existencias,descripcion,pathImagen)VALUES("+
+            String query="INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado) VALUES("+
                     "'"+producto.getReferencia()+"',"+
                     "'"+producto.getNombre()+"',"+
                     "'"+producto.getPrecio()+"',"+
                     "'"+producto.getExistencias()+"',"+
                     "'"+producto.getDescripcion()+"',"+
-                    "'"+producto.getPathImage()+"'"+
-                    ");";
+                    "'0');";
             System.out.println(query);
             Statement stmt= this.mysql.getConnection().createStatement();
             int code=stmt.executeUpdate(query);
@@ -116,14 +116,14 @@ public class ProductoDAO implements IProductoDAO {
     public Producto findById(Long referencia) {
         try{
             this.mysql.conectar();
-            String query = "SELECT * FROM producto WHERE numero = '"+ referencia +"';";
+            String query = "SELECT * FROM producto WHERE referencia = '"+ referencia +"';";
             System.out.println(query);
 
             Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = stmt.executeQuery(query);
             if(rs.first())
             {
-                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"));
+                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"), rs.getInt("archivado"));
                 rs.close();
                 stmt.close();
                 this.mysql.desconectar();
@@ -162,7 +162,7 @@ public class ProductoDAO implements IProductoDAO {
             {
                 rs.next();
 
-                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"));
+                Producto producto = new Producto(rs.getLong("referencia"), rs.getString("nombre"),rs.getFloat("precio"),rs.getInt("existencias"), rs.getString("Descripcion"), rs.getInt("archivado"));
                 productos.add(producto);
             }
             while(!rs.isLast());

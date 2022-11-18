@@ -23,6 +23,15 @@ public class Cotizacion {
         this.archivado = archivado;
     }
 
+    public Cotizacion(String nombre, Date fecha, float precio, String nombreCliente, int archivado) {
+        this.numero = numero;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.precio = precio;
+        this.nombreCliente = nombreCliente;
+        this.archivado = archivado;
+    }
+
     public Long getNumero() {
         return numero;
     }
@@ -36,6 +45,10 @@ public class Cotizacion {
     }
 
     public float getPrecio() {
+        precio = 0F;
+        for (CotizacionProducto cotizacionProducto : productos){
+            precio += cotizacionProducto.getSubtotal();
+        }
         return precio;
     }
 
