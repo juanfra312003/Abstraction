@@ -226,9 +226,6 @@ public class Controller_Lista_Pedidos {
     private Button botonCotizaciones;
 
     @FXML
-    private Button botonCrearPedido;
-
-    @FXML
     private Button botonDashBoard;
 
     @FXML
