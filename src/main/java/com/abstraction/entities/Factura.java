@@ -11,10 +11,6 @@ public class Factura {
 
     private Pedido pedidoFactura;
 
-    public Factura() {
-
-    }
-
     public Factura(Long numero, Date fecha, float valorTotal, float abonoTotal, int archivado, Pedido pedidoFactura) {
         this.numero = numero;
         this.fecha = fecha;
