@@ -47,11 +47,6 @@ public class Controller_Lista_Pedidos {
     }
 
     @FXML
-    void onActionCrearPedido(ActionEvent event) throws IOException {
-        cargarCrearPedido();
-    }
-
-    @FXML
     void onActionDashBoard(ActionEvent event) throws IOException {
         cargarDashboard();
     }
@@ -199,23 +194,6 @@ public class Controller_Lista_Pedidos {
         }
     }
 
-    void cargarCrearPedido(){
-        try {
-            Stage stage = new Stage();
-            URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupCrearPedido.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Abstraction");
-            stage.setScene(scene);
-            Controller_Crear_Pedido controller_crear_pedido = fxmlLoader.getController();
-            controller_crear_pedido.initialize((IPedido_facade) this.facade);
-            controller_crear_pedido.setStage(stage);
-            stage.show();
-            this.stage.close();
-        } catch (IOException e) {
-            System.out.printf(e.getMessage());
-        }
-    }
 
     /**
      * Getters y Setters
