@@ -1,5 +1,6 @@
 package com.abstraction.business;
 
+import com.abstraction.entities.Factura;
 import com.abstraction.entities.Pedido;
 import com.abstraction.entities.Producto;
 import javafx.scene.control.Alert;
@@ -16,5 +17,5 @@ public interface IPedido_facade {
     ArrayList<Pedido> listarPedidos();
     ArrayList<Pedido> historialPedidos(Date fecha1);
     Alert alertaInventario(Producto producto);
-    boolean crearFactura(Pedido pedido);
+    boolean crearFactura(Factura factura);
 }
