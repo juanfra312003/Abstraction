@@ -67,11 +67,6 @@
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font></TextField>
-            <Button fx:id="botonActualizarNombre" layoutX="1355.0" layoutY="335.0" mnemonicParsing="false" onAction="#onActionActualizarNombre" text="Actualizar">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </Button>
             <TextField fx:id="referenciaProductoText" layoutX="578.0" layoutY="393.0" prefHeight="25.0" prefWidth="750.0">
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
@@ -114,22 +109,12 @@
                   <Font name="Franklin Gothic Demi" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="botonActualizarReferencia" layoutX="1355.0" layoutY="392.0" mnemonicParsing="false" onAction="#onActionActualizarReferencia" text="Actualizar">
+            <Button fx:id="botonActualizarProducto" layoutX="1030.0" layoutY="680.0" mnemonicParsing="false" onAction="#onActionActualizarProducto" text="Actualizar Datos Producto">
                <font>
                   <Font name="Franklin Gothic Demi" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="botonActualizarPrecio" layoutX="1355.0" layoutY="447.0" mnemonicParsing="false" onAction="#onActionActualizarPrecio" text="Actualizar">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="botonActualizarCant" layoutX="1355.0" layoutY="498.0" mnemonicParsing="false" onAction="#onActionActualizarCant" text="Actualizar">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="botonRegresar" layoutX="1361.0" layoutY="680.0" mnemonicParsing="false" onAction="#onActionRegresar" text="Regresar">
+            <Button fx:id="botonRegresar" layoutX="1248.0" layoutY="680.0" mnemonicParsing="false" onAction="#onActionRegresar" text="Regresar">
                <font>
                   <Font name="Franklin Gothic Demi" size="15.0" />
                </font>
@@ -184,11 +169,6 @@
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="botonActualizarDescrip" layoutX="1357.0" layoutY="546.0" mnemonicParsing="false" onAction="#onActionActualizarDescrip" text="Actualizar">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-            </Button>
          </children>
     </AnchorPane>
   </children>
