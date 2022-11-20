@@ -1,4 +1,4 @@
-package com.abstraction.controllers.Controllers_Cotizacion;
+package com.abstraction.controllers.Controllers_Cotizacion.ObservableClasses;
 
 import com.abstraction.entities.CotizacionProducto;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package com.abstraction.controllers.Controllers_Producto;
+package com.abstraction.controllers.Controllers_Producto.ObservableClasses;
 
 import javafx.scene.control.Button;
 

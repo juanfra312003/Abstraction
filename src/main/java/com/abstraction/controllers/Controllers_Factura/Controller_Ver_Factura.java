@@ -6,7 +6,10 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.CotizacionProducto;
 import com.abstraction.entities.Factura;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +17,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Controller_Ver_Factura {
 
@@ -27,6 +33,57 @@ public class Controller_Ver_Factura {
 
     public void initialize(IFactura_facade facade, Factura factura){
         this.facade = facade;
+        this.mostrarFactura(factura);
+    }
+
+    public void mostrarFactura (Factura factura){
+
+        //Definir variable para la definición de la fecha de Factura
+        String pattern = "dd/MM/YYYY";
+        DateFormat df = new SimpleDateFormat(pattern);
+        String dateToString = df.format(factura.getFecha());
+
+        //Establecer valores de lectura para la vista, a excepción de la vista de tabla de los productos correspondientes.
+        numeroDeFacturaText.setText(factura.getNumero().toString());
+        numeroPedidoText.setText(factura.getPedidoFactura().getNumero().toString());
+        nombreClienteText.setText(factura.getPedidoFactura().getNombreCliente());
+        abonoRealizadoText.setText(String.valueOf(factura.getAbonoTotal()));
+        precioTotalText.setText(String.valueOf(factura.getValorTotal()));
+        fechaFacturaText.setText(dateToString);
+
+        actualizarTabla(factura);
+    }
+
+    public void actualizarTabla (Factura factura){
+        //Definir el conjunto de productos que se van a mostrar al interior de la factura en la tabla provista con dicho fin
+        ArrayList<CotizacionProducto> productos = factura.getPedidoFactura().getCotizacionPedido().getProductos();
+
+        //Si la lista de productos es nula, retornar.
+        if(productos == null) return;
+
+        //Definir los datos para productos observables de tipo <VerFactProductoObservable>
+        final ObservableList<VerFactProductoObservable> data = FXCollections.observableArrayList();
+
+        //Añadir a los datos cada una de las columnas de la tabla de acuerdo con su orden especificado en el constructor de dicha clase.
+        for(CotizacionProducto p : productos){
+            data.add(new VerFactProductoObservable(
+                    p.getProducto().getReferencia(),
+                    p.getProducto().getNombre(),
+                    p.getCantidad(),
+                    p.getProducto().getPrecio(),
+                    p.getSubtotal()
+            ));
+        }
+
+        //Realizar la asignación de cada columna de la tabla con su respectivo valor.
+        referenciaColumna.setCellValueFactory(new PropertyValueFactory<VerFactProductoObservable, String>("referencia"));
+        nombreProductoColumna.setCellValueFactory(new PropertyValueFactory<VerFactProductoObservable, String>("nombre"));
+        numProductosColumna.setCellValueFactory(new PropertyValueFactory<VerFactProductoObservable, String>("cantidad"));
+        precioUnitarioColumna.setCellValueFactory(new PropertyValueFactory<VerFactProductoObservable, String>("precioUnitario"));
+        subTotalColumna.setCellValueFactory(new PropertyValueFactory<VerFactProductoObservable, String>("subtotal"));
+
+        //Realizar la asignación en la correspondiente TableView.
+        tableViewVerFactura.setItems(data);
     }
 
     @FXML
@@ -215,7 +272,7 @@ public class Controller_Ver_Factura {
     private Button botonCotizaciones;
 
     @FXML
-    private TableView<?> tableViewVerFactura;
+    private TableView<VerFactProductoObservable> tableViewVerFactura;
 
     @FXML
     private Button botonDashBoard;
@@ -242,10 +299,10 @@ public class Controller_Ver_Factura {
     private Text nombreClienteText;
 
     @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
+    private TableColumn<VerFactProductoObservable, String> nombreProductoColumna;
 
     @FXML
-    private TableColumn<?, ?> numProductosColumna;
+    private TableColumn<VerFactProductoObservable, String>numProductosColumna;
 
     @FXML
     private Text numeroDeFacturaText;
@@ -257,11 +314,11 @@ public class Controller_Ver_Factura {
     private Text precioTotalText;
 
     @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
+    private TableColumn<VerFactProductoObservable, String>precioUnitarioColumna;
 
     @FXML
-    private TableColumn<?, ?> referenciaColumna;
+    private TableColumn<VerFactProductoObservable, String>referenciaColumna;
 
     @FXML
-    private TableColumn<?, ?> subTotalColumna;
+    private TableColumn<VerFactProductoObservable, String> subTotalColumna;
 }

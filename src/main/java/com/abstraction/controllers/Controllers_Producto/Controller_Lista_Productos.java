@@ -6,6 +6,7 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.controllers.Controllers_Producto.ObservableClasses.ProductoObservable;
 import com.abstraction.entities.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,10 +23,8 @@ import javafx.stage.*;
 import javafx.scene.control.TableColumn;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class Controller_Lista_Productos {
 
