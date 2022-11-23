@@ -11,5 +11,6 @@ public interface IFacturaDAO{
     public boolean delete(Long numero);
     public Factura findById(Long numero);
     public ArrayList<Factura> findAll();
+    public boolean archivar (Factura factura);
     public Integer count();
 }

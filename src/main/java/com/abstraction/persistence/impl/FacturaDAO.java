@@ -1,5 +1,6 @@
 package com.abstraction.persistence.impl;
 
+import com.abstraction.entities.Cotizacion;
 import com.abstraction.entities.Factura;
 import com.abstraction.persistence.IFacturaDAO;
 import com.abstraction.persistence.IPedidoDAO;
@@ -68,9 +69,7 @@ public class FacturaDAO implements IFacturaDAO {
             this.mysql.conectar();
             String query = "UPDATE factura SET "+
                     "numero = '" + factura.getNumero() + "'," +
-                    "Pedido_numero = '" + factura.getPedidoFactura() + "'," +
-                    "TO_DATE('" + dateToString + "','" + pattern + "')," +
-                    "valor = '" + factura.getValorTotal() + "'" +
+                    "Pedido_numero.nombreCliente = '" + factura.getPedidoFactura().getNombreCliente() + "'," +
                     "abonosTotal = '" + factura.getAbonoTotal()+ "'" +
                     " WHERE numero = '" + numero + "';";
             System.out.println(query);
@@ -159,6 +158,31 @@ public class FacturaDAO implements IFacturaDAO {
         } catch (SQLException ex){
             Logger.getLogger(FacturaDAO.class.getName()).log(Level.SEVERE,null,ex);
             return null;
+        }
+    }
+
+    @Override
+    public boolean archivar(Factura factura) {
+        this.mysql.conectar();
+        try{
+            String query = "UPDATE  factura SET " +
+                    "archivado = '" + factura.getArchivado() + "' " +
+                    "WHERE numero = " + factura.getNumero() + ";";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.mysql.desconectar();
+
+            if (code == 1) {
+                System.out.println("Se archivo la factura!");
+                return true;
+            }
+            return false;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(Factura.class.getName()).log(Level.SEVERE,null,ex);
+            return false;
         }
     }
 
