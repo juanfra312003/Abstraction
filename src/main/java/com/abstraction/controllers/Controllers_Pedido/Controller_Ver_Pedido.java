@@ -6,6 +6,7 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Factura;
 import com.abstraction.entities.Pedido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,13 +18,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 
 public class Controller_Ver_Pedido {
 
     public IPedido_facade facade;
+    public Pedido pedido;
 
     public void initialize(IPedido_facade facade, Pedido pedido){
         this.facade = facade;
+        this.pedido = pedido;
+
+        //Implementar la función para ver pedido.
     }
 
     @FXML
@@ -46,11 +52,6 @@ public class Controller_Ver_Pedido {
         cargarListaFacturas();
     }
 
-    @FXML
-    void onActionGenerarFactura(ActionEvent event) {
-        //Accion realizada por la Facade
-
-    }
 
     @FXML
     void onActionPedidos(ActionEvent event) throws IOException {
@@ -277,4 +278,19 @@ public class Controller_Ver_Pedido {
 
     @FXML
     private TableView<?> tableViewVerProducto;
+
+    public void onActionGenerarFactura(ActionEvent actionEvent) {
+        //Crea una factura con la informacion del pedido correspondiente, en donde asigna el mismo numero de factura con relación a su pedido antecesor.
+        //Asimismo, realiza la creación para realizar la debida implementacion de la función
+        Factura factura = new Factura(
+                this.pedido.getNumero(),
+                new Date(),
+                this.pedido.getValor(),
+                0F,
+                0,
+                this.pedido
+        );
+
+        facade.crearFactura(factura);
+    }
 }

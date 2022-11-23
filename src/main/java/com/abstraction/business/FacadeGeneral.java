@@ -2,8 +2,10 @@ package com.abstraction.business;
 
 import com.abstraction.entities.*;
 import com.abstraction.persistence.ICotizacionDAO;
+import com.abstraction.persistence.IFacturaDAO;
 import com.abstraction.persistence.IProductoDAO;
 import com.abstraction.persistence.impl.CotizacionDAO;
+import com.abstraction.persistence.impl.FacturaDAO;
 import com.abstraction.persistence.impl.ProductoDAO;
 import javafx.scene.control.Alert;
 
@@ -138,12 +140,17 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public boolean actualizarFactura(Long id) {
-        return false;
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        Factura factura = facturaDAO.findById(id);
+        return facturaDAO.edit(id, factura);
     }
 
     @Override
     public boolean archivarFactura(Long id) {
-        return false;
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        Factura factura = facturaDAO.findById(id);
+        factura.setArchivado(1);
+        return facturaDAO.archivar(factura);
     }
 
     @Override
@@ -192,7 +199,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     }
 
     @Override
-    public boolean crearFactura(Pedido pedido) {
-        return false;
+    public boolean crearFactura(Factura factura) {
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        return facturaDAO.create(factura);
     }
 }

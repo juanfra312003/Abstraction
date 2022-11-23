@@ -1,13 +1,13 @@
-package com.abstraction.controllers.Controllers_Cotizacion;
+package com.abstraction.controllers.Controllers_Factura;
 
-public class CotProductoObservable {
+public class VerFactProductoObservable {
     Long referencia;
     String nombre;
     int cantidad;
     float precioUnitario;
     float subtotal;
 
-    public CotProductoObservable(Long referencia, String nombre, int cantidad, float precioUnitario, float subtotal) {
+    public VerFactProductoObservable(Long referencia, String nombre, int cantidad, float precioUnitario, float subtotal) {
         this.referencia = referencia;
         this.nombre = nombre;
         this.cantidad = cantidad;

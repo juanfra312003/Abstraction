@@ -1,28 +1,92 @@
 package com.abstraction.controllers.Controllers_Factura;
 
 import com.abstraction.business.*;
+import com.abstraction.controllers.Controllers_Cotizacion.Controller_Actualizar_Cotizacion;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_Cotizacion.Controller_Ver_Cotizacion;
+import com.abstraction.controllers.Controllers_Cotizacion.ObservableClasses.CotizacionObservable;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
+import com.abstraction.controllers.Controllers_Factura.ObservableClasses.FacturaObservable;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Cotizacion;
+import com.abstraction.entities.Factura;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Controller_Lista_Facturas {
 
     public IFactura_facade facade;
 
+    int numFacts = 0;
+
     public void initialize(IFactura_facade facade){
         this.facade = facade;
+        this.actualizarTabla();
+    }
+
+    public void actualizarTabla (){
+        facturas = facade.listarFacturas();
+        if (facturas == null) return;
+        final ObservableList<FacturaObservable> data = FXCollections.observableArrayList();
+        numFacts = facturas.size();
+        buttonsVer = new Button[numFacts];
+        buttonsAct = new Button[numFacts];
+        buttonsArch = new Button[numFacts];
+
+        for(int i = 0; i < numFacts; i++){
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsArch[i] = new Button();
+            buttonsArch[i].setText("Archivar");
+            buttonsArch[i].setOnAction(this::onActionArch);
+        }
+
+        int i = 0;
+        for(Factura factura : facturas){
+            if (factura.getArchivado() == 0) {
+                data.add(new FacturaObservable(
+                        factura.getNumero(),
+                        factura.getPedidoFactura().getNumero(),
+                        factura.getPedidoFactura().getNombreCliente(),
+                        factura.getFecha(),
+                        factura.getValorTotal(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsArch[i]
+                ));
+            }
+            i++;
+        }
+
+        numeroFacturaColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("numeroFactura"));
+        numeroPedidoColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("numeroPedido"));
+        nombreClienteColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("nombreCliente"));
+        fechaColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("fecha"));
+        totalColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("precio"));
+        verColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, Button>("botonVer"));
+        actualizarColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, Button>("botonActualizar"));
+        archivarColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, Button>("botonArchivar"));
+        tableViewListaFacturas.setItems(data);
     }
 
     @FXML
@@ -74,6 +138,85 @@ public class Controller_Lista_Facturas {
     @FXML
     void onActionProducto(ActionEvent event) throws IOException {
         cargarListaProductos();
+    }
+
+    @FXML
+    public void onActionVer(ActionEvent event) {
+        try {
+            for(int i = 0; i < numFacts; i++){
+                if(event.getSource() == buttonsVer[i]){
+                    cargarVer(facturas.get(i));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarVer(Factura factura) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupVerFactura.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Ver_Factura controller_ver_factura = fxmlLoader.getController();
+        controller_ver_factura.setStage(stage);
+        controller_ver_factura.initialize((IFactura_facade) this.facade, factura);
+        stage.show();
+        this.stage.close();
+    }
+
+    @FXML
+    public void onActionArch(ActionEvent event) {
+        try {
+            for(int i = 0; i < numFacts; i++){
+                if(event.getSource() == buttonsArch[i]){
+                    if (facade.archivarFactura(facturas.get(i).getNumero())) {
+
+                        //Actualizar tabla con los datos de manera respectiva.
+                        this.actualizarTabla();
+
+                        //Arrojar la confirmación del proceso.
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Factura Archivada Exitosamente");
+                        alert.setTitle("Exito en el proceso");
+                        alert.setContentText("La factura seleccionada se ha archivado de manera satisfactoria.");
+                        alert.show();
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onActionActualizar(ActionEvent event) {
+        try {
+            for(int i = 0; i < numFacts; i++){
+                if(event.getSource() == buttonsAct[i]){
+                    cargarActualizar(facturas.get(i));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarActualizar (Factura factura) throws IOException{
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupActualizarFactura.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Actualizar_Factura controller_actualizar_factura = fxmlLoader.getController();
+        controller_actualizar_factura.setStage(stage);
+        controller_actualizar_factura.initialize((IFactura_facade) this.facade, factura);
+        stage.show();
+        this.stage.close();
     }
 
     /**
@@ -212,16 +355,16 @@ public class Controller_Lista_Facturas {
     private Stage stage;
 
     @FXML
-    private TableColumn<?, ?> actualizarColumna;
+    private TableColumn<FacturaObservable, Button> actualizarColumna;
 
     @FXML
-    private TableColumn<?, ?> archivarColumna;
+    private TableColumn<FacturaObservable, Button> archivarColumna;
 
     @FXML
     private Button botonBuscar;
 
     @FXML
-    private TableView<?> tableViewListaFacturas;
+    private TableView<FacturaObservable> tableViewListaFacturas;
 
     @FXML
     private Button botonCerrarSesion;
@@ -251,23 +394,31 @@ public class Controller_Lista_Facturas {
     private Text facturaBuscar;
 
     @FXML
-    private TableColumn<?, ?> fechaColumna;
+    private TableColumn<FacturaObservable, String> fechaColumna;
 
     @FXML
     private ComboBox<?> filtrarComboBox;
 
     @FXML
-    private TableColumn<?, ?> nombreClienteColumna;
+    private TableColumn<FacturaObservable, String> nombreClienteColumna;
 
     @FXML
-    private TableColumn<?, ?> numeroFacturaColumna;
+    private TableColumn<FacturaObservable, String> numeroFacturaColumna;
+
+
 
     @FXML
-    private TableColumn<?, ?> numeroPedidoColumna;
+    private TableColumn<FacturaObservable, String> numeroPedidoColumna;
 
     @FXML
-    private TableColumn<?, ?> totalColumna;
+    private TableColumn<FacturaObservable, String> totalColumna;
 
     @FXML
-    private TableColumn<?, ?> verColumna;
+    private TableColumn<FacturaObservable, Button> verColumna;
+
+
+    ArrayList<Factura> facturas;
+    Button[] buttonsVer;
+    Button[] buttonsAct;
+    Button[] buttonsArch;
 }

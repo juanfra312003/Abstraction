@@ -72,6 +72,11 @@ public class Controller_Actualizar_Producto {
         facade.actualizarProducto(producto);
     }
 
+    void onActionActualizarProducto(ActionEvent event) {
+
+    }
+
+
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
 
@@ -249,57 +254,14 @@ public class Controller_Actualizar_Producto {
         return stage;
     }
 
-    public TextField getCantidadesExistentesText() {
-        return cantidadesExistentesText;
-    }
-
-    public void setCantidadesExistentesText(TextField cantidadesExistentesText) {
-        this.cantidadesExistentesText = cantidadesExistentesText;
-    }
-
-    public TextField getNombreProductoText() {
-        return nombreProductoText;
-    }
-
-    public void setNombreProductoText(TextField nombreProductoText) {
-        this.nombreProductoText = nombreProductoText;
-    }
-
-    public TextField getPrecioProductoText() {
-        return precioProductoText;
-    }
-
-    public void setPrecioProductoText(TextField precioProductoText) {
-        this.precioProductoText = precioProductoText;
-    }
-
-    public TextField getReferenciaProductoText() {
-        return referenciaProductoText;
-    }
-
-    public void setReferenciaProductoText(TextField referenciaProductoText) {
-        this.referenciaProductoText = referenciaProductoText;
-    }
-
     /**
      * FXML Elements
      */
 
     private Stage stage;
-    @FXML
-    private Button botonActualizarCant;
 
     @FXML
-    private Button botonActualizarNombre;
-
-    @FXML
-    private Button botonActualizarDescrip;
-    @FXML
-    private Button botonActualizarPrecio;
-
-    @FXML
-    private Button botonActualizarReferencia;
-
+    private Button botonActualizarProducto;
     @FXML
     private Button botonCerrarSesion;
 

@@ -8,12 +8,7 @@ public class Factura {
     private float valorTotal;
     private float abonoTotal;
     private int archivado;
-
     private Pedido pedidoFactura;
-
-    public Factura() {
-
-    }
 
     public Factura(Long numero, Date fecha, float valorTotal, float abonoTotal, int archivado, Pedido pedidoFactura) {
         this.numero = numero;
@@ -62,5 +57,13 @@ public class Factura {
 
     public void setAbonoTotal(float abonoTotal) {
         this.abonoTotal = abonoTotal;
+    }
+
+    public int getArchivado() {
+        return archivado;
+    }
+
+    public void setArchivado(int archivado) {
+        this.archivado = archivado;
     }
 }

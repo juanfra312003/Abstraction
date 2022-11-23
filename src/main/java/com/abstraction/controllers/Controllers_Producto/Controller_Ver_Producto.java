@@ -32,7 +32,7 @@ public class Controller_Ver_Producto {
         nombreProductoText.setText(producto.getNombre());
         precioUnitarioText.setText(producto.getPrecio().toString());
         cantidadesExisText.setText(String.valueOf(producto.getExistencias()));
-        descripcionText.setText(producto.getDescripcion().toString());
+        descripcionText.setText(producto.getDescripcion());
     }
 
     @FXML
