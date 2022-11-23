@@ -111,7 +111,11 @@ public class Controller_Lista_Productos {
 
     @FXML
     public void onActionActualizar(ActionEvent event) {
-
+       for (int i = 0; i < numProds; i++) {
+            if (event.getSource() == buttonsAct[i]) {
+                cargarActualizar(productos.get(i));
+            }
+        }
     }
 
     @FXML
@@ -175,6 +179,23 @@ public class Controller_Lista_Productos {
             Controller_Lista_Productos controller_lista_productos = fxmlLoader.getController();
             controller_lista_productos.initialize((IProducto_facade) this.facade);
             controller_lista_productos.setStage(stage);
+            stage.show();
+            this.stage.close();
+        } catch (IOException e) {
+            System.out.printf(e.getMessage());
+        }
+    }
+    void cargarActualizar(Producto producto) {
+        try {
+            Stage stage = new Stage();
+            URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupActualizarPrdocuto.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Actualizar_Producto controller_actualizar_producto= fxmlLoader.getController();
+            controller_actualizar_producto.initialize((FacadeGeneral) this.facade,producto);
+            controller_actualizar_producto.setStage(stage);
             stage.show();
             this.stage.close();
         } catch (IOException e) {

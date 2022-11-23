@@ -2,11 +2,14 @@ package com.abstraction.controllers.Controllers_Producto;
 
 import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_Cotizacion.CotProdEditObs;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.entities.Producto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,38 +19,57 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 public class Controller_Actualizar_Producto {
 
     public IProducto_facade facade;
-
+    Producto producto;
+    int numProductos;
     public void initialize(IProducto_facade facade, Producto producto){
         this.facade = facade;
+        this.producto=producto;
+        this.cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
+        this.nombreProductoText.setText(String.valueOf(producto.getNombre()));
+        this.referenciaProductoText.setText(String.valueOf(producto.getExistencias()));
+        this.precioProductoText.setText(String.valueOf(producto.getPrecio()));
+        //this.descripcionProductoText.setText(producto.getDescripcion());
     }
 
     @FXML
     void onActionActualizarCant(ActionEvent event) {
-
+        if(!cantidadesExistentesText.getText().isBlank()) {
+            cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
+            facade.actualizarProducto(producto);
+        }
     }
 
     @FXML
     void onActionActualizarNombre(ActionEvent event) {
-
+        nombreProductoText.setText(String.valueOf(producto.getNombre()));
+        facade.actualizarProducto(producto);
     }
 
     @FXML
     void onActionActualizarPrecio(ActionEvent event) {
-
+        precioProductoText.setText(String.valueOf(producto.getPrecio()));
+        facade.actualizarProducto(producto);
     }
 
     @FXML
     void onActionActualizarDescrip(ActionEvent event) {
-
+        descripcionProductoText.setText(String.valueOf(producto.getDescripcion()));
+        facade.actualizarProducto(producto);
     }
 
     @FXML
     void onActionActualizarReferencia(ActionEvent event) {
-
+        referenciaProductoText.setText(String.valueOf(producto.getReferencia()));
+        facade.actualizarProducto(producto);
     }
 
     @FXML
@@ -306,6 +328,9 @@ public class Controller_Actualizar_Producto {
     private TextField cantidadesExistentesText;
 
     @FXML
+    private TextField descripcionProductoText;
+
+    @FXML
     private TextField nombreProductoText;
 
     @FXML
@@ -313,4 +338,8 @@ public class Controller_Actualizar_Producto {
 
     @FXML
     private TextField referenciaProductoText;
+
+    Button[] buttonsEliminar;
+
+    TextField[] fieldsExistencias;
 }

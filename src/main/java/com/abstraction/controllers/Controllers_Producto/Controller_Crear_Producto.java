@@ -32,6 +32,7 @@ public class Controller_Crear_Producto {
 
     @FXML
     void OnActionCrearBoton(ActionEvent event) {
+        /*
         facade.crearProducto(
           new Producto(parseLong(textReferenciaProducto.getText()),
                   textNombreProducto.getText(),
@@ -40,6 +41,8 @@ public class Controller_Crear_Producto {
                   textDescripcion.getText(),
                   0)
         );
+
+         */
     }
 
     @FXML
