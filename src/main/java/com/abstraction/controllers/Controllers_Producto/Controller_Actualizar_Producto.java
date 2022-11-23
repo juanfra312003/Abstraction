@@ -42,7 +42,21 @@ public class Controller_Actualizar_Producto {
 
     @FXML
     void onActionActualizar(ActionEvent event) {
+        referenciaProductoText.setText(producto.getReferencia().toString());
+        nombreProductoText.setText(producto.getNombre());
+        precioProductoText.setText(producto.getPrecio().toString());
+        cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
+        descripcionProductoText.setText(producto.getDescripcion());
         facade.actualizarProducto(producto);
+    }
+    public void actualizarTabla(){
+        referenciaProductoText.setText(producto.getReferencia().toString());
+        nombreProductoText.setText(producto.getNombre());
+        precioProductoText.setText(producto.getPrecio().toString());
+        cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
+        descripcionProductoText.setText(producto.getDescripcion());
+        facade.actualizarProducto(producto);
+        
     }
 
 

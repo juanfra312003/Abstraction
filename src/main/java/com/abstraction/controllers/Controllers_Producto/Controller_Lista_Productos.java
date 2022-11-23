@@ -14,17 +14,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.*;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+
+
+
 
 public class Controller_Lista_Productos {
 
@@ -63,15 +64,17 @@ public class Controller_Lista_Productos {
 
         int i = 0;
         for (Producto producto : productos) {
-            data.add(new ProductoObservable(
-                    producto.getReferencia(),
-                    producto.getNombre(),
-                    producto.getPrecio(),
-                    producto.getExistencias(),
-                    buttonsVer[i],
-                    buttonsAct[i],
-                    buttonsBorrar[i]
-            ));
+            if(producto.getArchivado()==0){
+                data.add(new ProductoObservable(
+                        producto.getReferencia(),
+                        producto.getNombre(),
+                        producto.getPrecio(),
+                        producto.getExistencias(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsBorrar[i]
+                ));
+            }
             i++;
         }
         columnaReferencia.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("referencia"));
@@ -119,6 +122,25 @@ public class Controller_Lista_Productos {
 
     @FXML
     public void onActionBorrar(ActionEvent event) {
+        try{
+            for(int i=0;i<productos.size();i++){
+                if(event.getSource()==buttonsBorrar[i]){
+                    if(facade.archivarProducto(productos.get(i).getReferencia())){
+
+                        actualizarTabla();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Producto Eliminado Exitosamente");
+                        alert.setTitle("Exito en el proceso");
+                        alert.setContentText("El producto seleccionado se ha eliminado de manera satisfactoria.");
+                        alert.show();
+
+                    }
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
