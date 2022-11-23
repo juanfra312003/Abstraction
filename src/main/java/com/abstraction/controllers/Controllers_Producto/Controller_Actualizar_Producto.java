@@ -2,7 +2,7 @@ package com.abstraction.controllers.Controllers_Producto;
 
 import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
-import com.abstraction.controllers.Controllers_Cotizacion.CotProdEditObs;
+import com.abstraction.controllers.Controllers_Cotizacion.ObservableClasses.CotProdEditObs;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
@@ -41,39 +41,8 @@ public class Controller_Actualizar_Producto {
     }
 
     @FXML
-    void onActionActualizarCant(ActionEvent event) {
-        if(!cantidadesExistentesText.getText().isBlank()) {
-            cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
-            facade.actualizarProducto(producto);
-        }
-    }
-
-    @FXML
-    void onActionActualizarNombre(ActionEvent event) {
-        nombreProductoText.setText(String.valueOf(producto.getNombre()));
+    void onActionActualizar(ActionEvent event) {
         facade.actualizarProducto(producto);
-    }
-
-    @FXML
-    void onActionActualizarPrecio(ActionEvent event) {
-        precioProductoText.setText(String.valueOf(producto.getPrecio()));
-        facade.actualizarProducto(producto);
-    }
-
-    @FXML
-    void onActionActualizarDescrip(ActionEvent event) {
-        descripcionProductoText.setText(String.valueOf(producto.getDescripcion()));
-        facade.actualizarProducto(producto);
-    }
-
-    @FXML
-    void onActionActualizarReferencia(ActionEvent event) {
-        referenciaProductoText.setText(String.valueOf(producto.getReferencia()));
-        facade.actualizarProducto(producto);
-    }
-
-    void onActionActualizarProducto(ActionEvent event) {
-
     }
 
 

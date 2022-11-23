@@ -109,7 +109,7 @@
                   <Font name="Franklin Gothic Demi" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="botonActualizarProducto" layoutX="1030.0" layoutY="680.0" mnemonicParsing="false" onAction="#onActionActualizarProducto" text="Actualizar Datos Producto">
+            <Button fx:id="botonActualizarProducto" layoutX="1030.0" layoutY="680.0" mnemonicParsing="false" onAction="#onActionActualizar" text="Actualizar Datos Producto">
                <font>
                   <Font name="Franklin Gothic Demi" size="15.0" />
                </font>
