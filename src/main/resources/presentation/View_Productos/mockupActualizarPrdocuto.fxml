@@ -164,7 +164,7 @@
                   <Font name="Franklin Gothic Demi" size="17.0" />
                </font>
             </Text>
-            <TextField fx:id="descripcionProcuctoText" layoutX="578.0" layoutY="547.0" prefHeight="25.0" prefWidth="750.0">
+            <TextField fx:id="descripcionProductoText" layoutX="578.0" layoutY="547.0" prefHeight="25.0" prefWidth="750.0">
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>

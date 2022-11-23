@@ -37,7 +37,7 @@ public class Controller_Actualizar_Producto {
         this.nombreProductoText.setText(String.valueOf(producto.getNombre()));
         this.referenciaProductoText.setText(String.valueOf(producto.getExistencias()));
         this.precioProductoText.setText(String.valueOf(producto.getPrecio()));
-        //this.descripcionProductoText.setText(producto.getDescripcion());
+        this.descripcionProductoText.setText(producto.getDescripcion());
     }
 
     @FXML
