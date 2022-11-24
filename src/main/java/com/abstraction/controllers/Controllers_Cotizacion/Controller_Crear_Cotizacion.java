@@ -16,10 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -44,7 +41,7 @@ public class Controller_Crear_Cotizacion {
         numeroDeCotizacionText.setText(String.valueOf(facade.nextCotId()));
         numProds = 0;
         costoTotal = 0;
-        precioCotizadoText.setText(String.valueOf(costoTotal));
+        precioCotizadoText.setText("$"+String.valueOf(costoTotal));
         actualizarTabla();
     }
 
@@ -66,24 +63,75 @@ public class Controller_Crear_Cotizacion {
 
     @FXML
     void onActionCrearCotizacion(ActionEvent event) {
-        Cotizacion  cotizacion = new Cotizacion(
-                facade.nextCotId(),
-                nombreCotizacionText.getText(),
-                new Date(),
-                parseFloat(precioCotizadoText.getText()),
-                nombreClienteText.getText(),
-                0);
-        cotizacion.setProductos(productosCotizados);
-        facade.crearCotizacion(cotizacion);
+        if(!nombreCotizacionText.getText().isBlank() && !nombreClienteText.getText().isBlank() && productosCotizados.size() > 0) {
+            Cotizacion cotizacion = new Cotizacion(
+                    facade.nextCotId(),
+                    nombreCotizacionText.getText(),
+                    new Date(),
+                    costoTotal,
+                    nombreClienteText.getText(),
+                    0);
+            cotizacion.setProductos(productosCotizados);
+            facade.crearCotizacion(cotizacion);
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Exito en el proceso");
+            alert.setTitle("Cotizacion creada correctamente");
+            alert.setContentText("Se ha creado la cotizacion.");
+            alert.show();
+        }
+        else if(nombreCotizacionText.getText().isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Cotizacion no se pudo crear correctamente");
+            alert.setContentText("Indique el nombre de la cotizacion.");
+            alert.show();
+        }
+        else if(nombreClienteText.getText().isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Cotizacion no se pudo crear correctamente");
+            alert.setContentText("Indique el nombre del cliente.");
+            alert.show();
+        }
+        else if(productosCotizados.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Cotizacion no se pudo crear correctamente");
+            alert.setContentText("Agregue al menos un producto a la cotizacion.");
+            alert.show();
+        }
     }
 
     @FXML
     public void onActionAgregar(ActionEvent event) {
         for (int i = 0; i < numProds; i++) {
             if (event.getSource() == buttonsAdd[i]) {
-                productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
-                costoTotal += productos.get(i).getPrecio()*parseInt(textFieldsConfirmar[i].getText());
-                precioCotizadoText.setText(String.valueOf(costoTotal));
+                if(!textFieldsConfirmar[i].getText().isBlank() && parseInt(textFieldsConfirmar[i].getText()) > 0){
+                    productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
+                    costoTotal += productos.get(i).getPrecio()*parseInt(textFieldsConfirmar[i].getText());
+                    precioCotizadoText.setText("$" + String.valueOf(costoTotal));
+
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Exito en el proceso");
+                    alert.setTitle("Producto agregado correctamente");
+                    alert.setContentText("Se ha agregado el producto especificado a la cotizacion.");
+                    alert.show();
+                }
+                else if(textFieldsConfirmar[i].getText().isBlank()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Fallo en el proceso");
+                    alert.setTitle("Producto no se pudo agregar correctamente");
+                    alert.setContentText("Indique la cantidad del producto a agregar.");
+                    alert.show();
+                }
+                else if(parseInt(textFieldsConfirmar[i].getText()) <= 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Fallo en el proceso");
+                    alert.setTitle("Producto no se pudo agregar correctamente");
+                    alert.setContentText("La cantidad del producto a agregar debe ser mayor a cero (0).");
+                    alert.show();
+                }
             }
         }
     }
@@ -108,14 +156,16 @@ public class Controller_Crear_Cotizacion {
 
         int i = 0;
         for (Producto producto : productos) {
-            data.add(new ProductoObservable2(
-                    producto.getReferencia(),
-                    producto.getNombre(),
-                    producto.getPrecio(),
-                    producto.getExistencias(),
-                    textFieldsConfirmar[i],
-                    buttonsAdd[i]
-            ));
+            if(producto.getArchivado() == 0) {
+                data.add(new ProductoObservable2(
+                        producto.getReferencia(),
+                        producto.getNombre(),
+                        producto.getPrecio(),
+                        producto.getExistencias(),
+                        textFieldsConfirmar[i],
+                        buttonsAdd[i]
+                ));
+            }
             i++;
         }
         referenciaColumna.setCellValueFactory(new PropertyValueFactory<ProductoObservable2, String>("referencia"));
