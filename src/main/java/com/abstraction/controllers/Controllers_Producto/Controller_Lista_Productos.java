@@ -118,6 +118,7 @@ public class Controller_Lista_Productos {
                 cargarActualizar(productos.get(i));
             }
         }
+       actualizarTabla();
     }
 
     @FXML

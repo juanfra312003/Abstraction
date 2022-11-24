@@ -55,11 +55,11 @@ public class ProductoDAO implements IProductoDAO {
     public boolean edit(Long referencia, Producto producto) {
         try{
             this.mysql.conectar();
-            String query="UPDATE producto SET"+
-                    "nombre='"+producto.getNombre()+"',"+
-                    "precio= '" +producto.getPrecio() + "'" +
-                    "existencias= '" +producto.getExistencias() + "'" +
-                    "descripcion= '" +producto.getDescripcion() + "'" +
+            String query="UPDATE producto SET "+
+                    "nombre='"+producto.getNombre()+"', "+
+                    "precio= '" +producto.getPrecio() + "', " +
+                    "existencias= '" +producto.getExistencias() + "', " +
+                    "descripcion= '" +producto.getDescripcion() + "' " +
                     "WHERE referencia='" + referencia + "';";
 
             System.out.println(query);

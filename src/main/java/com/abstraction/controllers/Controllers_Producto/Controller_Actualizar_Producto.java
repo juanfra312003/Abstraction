@@ -7,6 +7,7 @@ import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
+import com.abstraction.controllers.Controllers_Producto.ObservableClasses.ProductoObservable;
 import com.abstraction.entities.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,10 +17,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -42,21 +45,81 @@ public class Controller_Actualizar_Producto {
 
     @FXML
     void onActionActualizar(ActionEvent event) {
-        referenciaProductoText.setText(producto.getReferencia().toString());
-        nombreProductoText.setText(producto.getNombre());
-        precioProductoText.setText(producto.getPrecio().toString());
-        cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
-        descripcionProductoText.setText(producto.getDescripcion());
+        String nombreActualizar;
+        Float precio;
+        int cantExistentes;
+        String descripcionProducto;
+        String productosFalla = "";
+        String productosBlancos = "";
+
+
+        if(!nombreProductoText.getText().isBlank()&&!precioProductoText.getText().isBlank()&&!cantidadesExistentesText.getText().isBlank()&&!descripcionProductoText.getText().isBlank()){
+            nombreActualizar=String.valueOf(nombreProductoText.getText());
+            System.out.println(nombreActualizar);
+            producto.setNombre(nombreActualizar);
+
+
+            precio=Float.parseFloat(precioProductoText.getText());
+            producto.setPrecio(precio);
+
+
+            descripcionProducto=descripcionProductoText.getText();
+            producto.setDescripcion(descripcionProducto);
+
+            cantExistentes=Integer.parseInt(cantidadesExistentesText.getText());
+
+            if(cantExistentes>0){
+                producto.setExistencias(cantExistentes);
+            }
+            else {
+                productosFalla=productosFalla+producto.getNombre()+" ";
+            }
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Producto Actualizado");
+            alert.setTitle("Exito en el proceso");
+            alert.setContentText("El producto fue creado exitosamente.");
+            alert.show();
+        }
+        else {
+
+            if(nombreProductoText.getText().isBlank()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Producto No Actualizado");
+                alert.setTitle("Fallo en el proceso");
+                alert.setContentText("El producto no fue creado exitosamente, indique el nombre del producto a actualizar.");
+                alert.show();
+            }
+            else if(precioProductoText.getText().isBlank()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Producto No Actualizado");
+                alert.setTitle("Fallo en el proceso");
+                alert.setContentText("El producto no fue creado exitosamente, indique el precio del producto a actualizar.");
+                alert.show();
+            }
+            else if(cantidadesExistentesText.getText().isBlank()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Producto No Actualizado");
+                alert.setTitle("Fallo en el proceso");
+                alert.setContentText("El producto no fue creado exitosamente, indique las cantidades del producto a actualizar.");
+                alert.show();
+            }
+            else if(descripcionProductoText.getText().isBlank()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Producto No Actualizado");
+                alert.setTitle("Fallo en el proceso");
+                alert.setContentText("El producto no fue creado exitosamente, indique la descripcion del producto a actualizar.");
+                alert.show();
+            }
+
+            productosBlancos = productosBlancos + producto.getNombre() + " ";
+            /*
+             -- ERRORES EN LA EJECUCION
+         */
+
+        }
         facade.actualizarProducto(producto);
-    }
-    public void actualizarTabla(){
-        referenciaProductoText.setText(producto.getReferencia().toString());
-        nombreProductoText.setText(producto.getNombre());
-        precioProductoText.setText(producto.getPrecio().toString());
-        cantidadesExistentesText.setText(String.valueOf(producto.getExistencias()));
-        descripcionProductoText.setText(producto.getDescripcion());
-        facade.actualizarProducto(producto);
-        
+
     }
 
 
@@ -284,7 +347,9 @@ public class Controller_Actualizar_Producto {
     @FXML
     private TextField referenciaProductoText;
 
-    Button[] buttonsEliminar;
+    Button[] buttonsVer;
+    Button[] buttonsAct;
+    Button[] buttonsBorrar;
 
-    TextField[] fieldsExistencias;
+    ArrayList<Producto> productos;
 }
