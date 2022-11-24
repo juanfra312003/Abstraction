@@ -27,7 +27,7 @@ public class PedidoDAO implements IPedidoDAO {
         try {
             this.mysql.conectar();
 
-            String pattern = "DD/MM/YYYY";
+            String pattern = "dd/MM/YYYY";
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(pedido.getFecha());
 
@@ -57,13 +57,12 @@ public class PedidoDAO implements IPedidoDAO {
     public boolean edit(Long numero, Pedido pedido) {
         try {
 
-            String pattern = "DD/MM/YYYY";
+            String pattern = "dd/MM/YYYY";
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(pedido.getFecha());
 
             this.mysql.conectar();
             String query = "UPDATE Pedido SET " +
-                    "Cotizacion_numero = '" + pedido.getCotizacionPedido().getNumero() + "'," +
                     "nombre = '" + pedido.getNombre() + "'," +
                     "fecha = TO_DATE('" + dateToString + "','" + pattern + "')," +
                     "valor = '" + pedido.getValor() + "'," +

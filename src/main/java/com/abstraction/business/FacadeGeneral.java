@@ -111,7 +111,7 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     public float verIngresos(String year, String periodo) {
         IFacturaDAO facturaDAO = new FacturaDAO();
         listaFacturas = facturaDAO.findAll();
-        //if(listaFacturas == null) return 0;
+        if(listaFacturas == null) return 0;
         if(year == null) year = "00";
         if(periodo == null) periodo = "00";
         float ingresos = 0;
@@ -130,7 +130,6 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
             Date fechaFactura;
             System.out.println(inicio);
             System.out.println(fin);
-            if(listaFacturas == null) return 0;
             for(Factura factura : listaFacturas){
                 fechaFactura = factura.getFecha();
                 if(year == "00" && periodo == "00"){
