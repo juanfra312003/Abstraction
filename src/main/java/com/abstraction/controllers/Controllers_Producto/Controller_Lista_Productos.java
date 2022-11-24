@@ -36,6 +36,12 @@ public class Controller_Lista_Productos {
     public void initialize(IProducto_facade facade) {
         this.facade = facade;
         this.actualizarTabla();
+
+        //Validacion roles
+        String rolUsuario = facade.getUsuario().getRol();
+        if(rolUsuario.equals("vendedor")){
+            //botonProductos.
+        }
     }
 
     //Actualiza la tabla de la pantalla
