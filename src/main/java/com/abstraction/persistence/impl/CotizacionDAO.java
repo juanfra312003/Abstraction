@@ -262,10 +262,12 @@ public class CotizacionDAO implements ICotizacionDAO {
         try{
             this.mysql.conectar();
             Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String query = "SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'abstraction'  AND   TABLE_NAME   = 'cotizacion';";
+            String query = "SELECT * FROM cotizacion;";
             ResultSet rs = stmt.executeQuery(query);
-            if(!rs.next()) return null;
-            return rs.getLong("AUTO_INCREMENT");
+            while(rs.next());
+            rs.previous();
+
+            return rs.getLong("numero")+1;
         }catch (SQLException ex){
             Logger.getLogger(CotizacionDAO.class.getName()).log(Level.SEVERE,null,ex);
             return null;
