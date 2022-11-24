@@ -117,12 +117,11 @@
             </ImageView>
             <TableView fx:id="tableViewActPedido" layoutX="728.0" layoutY="179.0" prefHeight="596.0" prefWidth="778.0">
                <columns>
-                  <TableColumn fx:id="referenciaColumna" prefWidth="105.60000610351562" text="Referencia" />
-                  <TableColumn fx:id="nombreProductoColumna" prefWidth="126.4000244140625" text="Nombre " />
-                  <TableColumn fx:id="precioColumna" prefWidth="108.79998779296875" text="Precio Unit." />
-                  <TableColumn fx:id="existenciasColumna" prefWidth="132.800048828125" text="# Existencias" />
-                  <TableColumn fx:id="addColumna" prefWidth="146.4000244140625" text="Añadir Existencia" />
-                  <TableColumn fx:id="eliminarColumna" prefWidth="154.39990234375" text="Eliminar Existencia" />
+                  <TableColumn fx:id="referenciaColumna" prefWidth="123.0" text="Referencia" />
+                  <TableColumn fx:id="nombreProductoColumna" prefWidth="144.0" text="Nombre " />
+                  <TableColumn fx:id="numProductosColumna" prefWidth="132.0" text="# Existencias" />
+                  <TableColumn fx:id="precioUnitarioColumna" prefWidth="187.0" text="Precio Unitario" />
+                  <TableColumn fx:id="subTotalColumna" prefWidth="191.0" text="Subtotal" />
                </columns>
             </TableView>
             <Text fill="#00000091" layoutX="373.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresar la cantidad de productos por referencia para actualizar al pedido, si desea eliminar productos presione la casilla correspondiente." wrappingWidth="1084.7418212890625">
@@ -146,7 +145,6 @@
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="botonActNombreCliente" layoutX="373.0" layoutY="494.0" mnemonicParsing="false" onAction="#onActionActualizarNombreCliente" text="Actualizar nombre del Cliente" />
             <Text fx:id="numeroDePedidoText" layoutX="375.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroDePedidoText">
                <font>
                   <Font name="Franklin Gothic Demi" size="20.0" />
