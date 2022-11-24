@@ -117,7 +117,17 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public float verCreditos() {
-        return 0;
+        float creditos = 0F;
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        ArrayList<Factura> facturas = facturaDAO.findAll();
+        if (facturas == null){
+            return creditos;
+        }
+        for (int i = 0; i < facturas.size(); i++){
+            float creditoFactura = facturas.get(i).getValorTotal() - facturas.get(i).getAbonoTotal();
+            creditos += creditoFactura;
+        }
+        return creditos;
     }
 
     @Override

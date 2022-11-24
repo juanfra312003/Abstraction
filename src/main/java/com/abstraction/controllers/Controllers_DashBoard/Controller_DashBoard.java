@@ -31,6 +31,11 @@ public class Controller_DashBoard {
 
     public void initialize(IDashboard_facade facade){
         this.facade = new FacadeGeneral();
+        actualizarTextCreditos();
+    }
+
+    public void actualizarTextCreditos (){
+        creditosOtorgadosText.setText("$" + String.valueOf(facade.verCreditos()));
     }
 
     @FXML

@@ -266,7 +266,7 @@
                   <Font name="Franklin Gothic Medium Cond" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="creditosOtorgadosText" layoutX="1071.0" layoutY="748.0" strokeType="OUTSIDE" strokeWidth="0.0" text="creditosOtorgadosText" textAlignment="CENTER">
+            <Text fx:id="creditosOtorgadosText" layoutX="1098.0" layoutY="748.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cred" textAlignment="CENTER" wrappingWidth="81.00000000000006">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="16.0" />
                </font>
