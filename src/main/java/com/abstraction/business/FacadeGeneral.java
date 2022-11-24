@@ -18,13 +18,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade, IUsuarioDAO {
+public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade, IUsuario_facade {
 
     public ArrayList<Producto> inventarioProductos;
     public ArrayList<Cotizacion> listaCotizaciones;
     public ArrayList<Pedido> listaPedidos;
     public ArrayList<Factura> listaFacturas;
     public Dashboard dashboard1;
+    public Usuario usuario;
 
     @Override
     public boolean crearProducto(Producto product) {
@@ -306,6 +307,15 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     public boolean create(Usuario usuario) {
         IUsuarioDAO usuarioDAO=new UsuarioDAO();
         return usuarioDAO.create(usuario);
+    }
+
+    @Override
+    public Usuario validar(Usuario usuario) {
+        IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario user = usuarioDAO.validar(usuario);
+        if(user != null) this.usuario = user;
+        else user = null;
+        return user;
     }
 
 }

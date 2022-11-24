@@ -1,5 +1,9 @@
 USE abstraction;
 
+-- Insercion usuarios
+INSERT INTO usuario(correo, pass, rol)
+VALUES ('usuariogenial', 'hi', 'superusuario');
+
 -- Insercion productos
 INSERT INTO producto(referencia, nombre, precio, existencias, descripcion, archivado)
 VALUES('1', 'W91', '8500', '200', 'Sueco dama 35/40', '0');
