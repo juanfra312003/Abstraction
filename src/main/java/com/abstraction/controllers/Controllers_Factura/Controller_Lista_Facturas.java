@@ -26,6 +26,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -174,8 +176,14 @@ public class Controller_Lista_Facturas {
 
     @FXML
     void onActionDateSeleccionar(ActionEvent event) {
-        Date date = new Date(dateSeleccionar.getValue().toEpochDay());
-        actualizarTablaPorFecha(date);
+        try {
+            String sdate = dateSeleccionar.getValue().toString();
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(sdate);
+            actualizarTablaPorFecha(date);
+        }
+        catch(ParseException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void actualizarTablaPorFecha(Date date){
