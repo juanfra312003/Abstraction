@@ -27,9 +27,9 @@ public class MySQL {
     public void conectar(){
         try {
             String path = "jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database + this.parameters;
-            System.out.println(path);
+            //System.out.println(path);
             this.connection = DriverManager.getConnection(path,user,pass);
-            System.out.println("Se conecto");
+            //System.out.println("Se conecto");
         } catch (SQLException ex) {
             System.out.println("No se conecto");
             System.out.println("SQLException: " + ex.getMessage());
@@ -46,7 +46,7 @@ public class MySQL {
     public void desconectar() {
         try {
             this.connection.close();
-            System.out.println("Se desconecto");
+            //System.out.println("Se desconecto");
         } catch (SQLException ex) {
             System.out.println("No se desconecto");
             System.out.println("SQLException: " + ex.getMessage());
