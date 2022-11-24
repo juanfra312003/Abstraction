@@ -3,8 +3,6 @@ package com.abstraction.business;
 import java.util.ArrayList;
 
 public interface IDashboard_facade {
-    float verIngresos(String year, String periodo);
-    float verLeads();
     ArrayList<ArrayList<String>> verLeads();
     float valorTransaccionPromedio();
     float verCreditos();

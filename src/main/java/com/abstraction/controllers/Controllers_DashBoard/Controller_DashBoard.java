@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -38,8 +37,6 @@ public class Controller_DashBoard {
 
     public void initialize(IDashboard_facade facade){
         this.facade = new FacadeGeneral();
-        choiceBoxYearIngresosTiempo.getItems().addAll("2021", "2022");
-        choiceBoxPeriodoIngresosTiempo.getItems().addAll("Periodo 1","Periodo 2");
         actualizarTextCreditos();
     }
 
@@ -49,9 +46,7 @@ public class Controller_DashBoard {
 
     @FXML
     void onActionCalcularIngresos(ActionEvent event) {
-        String periodo = choiceBoxPeriodoIngresosTiempo.getValue();
-        String year = choiceBoxYearIngresosTiempo.getValue();
-        ingresosPeriodoTiempoText.setText("$"+String.valueOf(facade.verIngresos(year,periodo)));
+
     }
 
     @FXML
@@ -321,7 +316,7 @@ public class Controller_DashBoard {
     private ChoiceBox<?> choiceBoxPeriodoCrecVentas;
 
     @FXML
-    private ChoiceBox<String> choiceBoxPeriodoIngresosTiempo;
+    private ChoiceBox<?> choiceBoxPeriodoIngresosTiempo;
 
     @FXML
     private ChoiceBox<?> choiceBoxPeriodoValorPromedio;
@@ -330,7 +325,7 @@ public class Controller_DashBoard {
     private ChoiceBox<?> choiceBoxProductoAnalisisRendProduc;
 
     @FXML
-    private ChoiceBox<String> choiceBoxYearIngresosTiempo;
+    private ChoiceBox<?> choiceBoxYearIngresosTiempo;
 
     @FXML
     private ChoiceBox<?> choiceBoxYearValorPromedio;
