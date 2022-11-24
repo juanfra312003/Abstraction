@@ -112,8 +112,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         IFacturaDAO facturaDAO = new FacturaDAO();
         listaFacturas = facturaDAO.findAll();
         if(listaFacturas == null) return 0;
-        if(year == null) year = "";
-        if(periodo == null) periodo = "";
+        if(year == null) year = "00";
+        if(periodo == null) periodo = "00";
         float ingresos = 0;
         String mesInicio, mesFin;
         if(periodo == "Periodo 1"){
@@ -128,9 +128,11 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         try {
             Date inicio = new SimpleDateFormat("dd/MM/yyyy").parse(sInicio), fin = new SimpleDateFormat("dd/MM/yyyy").parse(sFin);
             Date fechaFactura;
+            System.out.println(inicio);
+            System.out.println(fin);
             for(Factura factura : listaFacturas){
                 fechaFactura = factura.getFecha();
-                if(year.isBlank() && periodo.isBlank()){
+                if(year == "00" && periodo == "00"){
                     ingresos += factura.getAbonoTotal();
                 }
                 else if(fechaFactura.equals(inicio) || fechaFactura.equals(fin) || (fechaFactura.after(inicio) && fechaFactura.before(fin))){
