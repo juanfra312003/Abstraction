@@ -17,8 +17,8 @@ public class MySQL {
 
         this.host = "localhost";
         this.port = "3306";
-        this.user = "root";
-        this.pass = "mysql_d13g0p4rd0";
+        this.user = "abstraction_SU";
+        this.pass = "Abstraction";
         this.database = "Abstraction";
         this.parameters = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         this.connection = null;
