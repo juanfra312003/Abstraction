@@ -41,8 +41,9 @@ public class Controller_Actualizar_Factura {
         numeroPedidoText.setText(String.valueOf(factura.getPedidoFactura().getNumero()));
         precioTotalText.setText(String.valueOf(factura.getValorTotal()));
         fechaFacturaText.setText(factura.getFecha().toString());
-        abonoRealizadoText.setText(String.valueOf(factura.getAbonoTotal()));
+        abonoRealizadoText.setText("0.0");
         nombreClienteText.setText(factura.getPedidoFactura().getNombreCliente());
+        excedenteText.setText("$"+String.valueOf(factura.getValorTotal()-factura.getAbonoTotal()));
 
         //Mostrar la información de la tabla de acuerdo a cómo corresponda
         actualizarTabla();
@@ -118,7 +119,7 @@ public class Controller_Actualizar_Factura {
                 float abonoIngresadoText = Float.valueOf(abonoRealizadoText.getText());
                 float abonoExistente = factura.getAbonoTotal();
 
-                if (abonoIngresadoText >= 0){
+                if (abonoIngresadoText <= 0){
                     //Arrojar la alerta de espacio negativo
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Error, abono negativo o en ceros");
@@ -147,6 +148,7 @@ public class Controller_Actualizar_Factura {
                 else{ //Caso exitoso
                     //Realizar la asignación de manera correcta
                     factura.setAbonoTotal(abonoExistente + abonoIngresadoText);
+                    excedenteText.setText("$"+String.valueOf(factura.getValorTotal()-factura.getAbonoTotal()));
                 }
             }
         }
@@ -165,7 +167,7 @@ public class Controller_Actualizar_Factura {
         }
 
         //En caso de que no hubiese retornado la función (Es decir no hubieran errores a lo largo del proceso, se realiza la actualización en el mecanismo de persistencia)
-        facade.actualizarFactura(factura.getNumero());
+        facade.actualizarFactura(factura.getNumero(), factura);
 
         //Lanzar mensaje de confirmacion de exito en el proceso
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

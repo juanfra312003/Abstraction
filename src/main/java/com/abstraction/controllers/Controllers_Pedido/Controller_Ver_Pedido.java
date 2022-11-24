@@ -358,6 +358,21 @@ public class Controller_Ver_Pedido {
                 this.pedido
         );
 
-        facade.crearFactura(factura);
+        if(facade.crearFactura(factura)){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Exito en el proceso");
+            alert.setTitle("Factura generada correctamente");
+            alert.setContentText("Se ha generado una factura a partir del pedido dado");
+            alert.showAndWait();
+            facade.eliminarPedido(this.pedido.getNumero());
+            cargarListaPedidos();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("No se pudo generar la factura");
+            alert.setContentText("Error desconocido.");
+            alert.show();
+        }
     }
 }

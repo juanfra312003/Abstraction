@@ -68,7 +68,6 @@ public class FacturaDAO implements IFacturaDAO {
         try{
             this.mysql.conectar();
             String query = "UPDATE factura SET "+
-                    "Pedido_numero.nombreCliente = '" + factura.getPedidoFactura().getNombreCliente() + "'," +
                     "abonosTotal = '" + factura.getAbonoTotal()+ "'" +
                     " WHERE numero = '" + numero + "';";
             System.out.println(query);
@@ -133,8 +132,8 @@ public class FacturaDAO implements IFacturaDAO {
             {
                 Factura factura = new Factura(rs.getLong("numero"),
                         rs.getDate("fecha"),
-                        rs.getFloat("valorTotal"),
-                        rs.getFloat("abonoTotal"),
+                        rs.getFloat("valor"),
+                        rs.getFloat("abonosTotal"),
                         rs.getInt("archivado"),
                         pedidoDAO.findById(rs.getLong("Pedido_numero"))
                         );

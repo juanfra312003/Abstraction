@@ -8,7 +8,7 @@ import java.util.Date;
 public interface IFactura_facade {
     Factura verFactura(Long id);
     ArrayList<Factura> listarFacturas();
-    boolean actualizarFactura(Long id);
+    boolean actualizarFactura(Long id, Factura factura);
     boolean archivarFactura(Long id);
     ArrayList<Factura> filtrarFacturas(Date fecha1);
 }
