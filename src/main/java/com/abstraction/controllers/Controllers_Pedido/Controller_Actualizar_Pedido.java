@@ -32,7 +32,11 @@ public class Controller_Actualizar_Pedido {
 
     public void initialize(IPedido_facade facade, Pedido pedido){
         this.facade = facade;
+        this.pedido = pedido;
         actualizarTabla(pedido);
+        numeroDePedidoText.setText(String.valueOf(pedido.getNumero()));
+        nombreClienteText.setText(pedido.getNombreCliente());
+        choiceBoxEstadoPedido.getItems().addAll("En espera", "En preparacion", "En empaque", "En espera de envio", "Enviado", "Entregado");
     }
 
     public void actualizarTabla(Pedido pedido){
@@ -60,7 +64,38 @@ public class Controller_Actualizar_Pedido {
     }
     @FXML
     void onActionActualizarGeneral(ActionEvent event) {
-
+        if(nombreClienteText.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Datos incorrectos");
+            alert.setTitle("Error actualizando pedido");
+            alert.setContentText("El espacio de nombre de cliente no puede estar vacio.");
+            alert.show();
+        }
+        else if(choiceBoxEstadoPedido.getValue() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Datos incorrectos");
+            alert.setTitle("Error actualizando pedido");
+            alert.setContentText("Elija un valor para el estado del pedido");
+            alert.show();
+        }
+        else {
+            pedido.setNombreCliente(nombreClienteText.getText());
+            pedido.setEstado(choiceBoxEstadoPedido.getValue());
+            if(facade.actualizarPedido(pedido)) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Proceso exitoso");
+                alert.setTitle("Pedido actualizado");
+                alert.setContentText("El pedido ha sido actualizado exitosamente");
+                alert.show();
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error actualizando el pedido");
+                alert.setTitle("Error actualizando pedido");
+                alert.setContentText("Error desconocido");
+                alert.show();
+            }
+        }
     }
 
     @FXML
@@ -314,6 +349,6 @@ public class Controller_Actualizar_Pedido {
     private TableView<CotProductoObservable> tableViewActPedido;
 
     @FXML
-    private ChoiceBox<?> choiceBoxEstadoPedido;
+    private ChoiceBox<String> choiceBoxEstadoPedido;
 
 }

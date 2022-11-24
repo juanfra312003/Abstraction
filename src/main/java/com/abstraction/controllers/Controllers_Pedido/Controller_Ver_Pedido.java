@@ -51,6 +51,15 @@ public class Controller_Ver_Pedido {
         numeroDePedidoText.setText(pedido.getNumero().toString());
         precioTotalText.setText(String.valueOf(pedido.getValor()));
         fechaCotizacionText.setText(dateToString);
+        double progreso;
+        if(pedido.getEstado().equals("En espera")) progreso = 0;
+        else if(pedido.getEstado().equals("En preparacion")) progreso = 0.2;
+        else if(pedido.getEstado().equals("En empaque")) progreso = 0.4;
+        else if(pedido.getEstado().equals("En espera de envio")) progreso = 0.6;
+        else if(pedido.getEstado().equals("Enviado")) progreso = 0.8;
+        else if(pedido.getEstado().equals("Entregado")) progreso = 1;
+        else progreso = 0;
+        barraProgresoEstado.setProgress(progreso);
 
         actualizarTablaPedidos(pedido);
     }
