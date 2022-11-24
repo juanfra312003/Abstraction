@@ -43,6 +43,8 @@ public class Controller_DashBoard {
         this.facade = new FacadeGeneral();
         choiceBoxYearIngresosTiempo.getItems().addAll("2021","2022");
         choiceBoxPeriodoIngresosTiempo.getItems().addAll("Periodo 1", "Periodo 2");
+        choiceBoxYearValorPromedio.getItems().addAll("2021","2022");
+        choiceBoxPeriodoValorPromedio.getItems().addAll("Periodo 1", "Periodo 2");
         actualizarTextCreditos();
     }
 
@@ -147,7 +149,7 @@ public class Controller_DashBoard {
 
     @FXML
     void onActionValorTransaccionPromedio(ActionEvent event) {
-
+        valorTransaccionPromedioText.setText("$"+String.valueOf(facade.valorTransaccionPromedio(choiceBoxYearValorPromedio.getValue(), choiceBoxPeriodoValorPromedio.getValue())));
     }
 
     /**
@@ -345,7 +347,7 @@ public class Controller_DashBoard {
     private ChoiceBox<String> choiceBoxPeriodoIngresosTiempo;
 
     @FXML
-    private ChoiceBox<?> choiceBoxPeriodoValorPromedio;
+    private ChoiceBox<String> choiceBoxPeriodoValorPromedio;
 
     @FXML
     private ChoiceBox<?> choiceBoxProductoAnalisisRendProduc;
@@ -354,7 +356,7 @@ public class Controller_DashBoard {
     private ChoiceBox<String> choiceBoxYearIngresosTiempo;
 
     @FXML
-    private ChoiceBox<?> choiceBoxYearValorPromedio;
+    private ChoiceBox<String> choiceBoxYearValorPromedio;
 
     @FXML
     private LineChart<?, ?> graficaCrecimientoVentas;
