@@ -57,19 +57,12 @@ public class PedidoDAO implements IPedidoDAO {
     @Override
     public boolean edit(Long numero, Pedido pedido) {
         try {
-
-            String pattern = "dd/MM/YYYY";
-            DateFormat df = new SimpleDateFormat(pattern);
-            String dateToString = df.format(pedido.getFecha());
-
             this.mysql.conectar();
             String query = "UPDATE Pedido SET " +
-                    "nombre = '" + pedido.getNombre() + "'," +
-                    "fecha = TO_DATE('" + dateToString + "','" + pattern + "')," +
-                    "valor = '" + pedido.getValor() + "'," +
-                    "estado = " + pedido.getValor() + "'" +
+                    "estado = '" + pedido.getEstado() + "'" +
                     " WHERE numero = '" + numero + "';";
 
+            System.out.println(query);
             Statement stmt = this.mysql.getConnection().createStatement();
             int code = stmt.executeUpdate(query);
             stmt.close();

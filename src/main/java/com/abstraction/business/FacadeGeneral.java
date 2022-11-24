@@ -258,7 +258,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public boolean actualizarPedido(Pedido pedido) {
-        return false;
+        IPedidoDAO pedidoDAO = new PedidoDAO();
+        return pedidoDAO.edit(pedido.getNumero(), pedido);
     }
 
     @Override
