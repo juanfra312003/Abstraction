@@ -23,7 +23,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         try{
 
             this.mysql.conectar();
-            String query="INSERT INTO usuario(correo, password, rol) VALUES("+
+            String query="INSERT INTO usuario(correo, pass, rol) VALUES("+
                     "'"+usuario.getCorreo()+"',"+
                     "'"+usuario.getPassword()+"',"+
                     "'"+usuario.getRol()+"');";
