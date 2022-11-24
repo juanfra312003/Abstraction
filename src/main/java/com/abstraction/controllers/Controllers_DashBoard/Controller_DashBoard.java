@@ -8,6 +8,9 @@ import com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Factura;
+import com.abstraction.persistence.IFacturaDAO;
+import com.abstraction.persistence.impl.FacturaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,20 +61,22 @@ public class Controller_DashBoard {
     }
 
     void actualizarTablaLeads(){
-        ArrayList<ArrayList<String>> valoresTabla;
-        valoresTabla = facade.verLeads();
-        if (valoresTabla.isEmpty()) return;
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        ArrayList<Factura> facturas = facturaDAO.findAll();
+
+        if (facturas.isEmpty()) return;
+
         final ObservableList<ObservableLeads> data = FXCollections.observableArrayList();
 
-        for (int i = 0; i < valoresTabla.size(); i++){
+        for (int i = 0; i < facturas.size(); i++){
             data.add(new ObservableLeads(
-                valoresTabla.get(i).get(0),
-                valoresTabla.get(i).get(1),
-                valoresTabla.get(i).get(2)
+                    facturas.get(i).getNumero(),
+                    facturas.get(i).getPedidoFactura().getCotizacionPedido().getNumero(),
+                    facturas.get(i).getValorTotal()
             ));
         }
-        numeroCotizacionColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("numeroFactura"));
-        numeroFacturaColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("numeroCotizacion"));
+        numeroCotizacionColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("numeroCotizacion"));
+        numeroFacturaColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("numeroFactura"));
         valorFacturacionColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("total"));
         tablaConversionLeads.setItems(data);
     }
