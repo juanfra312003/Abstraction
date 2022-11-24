@@ -105,10 +105,17 @@ public class Controller_Crear_Cotizacion {
 
     @FXML
     public void onActionAgregar(ActionEvent event) {
+        Boolean esta = false;
         for (int i = 0; i < numProds; i++) {
             if (event.getSource() == buttonsAdd[i]) {
                 if(!textFieldsConfirmar[i].getText().isBlank() && parseInt(textFieldsConfirmar[i].getText()) > 0){
-                    productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
+                    for(CotizacionProducto productoCot : productosCotizados){
+                        if(productoCot.getProducto().getReferencia() == productos.get(i).getReferencia()) {
+                            productoCot.setCantidad(productoCot.getCantidad() + parseInt(textFieldsConfirmar[i].getText()));
+                            esta = true;
+                        }
+                    }
+                    if(!esta) productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
                     costoTotal += productos.get(i).getPrecio()*parseInt(textFieldsConfirmar[i].getText());
                     precioCotizadoText.setText("$" + String.valueOf(costoTotal));
                     textFieldsConfirmar[i].setText("");
