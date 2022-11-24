@@ -36,7 +36,7 @@ public class Controller_Iniciar_Sesion {
     private Stage stage;
 
     public void initialize(FacadeGeneral facade){
-        this.facade=facade;
+        this.facade=(IUsuario_facade) facade;
     }
 
     /**
