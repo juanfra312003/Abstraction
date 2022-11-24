@@ -5,6 +5,7 @@ import com.abstraction.persistence.IProductoDAO;
 import  com.abstraction.persistence.IUsuarioDAO;
 import com.abstraction.persistence.MySQL;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -22,8 +23,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         try{
 
             this.mysql.conectar();
-            String query="INSERT INTO usuario(id, correo, password, rol) VALUES("+
-                    "'"+usuario.getId()+"',"+
+            String query="INSERT INTO usuario(correo, password, rol) VALUES("+
                     "'"+usuario.getCorreo()+"',"+
                     "'"+usuario.getPassword()+"',"+
                     "'"+usuario.getRol()+"');";
@@ -50,7 +50,27 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public boolean validar(Usuario usuario) {
-        return false;
+    public Usuario validar(Usuario usuario) {
+        try{
+
+            this.mysql.conectar();
+            String query="SELECT * FROM usuario WHERE "+
+                    "correo = '"+ usuario.getCorreo()+"' AND "+
+                    "pass = '"+usuario.getPassword()+"';";
+
+            System.out.println(query);
+            Statement stmt= this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            if(!rs.next()) return null;
+            Usuario usuario1 = new Usuario(rs.getString("correo"), rs.getString("pass"), rs.getString("rol"));
+            rs.close();
+            stmt.close();
+            this.mysql.desconectar();
+            return usuario1;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(IProductoDAO.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 }
