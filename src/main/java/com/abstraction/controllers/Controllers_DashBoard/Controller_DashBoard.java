@@ -64,7 +64,7 @@ public class Controller_DashBoard {
         IFacturaDAO facturaDAO = new FacturaDAO();
         ArrayList<Factura> facturas = facturaDAO.findAll();
 
-        if (facturas.isEmpty()) return;
+        if (facturas == null) return;
 
         final ObservableList<ObservableLeads> data = FXCollections.observableArrayList();
 

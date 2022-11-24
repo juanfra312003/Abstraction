@@ -160,25 +160,6 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         }
     }
 
-    public ArrayList<ArrayList<String>> verLeads() {
-        ArrayList<ArrayList<String>> listaRetorno = new ArrayList<>();
-
-        //Recuperar las facturas desde la base de datos.
-        IFacturaDAO facturaDAO = new FacturaDAO();
-        ArrayList<Factura> facturas = facturaDAO.findAll();
-
-        if (facturas == null) return listaRetorno;
-
-        //Mirar las facturas, si tienen relacionadas un pedido y por consiguiente cotizacion, ingresar el valor a la lista.
-        for (int i = 0; i < facturas.size(); i++){
-            ArrayList<String> valorIngresarIndividual = new ArrayList<>();
-            valorIngresarIndividual.add(String.valueOf(facturas.get(i).getNumero())); //Ingresar numero de factura.
-            valorIngresarIndividual.add(String.valueOf(facturas.get(i).getPedidoFactura().getCotizacionPedido().getNumero())); //Ingresar numero de cotizacion.
-            valorIngresarIndividual.add(String.valueOf(facturas.get(i).getValorTotal())); //Ingresar total facturado.
-            listaRetorno.add(valorIngresarIndividual);
-        }
-        return listaRetorno;
-    }
 
     @Override
     public float valorTransaccionPromedio() {
