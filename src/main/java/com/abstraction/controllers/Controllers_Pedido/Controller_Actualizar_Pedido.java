@@ -32,9 +32,8 @@ public class Controller_Actualizar_Pedido {
 
     public void initialize(IPedido_facade facade, Pedido pedido){
         this.facade = facade;
+        actualizarTabla(pedido);
     }
-
-
 
     public void actualizarTabla(Pedido pedido){
         ArrayList<CotizacionProducto> productos = pedido.getCotizacionPedido().getProductos();
