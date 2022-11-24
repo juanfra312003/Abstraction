@@ -50,11 +50,14 @@ public class Controller_Crear_Producto {
                 alert.show();
             }
             else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Fallo en el proceso");
-                alert.setTitle("Producto no creado");
-                alert.setContentText("Error desconocido. Verifique que no exista un producto con la referencia ingresada");
-                alert.show();
+                if(Integer.valueOf(textCantidadesExistentes.getText())<0){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Fallo en el proceso");
+                    alert.setTitle("Producto no se puede poner en 0");
+                    alert.setContentText("Error desconocido. Verifique que la cantidad de productos existentes no este en 0");
+                    alert.show();
+                }
+
             }
         }
         else if(textReferenciaProducto.getText().isBlank()){
