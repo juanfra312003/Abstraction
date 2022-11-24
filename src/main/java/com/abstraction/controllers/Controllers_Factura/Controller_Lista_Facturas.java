@@ -310,14 +310,14 @@ public class Controller_Lista_Facturas {
 
     public void cargarActualizar (Factura factura) throws IOException{
         Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupActualizarFactura.fxml");
+        URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupActualizarFactura.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Abstraction");
         stage.setScene(scene);
         Controller_Actualizar_Factura controller_actualizar_factura = fxmlLoader.getController();
-        controller_actualizar_factura.setStage(stage);
         controller_actualizar_factura.initialize((IFactura_facade) this.facade, factura);
+        controller_actualizar_factura.setStage(stage);
         stage.show();
         this.stage.close();
     }
