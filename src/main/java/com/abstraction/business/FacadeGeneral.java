@@ -9,6 +9,8 @@ import com.abstraction.persistence.impl.FacturaDAO;
 import com.abstraction.persistence.impl.ProductoDAO;
 import javafx.scene.control.Alert;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -106,6 +108,48 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     }
 
     @Override
+    public float verIngresos(String year, String periodo) {
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        listaFacturas = facturaDAO.findAll();
+        if(listaFacturas == null) return 0;
+        if(year == null) year = "00";
+        if(periodo == null) periodo = "00";
+        float ingresos = 0;
+        String mesInicio, mesFin;
+        if(periodo == "Periodo 1"){
+            mesInicio = "01";
+            mesFin = "06";
+        }
+        else {
+            mesInicio = "07";
+            mesFin = "12";
+        }
+        String sInicio = "01/" + mesInicio + "/" + year, sFin = "30/" + mesFin + "/" + year;
+        try {
+            Date inicio = new SimpleDateFormat("dd/MM/yyyy").parse(sInicio), fin = new SimpleDateFormat("dd/MM/yyyy").parse(sFin);
+            Date fechaFactura;
+            System.out.println(inicio);
+            System.out.println(fin);
+            for(Factura factura : listaFacturas){
+                fechaFactura = factura.getFecha();
+                if(year == "00" && periodo == "00"){
+                    ingresos += factura.getAbonoTotal();
+                }
+                else if(fechaFactura.equals(inicio) || fechaFactura.equals(fin) || (fechaFactura.after(inicio) && fechaFactura.before(fin))){
+                    ingresos += factura.getAbonoTotal();
+                }
+            }
+            return ingresos;
+        }
+        catch (ParseException e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+
+    @Override
+    public float verLeads() {
+        return 0;
     public ArrayList<ArrayList<String>> verLeads() {
         ArrayList<ArrayList<String>> listaRetorno = new ArrayList<>();
 
