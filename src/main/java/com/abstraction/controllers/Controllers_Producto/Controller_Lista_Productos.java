@@ -94,11 +94,6 @@ public class Controller_Lista_Productos {
      * Acciones a realizar con cada boton presionado
      */
     @FXML
-    void OnActionComboBoxFiltrar(ActionEvent event) {
-
-    }
-
-    @FXML
     void onActionBuscar(ActionEvent event) {
         String bufferBusqueda = textoBusqueda.getText();
         actualizarTablaBusqueda(bufferBusqueda);
@@ -499,9 +494,6 @@ public class Controller_Lista_Productos {
 
     @FXML
     private TableColumn<ProductoObservable, String> columnaVerProducto;
-
-    @FXML
-    private ComboBox<?> comboBoxFiltrar;
 
     @FXML
     private TextField textoBusqueda;

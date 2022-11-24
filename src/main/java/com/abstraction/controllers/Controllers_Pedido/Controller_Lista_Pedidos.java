@@ -295,10 +295,6 @@ public class Controller_Lista_Pedidos {
         tableViewListaPedidos.setItems(data);
     }
 
-    @FXML
-    void onActionFiltrarComboBox(ActionEvent event) {
-
-    }
 
     @FXML
     void onActionPedidos(ActionEvent event) throws IOException {
@@ -506,8 +502,6 @@ public class Controller_Lista_Pedidos {
     @FXML
     private TableColumn<PedidoObservable, String> fechaColumna;
 
-    @FXML
-    private ComboBox<?> filtrarComboBox;
 
     @FXML
     private TableColumn<PedidoObservable, String> nombreColumna;

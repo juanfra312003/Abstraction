@@ -227,10 +227,6 @@ public class Controller_Lista_Facturas {
         tableViewListaFacturas.setItems(data);
     }
 
-    @FXML
-    void onActionFiltrarComboBox(ActionEvent event) {
-
-    }
 
     @FXML
     void onActionPedidos(ActionEvent event) throws IOException {
@@ -520,9 +516,6 @@ public class Controller_Lista_Facturas {
 
     @FXML
     private TableColumn<FacturaObservable, String> fechaColumna;
-
-    @FXML
-    private ComboBox<?> filtrarComboBox;
 
     @FXML
     private TableColumn<FacturaObservable, String> nombreClienteColumna;
