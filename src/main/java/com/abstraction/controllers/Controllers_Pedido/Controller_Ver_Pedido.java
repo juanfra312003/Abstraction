@@ -287,6 +287,7 @@ public class Controller_Ver_Pedido {
                 new Date(),
                 this.pedido.getValor(),
                 0F,
+                0,
                 this.pedido
         );
 

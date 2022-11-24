@@ -14,17 +14,19 @@ public class Pedido {
     private String nombreCliente;
     private String estado;
     private Cotizacion cotizacionPedido;
+    private int archivado;
 
     public Pedido() {
     }
 
-    public Pedido(Long numero, String nombre, Date fecha, float valor, String estado, Cotizacion cotizacionPedido) {
+    public Pedido(Long numero, String nombre, Date fecha, float valor, String estado, int archivado, Cotizacion cotizacionPedido) {
         this.numero = numero;
         this.nombre = nombre;
         this.fecha = fecha;
         this.valor = valor;
         this.nombreCliente = nombreCliente;
         this.estado = estado;
+        this.archivado = archivado;
         this.cotizacionPedido = cotizacionPedido;
     }
 

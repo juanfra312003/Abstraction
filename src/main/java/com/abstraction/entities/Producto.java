@@ -7,17 +7,19 @@ public class Producto {
     private Float precio;
     private int existencias;
     private String descripcion;
+    private int archivado;
     private String pathImage;
 
     public Producto() {
     }
 
-    public Producto(Long referencia, String nombre, Float precio, int existencias, String descripcion) {
+    public Producto(Long referencia, String nombre, Float precio, int existencias, String descripcion, int archivado) {
         this.referencia = referencia;
         this.nombre = nombre;
         this.precio = precio;
         this.existencias = existencias;
         this.descripcion = descripcion;
+        this.archivado = archivado;
     }
 
     public Float getPrecio() {

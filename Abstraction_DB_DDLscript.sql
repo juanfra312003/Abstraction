@@ -5,8 +5,10 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema Abstraction
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS 'Abstraction';
+DROP SCHEMA IF EXISTS Abstraction;
 CREATE SCHEMA IF NOT EXISTS `Abstraction` DEFAULT CHARACTER SET utf8 ;
+DROP USER IF EXISTS 'abstraction_SU'@'%';
+flush privileges;
 
 -- -----------------------------------------------------
 -- Schema Abstraction
@@ -30,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `Abstraction`.`Producto` (
   `precio` DECIMAL(20) NOT NULL,
   `existencias` INT NOT NULL,
   `descripcion` VARCHAR(245) NULL,
+  `archivado` INT NOT NULL,
   `pathImagen` VARCHAR(245) NULL,
   PRIMARY KEY (`referencia`),
   UNIQUE INDEX `referencia_UNIQUE` (`referencia` ASC) )
@@ -89,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `Abstraction`.`Pedido` (
   `fecha` DATE NOT NULL,
   `valor` DECIMAL(20) NOT NULL,
   `estado` VARCHAR(245) NOT NULL,
+  `archivado` INT NOT NULL,
   PRIMARY KEY (`numero`),
   INDEX `fk_Pedido_Cotizacion1_idx` (`Cotizacion_numero` ASC) ,
   CONSTRAINT `fk_Pedido_Cotizacion1`
@@ -110,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `Abstraction`.`Factura` (
   `fecha` DATE NOT NULL,
   `valor` DECIMAL(20) NOT NULL,
   `abonosTotal` DECIMAL(20) NOT NULL,
+  `archivado` INT NOT NULL,
   PRIMARY KEY (`numero`, `Pedido_numero`),
   CONSTRAINT `fk_Factura_Pedido1`
     FOREIGN KEY (`Pedido_numero`)

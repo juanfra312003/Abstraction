@@ -99,14 +99,19 @@ public class Controller_Actualizar_Cotizacion {
     void onActionActualizarGeneral(ActionEvent event) {
         boolean errorEnProceso = false;
         String productosFalla = "";
+        String productosBlancos = "";
 
         for (int i = 0; i < numProds; i++) {
-            int cantidadProducto = Integer.parseInt(fieldsExistencias[i].getText());
-            if (cantidadProducto > 0) {
-                cotizacion.getProductos().get(i).setCantidad(cantidadProducto);
+            if (!fieldsExistencias[i].getText().isBlank()) {
+                int cantidadProducto = Integer.parseInt(fieldsExistencias[i].getText());
+                if (cantidadProducto > 0) {
+                    cotizacion.getProductos().get(i).setCantidad(cantidadProducto);
+                } else {
+                    productosFalla = productosFalla + cotizacion.getProductos().get(i).getProducto().getNombre() + " ";
+                }
             }
-            else {
-                productosFalla = productosFalla + cotizacion.getProductos().get(i).getProducto().getNombre() + " ";
+            else{
+                productosBlancos = productosBlancos + cotizacion.getProductos().get(i).getProducto().getNombre() + " ";
             }
         }
 
@@ -159,7 +164,17 @@ public class Controller_Actualizar_Cotizacion {
             alert.show();
         }
 
-        if (!errorEnProceso && productosFalla.isEmpty()) {
+        if (!productosBlancos.isEmpty()){
+            //Arrojar la alerta de los productos que presentan falla por estar en blanco
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error, cantidades en blanco.");
+            alert.setTitle("Error en el proceso");
+            alert.setContentText("No es posible asignar cantidades en blanco para un producto");
+            alert.setContentText("Productos que presentan inconsistencias: " + productosFalla);
+            alert.show();
+        }
+
+        if (!errorEnProceso && productosFalla.isEmpty() && productosBlancos.isEmpty()) {
             //Realizar la actualizacion correspondiente
             facade.actualizarCotizacion(cotizacion);
 

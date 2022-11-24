@@ -156,8 +156,7 @@
                </font>
             </Text>
             <TextField fx:id="abonoRealizadoText" layoutX="860.0" layoutY="305.0" />
-            <Button fx:id="botonActualizar" layoutX="544.0" layoutY="242.0" mnemonicParsing="false" onAction="#onActionActualizar" text="Actualizar" />
-            <Button fx:id="actualizarAbono" layoutX="1021.0" layoutY="305.0" mnemonicParsing="false" onAction="#onActionActualizarAbono" text="Actualizar" />
+            <Button fx:id="actualizarFacturaValores" layoutX="1264.0" layoutY="369.0" mnemonicParsing="false" onAction="#onActionActualizarFacturaValores" text="Actualizar" />
             <Text fx:id="numeroDeFacturaText" layoutX="374.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numeroDeFacturaText">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="20.0" />

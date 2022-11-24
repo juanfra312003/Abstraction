@@ -76,8 +76,8 @@ public class Controller_Lista_Cotizaciones {
                         buttonsGenerar[i],
                         buttonsArch[i]
                 ));
-                i++;
             }
+            i++;
         }
         numeroColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("numero"));
         nombreColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("nombre"));
