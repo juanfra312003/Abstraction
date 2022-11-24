@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,10 +32,12 @@ import java.util.ArrayList;
 
 public class Controller_Ver_Cotizacion {
     public ICotizacion_facade facade;
+    Cotizacion cotizacion;
 
     public void initialize(ICotizacion_facade facade, Cotizacion cotizacion){
         this.facade = facade;
         this.mostrarCotizacion(cotizacion);
+        this.cotizacion = cotizacion;
     }
 
     public void mostrarCotizacion(Cotizacion cotizacion){
@@ -88,7 +91,20 @@ public class Controller_Ver_Cotizacion {
 
     @FXML
     void onActionGenerarPedido(ActionEvent event) {
-        //Acción Implementada en la Facade
+        if(facade.crearPedido(cotizacion)){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Exito en el proceso");
+            alert.setTitle("Pedido generado correctamente");
+            alert.setContentText("Se ha generado un pedido a partir de la cotizacion dada");
+            alert.show();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("No se pudo generar el pedido");
+            alert.setContentText("Error desconocido.");
+            alert.show();
+        }
     }
 
     @FXML

@@ -12,4 +12,5 @@ public interface IPedidoDAO {
     public Pedido findById(Long numero);
     public ArrayList<Pedido> findAll();
     public Integer count();
+    public Long nextId();
 }
