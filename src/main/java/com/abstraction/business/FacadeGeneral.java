@@ -263,7 +263,16 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public boolean eliminarPedido(Long id) {
-        return false;
+        Pedido pedido = null;
+        IPedidoDAO pedidoDAO = new PedidoDAO();
+        ArrayList<Pedido> pedidos = pedidoDAO.findAll();
+        for (int i = 0; i < pedidos.size(); i++){
+            if (pedidos.get(i).getNumero() == id){
+                pedido = pedidos.get(i);
+            }
+        }
+        pedido.setArchivado(1);
+        return pedidoDAO.archivar(pedido);
     }
 
     @Override

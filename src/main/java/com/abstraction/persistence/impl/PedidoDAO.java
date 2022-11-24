@@ -1,5 +1,6 @@
 package com.abstraction.persistence.impl;
 
+import com.abstraction.entities.Factura;
 import com.abstraction.entities.Pedido;
 import com.abstraction.persistence.ICotizacionDAO;
 import com.abstraction.persistence.IPedidoDAO;
@@ -82,20 +83,26 @@ public class PedidoDAO implements IPedidoDAO {
     }
 
     @Override
-    public boolean delete(Long numero) {
-        try {
-            String query = "DELETE FROM Pedido WHERE numero = '" + numero + "';";
+    public boolean archivar(Pedido pedido) {
+        this.mysql.conectar();
+        try{
+            String query = "UPDATE  pedido SET " +
+                    "archivado = '" + pedido.getArchivado() + "' " +
+                    "WHERE numero = " + pedido.getNumero() + ";";
             System.out.println(query);
-
-            this.mysql.conectar();
             Statement stmt = this.mysql.getConnection().createStatement();
             int code = stmt.executeUpdate(query);
             stmt.close();
             this.mysql.desconectar();
 
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+            if (code == 1) {
+                System.out.println("Se archivo el pedido!");
+                return true;
+            }
+            return false;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(Factura.class.getName()).log(Level.SEVERE,null,ex);
             return false;
         }
     }
