@@ -55,11 +55,11 @@ public class ProductoDAO implements IProductoDAO {
     public boolean edit(Long referencia, Producto producto) {
         try{
             this.mysql.conectar();
-            String query="UPDATE producto SET"+
-                    "nombre='"+producto.getNombre()+"',"+
-                    "precio= '" +producto.getPrecio() + "'" +
-                    "existencias= '" +producto.getExistencias() + "'" +
-                    "descripcion= '" +producto.getDescripcion() + "'" +
+            String query="UPDATE producto SET "+
+                    "nombre='"+producto.getNombre()+"', "+
+                    "precio= '" +producto.getPrecio() + "', " +
+                    "existencias= '" +producto.getExistencias() + "', " +
+                    "descripcion= '" +producto.getDescripcion() + "' " +
                     "WHERE referencia='" + referencia + "';";
 
             System.out.println(query);
@@ -82,17 +82,17 @@ public class ProductoDAO implements IProductoDAO {
         }
 
     }
-
     @Override
-    public boolean delete(Long referencia) {
+    public boolean archivar(Producto producto) {
+        this.mysql.conectar();
         try{
-            String query = "DELETE FROM telefono WHERE referencia = '" + referencia + "';";
+            String query = "UPDATE  producto SET " +
+                    "archivado = '" + producto.getArchivado() + "' " +
+                    "WHERE referencia = " + producto.getReferencia() + ";";
             System.out.println(query);
 
-            Producto producto = findById(referencia);
             System.out.println("Eliminando: " + producto);
 
-            this.mysql.conectar();
             Statement stmt = this.mysql.getConnection().createStatement();
             int code = stmt.executeUpdate(query);
             stmt.close();
@@ -100,7 +100,7 @@ public class ProductoDAO implements IProductoDAO {
 
             switch (code) {
                 case 1:
-                    System.out.println("Se elimino el prodducto");
+                    System.out.println("Se archivo el producto");
                     return true;
                 default:
                     return false;
@@ -111,6 +111,7 @@ public class ProductoDAO implements IProductoDAO {
             return false;
         }
     }
+
 
     @Override
     public Producto findById(Long referencia) {
