@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,14 +33,57 @@ public class Controller_Crear_Producto {
 
     @FXML
     void OnActionCrearBoton(ActionEvent event) {
-        facade.crearProducto(
-          new Producto(parseLong(textReferenciaProducto.getText()),
-                  textNombreProducto.getText(),
-                  parseFloat(textPrecioProducto.getText()),
-                  parseInt(textCantidadesExistentes.getText()),
-                  textDescripcion.getText(),
-                  0)
-        );
+        if(!textReferenciaProducto.getText().isBlank()&& !textCantidadesExistentes.getText().isBlank()&&!textNombreProducto.getText().isBlank()&&!textPrecioProducto.getText().isBlank()&&!textDescripcion.getText().isBlank()){
+            facade.crearProducto(
+                    new Producto(parseLong(textReferenciaProducto.getText()),
+                            textNombreProducto.getText(),
+                            parseFloat(textPrecioProducto.getText()),
+                            parseInt(textCantidadesExistentes.getText()),
+                            textDescripcion.getText(),
+                            0)
+            );
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Exito en el proceso");
+            alert.setTitle("Producto Creado correctamente");
+            alert.setContentText("Se ha creado el producto especificado correctamente.");
+            alert.show();
+        }
+        else if(textReferenciaProducto.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setContentText("No se ha podio crear el producto correctamente, indique la referencia del producto.");
+            alert.show();
+        }
+        else if(textNombreProducto.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setContentText("No se ha podio crear el producto correctamente, indique el nombre del producto.");
+            alert.show();
+        }
+        else if(textPrecioProducto.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setContentText("No se ha podio crear el producto correctamente, indique el precio del producto.");
+            alert.show();
+        }
+        else if(textCantidadesExistentes.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setContentText("No se ha podio crear el producto correctamente, indique la cantidad de existencias del producto.");
+            alert.show();
+        }
+        else if(textDescripcion.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setContentText("No se ha podio crear el producto correctamente, indique la descripcion del producto.");
+            alert.show();
+        }
+
     }
 
     @FXML

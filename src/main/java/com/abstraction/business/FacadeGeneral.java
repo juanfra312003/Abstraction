@@ -39,9 +39,11 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     }
 
     @Override
-    public boolean eliminarProducto(Long id) {
+    public boolean archivarProducto(Long id) {
         IProductoDAO productoDAO =  new ProductoDAO();
-        return productoDAO.delete(id);
+        Producto producto = productoDAO.findById(id);
+        producto.setArchivado(1);
+        return productoDAO.archivar(producto);
     }
 
     @Override

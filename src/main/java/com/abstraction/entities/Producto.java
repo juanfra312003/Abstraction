@@ -42,6 +42,8 @@ public class Producto {
         return nombre;
     }
 
+    public int getArchivado(){return archivado;}
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -56,6 +58,10 @@ public class Producto {
 
     public void setPrecio(Float precio) {
         this.precio = precio;
+    }
+
+    public void setArchivado(int archivado){
+        this.archivado=archivado;
     }
 
     public void setReferencia(Long referencia) {
