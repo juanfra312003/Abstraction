@@ -1,5 +1,6 @@
 package com.abstraction.controllers.Controllers_IniciarSesion;
 
+import com.abstraction.entities.Usuario;
 import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import com.sun.javafx.scene.control.behavior.PasswordFieldBehavior;
@@ -59,9 +60,8 @@ public class Controller_Iniciar_Sesion {
     void onActionIngresar(ActionEvent event) {
         try {
             textoUsuario.getText();
+            Usuario usuario=new Usuario(1,"usuariogenial","hi","superUsuario");
 
-
-            String password="hi";
 
             String passwordWrote="";
 
@@ -69,9 +69,9 @@ public class Controller_Iniciar_Sesion {
             System.out.println(passwordWrote);
 
             String username=textoUsuario.getText();
-            String usernameFind="usuariogenial";
 
-            if (Objects.equals(passwordWrote, password)&&(Objects.equals(username, usernameFind))) {
+
+            if (Objects.equals(passwordWrote, usuario.getPassword())&&(Objects.equals(username, usuario.getCorreo()))) {
                 PasswordField.clear();
                 textoUsuario.clear();
                 Stage stage = new Stage();
@@ -87,7 +87,7 @@ public class Controller_Iniciar_Sesion {
                 this.stage.close();
 
             } else {
-                if(!Objects.equals(username, usernameFind)){
+                if(!Objects.equals(username, usuario.getCorreo())){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Usuario incorrecto");
                     alert.setTitle("Error en el usuario");
@@ -95,14 +95,14 @@ public class Controller_Iniciar_Sesion {
                     alert.show();
                     PasswordField.clear();
                 }
-                else if(!Objects.equals(passwordWrote, password)){
+                else if(!Objects.equals(passwordWrote, usuario.getPassword())){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Contraseña incorrecta");
                     alert.setTitle("Error en la contraseña");
                     alert.setContentText("Ingrese nuevamente la contraseña.");
                     alert.show();
                 }
-                else if(!Objects.equals(username, usernameFind)&&!Objects.equals(passwordWrote, password)){
+                else if(!Objects.equals(username, usuario.getCorreo())&&!Objects.equals(passwordWrote, usuario.getPassword())){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Datos incorrectos");
                     alert.setTitle("Error en el usuario y la contraseña");
