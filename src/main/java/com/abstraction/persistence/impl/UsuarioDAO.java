@@ -48,4 +48,9 @@ public class UsuarioDAO implements IUsuarioDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean validar(Usuario usuario) {
+        return false;
+    }
 }
