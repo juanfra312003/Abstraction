@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_Sesion">
+   <children>
+      <DialogPane layoutX="221.0" layoutY="98.0" prefHeight="109.0" prefWidth="641.0" />
+      <Text layoutX="277.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido a Abstraction">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="58.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textoUsuario" layoutX="378.0" layoutY="429.0" prefHeight="38.0" prefWidth="348.0" text="email@example.com" />
+      <TextField fx:id="PasswordText" layoutX="378.0" layoutY="541.0" prefHeight="38.0" prefWidth="348.0" text="asd" />
+      <Text layoutX="378.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese su usuario">
+         <font>
+            <Font name="Franklin Gothic Book" size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="378.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese su contraseña">
+         <font>
+            <Font name="Franklin Gothic Book" size="19.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="124.0" fitWidth="126.0" layoutX="479.0" layoutY="207.0">
+         <image>
+            <Image url="@../ImagenesRecurso/abstraction.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="botonIngresar" layoutX="501.0" layoutY="625.0" mnemonicParsing="false" onAction="#onActionIngresar" prefHeight="38.0" prefWidth="82.0" text="Ingresar">
+         <font>
+            <Font name="Franklin Gothic Book" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

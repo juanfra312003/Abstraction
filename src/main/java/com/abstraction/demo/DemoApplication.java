@@ -1,6 +1,7 @@
 package com.abstraction.demo;
 
 import com.abstraction.business.FacadeGeneral;
+import com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_Sesion;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,15 +24,15 @@ public class DemoApplication extends Application{
 	@Override
 	public void start(Stage stage) {
 		try {
-			URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupProductos.fxml");
+			URL fxmlLocation = getClass().getResource("/presentation/View_IniciarSesion/mockupIniciarSesion.fxml");
 			System.out.println(fxmlLocation);
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 			Scene scene = new Scene(fxmlLoader.load());
 			stage.setTitle("Abstraction");
 			stage.setScene(scene);
-			Controller_Lista_Productos controladorListaProductos = fxmlLoader.getController();
-			controladorListaProductos.setStage(stage);
-			controladorListaProductos.initialize(new FacadeGeneral());
+			Controller_Iniciar_Sesion controladorIniciarSesion= fxmlLoader.getController();
+			controladorIniciarSesion.setStage(stage);
+			controladorIniciarSesion.initialize(new FacadeGeneral());
 			stage.show();
 		}
 		catch (Exception e){
