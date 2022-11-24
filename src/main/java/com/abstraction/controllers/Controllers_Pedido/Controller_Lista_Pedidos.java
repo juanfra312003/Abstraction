@@ -84,6 +84,55 @@ public class Controller_Lista_Pedidos {
         tableViewListaPedidos.setItems(data);
     }
 
+    public void actualizarTablaBusqueda(String busquedaPedido){
+        pedidos = facade.listarPedidos();
+        if(pedidos == null) return;
+        final ObservableList<PedidoObservable> data = FXCollections.observableArrayList();
+        numPedidos = pedidos.size();
+        buttonsVer = new Button[numPedidos];
+        buttonsAct = new Button[numPedidos];
+        buttonsArch = new Button[numPedidos];
+        buttonsGenerar = new Button[numPedidos];
+
+        for(int i = 0; i < numPedidos; i++){
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsArch[i] = new Button();
+            buttonsArch[i].setText("Archivar");
+            buttonsArch[i].setOnAction(this::onActionElim);
+        }
+
+        int i = 0;
+        for(Pedido p : pedidos){
+            if (p.getArchivado() == 0 && String.valueOf(p.getNumero()).contains(busquedaPedido)) {
+                data.add(new PedidoObservable(
+                        p.getNumero(),
+                        p.getNombre(),
+                        p.getFecha(),
+                        p.getValor(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsArch[i]
+                ));
+            }
+            i++;
+        }
+        numeroColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("numero"));
+        nombreColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("nombre"));
+        fechaColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("fecha"));
+        totalColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("valor"));
+        verColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonVer"));
+        actualizarColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonActualizar"));
+        archivarColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonArchivar"));
+        tableViewListaPedidos.setItems(data);
+    }
+
     public void onActionVer(ActionEvent event){
         try {
             for(int i = 0; i < numPedidos; i++){
@@ -162,6 +211,8 @@ public class Controller_Lista_Pedidos {
 
     @FXML
     void onActionBuscar(ActionEvent event) {
+        String bufferBusqueda = textoBusqueda.getText();
+        actualizarTablaBusqueda(bufferBusqueda);
     }
 
     @FXML
