@@ -4,7 +4,6 @@ public class Usuario {
     private String correo;
     private String password;
     private String rol;
-    private int id;
 
     /*
     Constructores
@@ -13,8 +12,7 @@ public class Usuario {
 
     }
 
-    public Usuario (int id, String correo, String password, String rol){
-        this.id=id;
+    public Usuario (String correo, String password, String rol){
         this.correo=correo;
         this.password=password;
         this.rol=rol;
@@ -23,13 +21,6 @@ public class Usuario {
     /*
     Getters and Setters
      */
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getCorreo() {
         return correo;

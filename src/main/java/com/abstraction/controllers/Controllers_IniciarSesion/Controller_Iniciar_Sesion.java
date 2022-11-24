@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Controller_Iniciar_Sesion {
-    FacadeGeneral facade;
+    IUsuario_facade facade;
     private Stage stage;
 
     public void initialize(FacadeGeneral facade){
@@ -60,18 +60,13 @@ public class Controller_Iniciar_Sesion {
     void onActionIngresar(ActionEvent event) {
         try {
             textoUsuario.getText();
-            Usuario usuario=new Usuario(1,"usuariogenial","hi","superUsuario");
-
-
             String passwordWrote="";
-
             passwordWrote=PasswordField.getText();
             System.out.println(passwordWrote);
-
             String username=textoUsuario.getText();
+            Usuario usuario = facade.validar(new Usuario(username, passwordWrote, "superusuario"));
 
-
-            if (Objects.equals(passwordWrote, usuario.getPassword())&&(Objects.equals(username, usuario.getCorreo()))) {
+            if (usuario != null) {
                 PasswordField.clear();
                 textoUsuario.clear();
                 Stage stage = new Stage();
@@ -87,29 +82,12 @@ public class Controller_Iniciar_Sesion {
                 this.stage.close();
 
             } else {
-                if(!Objects.equals(username, usuario.getCorreo())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Usuario incorrecto");
-                    alert.setTitle("Error en el usuario");
-                    alert.setContentText("Ingrese nuevamente el usuario.");
-                    alert.show();
-                    PasswordField.clear();
-                }
-                else if(!Objects.equals(passwordWrote, usuario.getPassword())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Contraseña incorrecta");
-                    alert.setTitle("Error en la contraseña");
-                    alert.setContentText("Ingrese nuevamente la contraseña.");
-                    alert.show();
-                }
-                else if(!Objects.equals(username, usuario.getCorreo())&&!Objects.equals(passwordWrote, usuario.getPassword())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Datos incorrectos");
-                    alert.setTitle("Error en el usuario y la contraseña");
-                    alert.setContentText("Ingrese nuevamente el usuario y la contraseña.");
-                    alert.show();
-                    PasswordField.clear();
-                }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Datos incorrectos");
+                alert.setTitle("Error en el usuario y la contraseña");
+                alert.setContentText("Ingrese nuevamente el usuario y la contraseña.");
+                alert.show();
+                PasswordField.clear();
             }
             textoUsuario.clear();
 
