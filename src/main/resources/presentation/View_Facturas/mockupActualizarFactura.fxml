@@ -129,7 +129,6 @@
                   <Font name="Franklin Gothic Demi" size="32.0" />
                </font>
             </Text>
-            <TextField fx:id="nombreClienteText" layoutX="373.0" layoutY="242.0" />
             <Text fill="#00000091" layoutX="373.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Cliente" wrappingWidth="354.8751831054687">
                <font>
                   <Font name="Franklin Gothic Demi" size="32.0" />
@@ -185,6 +184,11 @@
             <Text fx:id="excedenteText" layoutX="860.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="excedenteText">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="nombreClienteText" layoutX="373.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombreClienteText">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
                </font>
             </Text>
          </children>

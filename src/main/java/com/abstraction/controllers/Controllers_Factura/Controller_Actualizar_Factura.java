@@ -79,22 +79,6 @@ public class Controller_Actualizar_Factura {
     @FXML
     void onActionActualizarFacturaValores(ActionEvent event) {
 
-        //Validación sobre el campo de texto del nombre del cliente.
-        if(!nombreClienteText.getText().isBlank()){
-            factura.getPedidoFactura().setNombreCliente(nombreClienteText.getText());
-        }else{
-            //Arrojar la alerta del espacio en blanco
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Error, espacio en blanco.");
-            alert.setTitle("Error en el proceso");
-            alert.setContentText("No es posible asignar un espacio en blanco cómo nombre del cliente para la factura.");
-            alert.show();
-
-            //Reasignar en el espacio el nombre del cliente anteriormente establecido sin error.
-            nombreClienteText.setText(factura.getPedidoFactura().getNombreCliente());
-
-            return;
-        }
 
         //Validaciones sobre los abonos a realizar a través de la actualización del campo.
         if (!abonoRealizadoText.getText().isBlank()){
@@ -409,7 +393,7 @@ public class Controller_Actualizar_Factura {
     private Text fechaFacturaText;
 
     @FXML
-    private TextField nombreClienteText;
+    private Text precioTotalText;
 
     @FXML
     private TableColumn<CotProdEditFact, String> nombreProductoColumna;
@@ -424,7 +408,7 @@ public class Controller_Actualizar_Factura {
     private Text numeroPedidoText;
 
     @FXML
-    private Text precioTotalText;
+    private Text nombreClienteText;
 
     @FXML
     private TableColumn<CotProdEditFact, String> precioUnitarioColumna;
