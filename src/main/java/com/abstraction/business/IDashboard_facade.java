@@ -8,7 +8,5 @@ public interface IDashboard_facade {
     float valorTransaccionPromedio(String year, String periodo);
     float verIngresos(String year, String periodo);
     float verCreditos();
-    float verCrecimientoProducto(Long idProd, int periodo);
-    float verCrecimientoVentas(int periodo);
     public Usuario getUsuario();
 }

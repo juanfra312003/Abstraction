@@ -107,9 +107,9 @@
                   <Image url="@../ImagenesRecurso/cerrar-sesion.png" />
                </image>
             </ImageView>
-            <Text fx:id="nombreUsuarioText" layoutX="376.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombreUsuario">
+            <Text layoutX="373.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Super Usuario">
                <font>
-                  <Font name="Franklin Gothic Demi Cond" size="25.0" />
+                  <Font name="Franklin Gothic Medium" size="25.0" />
                </font>
             </Text>
             <Text layoutX="366.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionalidades con Acceso:">
@@ -117,9 +117,9 @@
                   <Font name="Franklin Gothic Demi Cond" size="27.0" />
                </font>
             </Text>
-            <Text fx:id="funcionesAccesoText" layoutX="366.0" layoutY="588.0" strokeType="OUTSIDE" strokeWidth="0.0" text="funcionesUsuario">
+            <Text layoutX="365.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" text=". Productos">
                <font>
-                  <Font name="Franklin Gothic Medium Cond" size="26.0" />
+                  <Font name="Franklin Gothic Book" size="26.0" />
                </font>
             </Text>
             <ImageView fitHeight="237.0" fitWidth="297.0" layoutX="365.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
@@ -127,14 +127,24 @@
                   <Image url="@../ImagenesRecurso/superUser.png" />
                </image>
             </ImageView>
-            <Text layoutX="366.0" layoutY="697.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rol del Usuario en Abstraction">
+            <Text layoutX="365.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text=". Cotizaciones">
                <font>
-                  <Font name="Franklin Gothic Demi Cond" size="27.0" />
+                  <Font name="Franklin Gothic Book" size="26.0" />
                </font>
             </Text>
-            <Text fx:id="rolUsuarioText" layoutX="368.0" layoutY="738.0" strokeType="OUTSIDE" strokeWidth="0.0" text="rolUsuario">
+            <Text layoutX="365.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text=". Pedidos">
                <font>
-                  <Font name="Franklin Gothic Demi Cond" size="25.0" />
+                  <Font name="Franklin Gothic Book" size="26.0" />
+               </font>
+            </Text>
+            <Text layoutX="628.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" text=". Pedidos">
+               <font>
+                  <Font name="Franklin Gothic Book" size="26.0" />
+               </font>
+            </Text>
+            <Text layoutX="628.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text=". DashBoard">
+               <font>
+                  <Font name="Franklin Gothic Book" size="26.0" />
                </font>
             </Text>
          </children>

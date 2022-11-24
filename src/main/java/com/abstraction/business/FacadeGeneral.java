@@ -219,15 +219,6 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         return creditos;
     }
 
-    @Override
-    public float verCrecimientoProducto(Long idProd, int periodo) {
-        return 0;
-    }
-
-    @Override
-    public float verCrecimientoVentas(int periodo) {
-        return 0;
-    }
 
     @Override
     public Factura verFactura(Long id) {

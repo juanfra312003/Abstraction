@@ -338,19 +338,10 @@ public class Controller_DashBoard {
     private Button botonProductos;
 
     @FXML
-    private ChoiceBox<?> choiceBoxPeriodoAnalisisRendProduc;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxPeriodoCrecVentas;
-
-    @FXML
     private ChoiceBox<String> choiceBoxPeriodoIngresosTiempo;
 
     @FXML
     private ChoiceBox<String> choiceBoxPeriodoValorPromedio;
-
-    @FXML
-    private ChoiceBox<?> choiceBoxProductoAnalisisRendProduc;
 
     @FXML
     private ChoiceBox<String> choiceBoxYearIngresosTiempo;
@@ -358,15 +349,10 @@ public class Controller_DashBoard {
     @FXML
     private ChoiceBox<String> choiceBoxYearValorPromedio;
 
-    @FXML
-    private LineChart<?, ?> graficaCrecimientoVentas;
 
     @FXML
     private Button botonValorPromedio;
 
-
-    @FXML
-    private LineChart<?, ?> graficaRendimientoProducto;
 
     @FXML
     private Text ingresosPeriodoTiempoText;
