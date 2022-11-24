@@ -25,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.chart.NumberAxis;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,8 @@ public class Controller_DashBoard {
 
     public void initialize(IDashboard_facade facade){
         this.facade = new FacadeGeneral();
+        choiceBoxYearIngresosTiempo.getItems().addAll("2021","2022");
+        choiceBoxPeriodoIngresosTiempo.getItems().addAll("Periodo 1", "Periodo 2");
         actualizarTextCreditos();
     }
 
@@ -46,7 +49,7 @@ public class Controller_DashBoard {
 
     @FXML
     void onActionCalcularIngresos(ActionEvent event) {
-
+        ingresosPeriodoTiempoText.setText("$"+String.valueOf(facade.verIngresos(choiceBoxYearIngresosTiempo.getValue(), choiceBoxPeriodoIngresosTiempo.getValue())));
     }
 
     @FXML
@@ -316,7 +319,7 @@ public class Controller_DashBoard {
     private ChoiceBox<?> choiceBoxPeriodoCrecVentas;
 
     @FXML
-    private ChoiceBox<?> choiceBoxPeriodoIngresosTiempo;
+    private ChoiceBox<String> choiceBoxPeriodoIngresosTiempo;
 
     @FXML
     private ChoiceBox<?> choiceBoxPeriodoValorPromedio;
@@ -325,7 +328,7 @@ public class Controller_DashBoard {
     private ChoiceBox<?> choiceBoxProductoAnalisisRendProduc;
 
     @FXML
-    private ChoiceBox<?> choiceBoxYearIngresosTiempo;
+    private ChoiceBox<String> choiceBoxYearIngresosTiempo;
 
     @FXML
     private ChoiceBox<?> choiceBoxYearValorPromedio;
