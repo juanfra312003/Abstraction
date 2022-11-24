@@ -51,35 +51,35 @@ public class Controller_Crear_Producto {
         else if(textReferenciaProducto.getText().isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Fallo en el proceso");
-            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setTitle("Producto no creado");
             alert.setContentText("No se ha podio crear el producto correctamente, indique la referencia del producto.");
             alert.show();
         }
         else if(textNombreProducto.getText().isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Fallo en el proceso");
-            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setTitle("Producto no creado");
             alert.setContentText("No se ha podio crear el producto correctamente, indique el nombre del producto.");
             alert.show();
         }
         else if(textPrecioProducto.getText().isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Fallo en el proceso");
-            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setTitle("Producto no creado");
             alert.setContentText("No se ha podio crear el producto correctamente, indique el precio del producto.");
             alert.show();
         }
         else if(textCantidadesExistentes.getText().isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Fallo en el proceso");
-            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setTitle("Producto no creado");
             alert.setContentText("No se ha podio crear el producto correctamente, indique la cantidad de existencias del producto.");
             alert.show();
         }
         else if(textDescripcion.getText().isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Fallo en el proceso");
-            alert.setTitle("Producto no se puedo crear correctamente");
+            alert.setTitle("Producto no creado");
             alert.setContentText("No se ha podio crear el producto correctamente, indique la descripcion del producto.");
             alert.show();
         }
