@@ -111,7 +111,7 @@ public class Controller_Crear_Cotizacion {
                     productosCotizados.add(new CotizacionProducto(productos.get(i), parseInt(textFieldsConfirmar[i].getText())));
                     costoTotal += productos.get(i).getPrecio()*parseInt(textFieldsConfirmar[i].getText());
                     precioCotizadoText.setText("$" + String.valueOf(costoTotal));
-
+                    textFieldsConfirmar[i].setText("");
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setHeaderText("Exito en el proceso");
                     alert.setTitle("Producto agregado correctamente");
