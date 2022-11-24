@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Controller_Lista_Facturas {
 
@@ -171,7 +172,59 @@ public class Controller_Lista_Facturas {
 
     @FXML
     void onActionDateSeleccionar(ActionEvent event) {
+        Date date = new Date(dateSeleccionar.getValue().toEpochDay());
+        actualizarTablaPorFecha(date);
+    }
 
+    public void actualizarTablaPorFecha(Date date){
+        facturas = facade.listarFacturas();
+        if (facturas == null) return;
+        final ObservableList<FacturaObservable> data = FXCollections.observableArrayList();
+        numFacts = facturas.size();
+        buttonsVer = new Button[numFacts];
+        buttonsAct = new Button[numFacts];
+        buttonsArch = new Button[numFacts];
+
+        for(int i = 0; i < numFacts; i++){
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsArch[i] = new Button();
+            buttonsArch[i].setText("Archivar");
+            buttonsArch[i].setOnAction(this::onActionArch);
+        }
+
+        int i = 0;
+        for(Factura factura : facturas){
+            if (factura.getArchivado() == 0 && factura.getFecha().equals(date)) {
+                data.add(new FacturaObservable(
+                        factura.getNumero(),
+                        factura.getPedidoFactura().getNumero(),
+                        factura.getPedidoFactura().getNombreCliente(),
+                        factura.getFecha(),
+                        factura.getValorTotal(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsArch[i]
+                ));
+            }
+            i++;
+        }
+
+        numeroFacturaColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("numeroFactura"));
+        numeroPedidoColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("numeroPedido"));
+        nombreClienteColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("nombreCliente"));
+        fechaColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("fecha"));
+        totalColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, String>("precio"));
+        verColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, Button>("botonVer"));
+        actualizarColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, Button>("botonActualizar"));
+        archivarColumna.setCellValueFactory(new PropertyValueFactory<FacturaObservable, Button>("botonArchivar"));
+        tableViewListaFacturas.setItems(data);
     }
 
     @FXML

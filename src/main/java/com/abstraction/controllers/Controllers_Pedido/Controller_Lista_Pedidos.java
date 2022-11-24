@@ -6,6 +6,8 @@ import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotiz
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Ver_Cotizacion;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
+import com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_Sesion;
+import com.abstraction.controllers.Controllers_Pedido.ObservableClasses.PedidoObservable;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import com.abstraction.entities.Pedido;
@@ -22,7 +24,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Controller_Lista_Pedidos {
 
@@ -238,7 +242,57 @@ public class Controller_Lista_Pedidos {
 
     @FXML
     void onActionDateSeleccionar(ActionEvent event) {
+        Date date = new Date(dateSeleccionar.getValue().toEpochDay());
+        actualizarTablaPorFecha(date);
+    }
 
+    public void actualizarTablaPorFecha(Date date){
+        pedidos = facade.listarPedidos();
+        if(pedidos == null) return;
+        final ObservableList<PedidoObservable> data = FXCollections.observableArrayList();
+        numPedidos = pedidos.size();
+        buttonsVer = new Button[numPedidos];
+        buttonsAct = new Button[numPedidos];
+        buttonsArch = new Button[numPedidos];
+        buttonsGenerar = new Button[numPedidos];
+
+        for(int i = 0; i < numPedidos; i++){
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsArch[i] = new Button();
+            buttonsArch[i].setText("Archivar");
+            buttonsArch[i].setOnAction(this::onActionElim);
+        }
+
+        int i = 0;
+        for(Pedido p : pedidos){
+            if (p.getArchivado() == 0 && p.getFecha().equals(date)) {
+                data.add(new PedidoObservable(
+                        p.getNumero(),
+                        p.getNombre(),
+                        p.getFecha(),
+                        p.getValor(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsArch[i]
+                ));
+            }
+            i++;
+        }
+        numeroColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("numero"));
+        nombreColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("nombre"));
+        fechaColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("fecha"));
+        totalColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("valor"));
+        verColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonVer"));
+        actualizarColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonActualizar"));
+        archivarColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonArchivar"));
+        tableViewListaPedidos.setItems(data);
     }
 
     @FXML
