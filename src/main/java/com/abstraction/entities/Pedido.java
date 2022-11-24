@@ -85,4 +85,12 @@ public class Pedido {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public int getArchivado() {
+        return archivado;
+    }
+
+    public void setArchivado(int archivado) {
+        this.archivado = archivado;
+    }
 }

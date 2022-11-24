@@ -1,28 +1,163 @@
 package com.abstraction.controllers.Controllers_Pedido;
 
 import com.abstraction.business.*;
+import com.abstraction.controllers.Controllers_Cotizacion.Controller_Actualizar_Cotizacion;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_Cotizacion.Controller_Ver_Cotizacion;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
+import com.abstraction.controllers.Controllers_Pedido.ObservableClasses.PedidoObservable;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.Pedido;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Controller_Lista_Pedidos {
 
     public IPedido_facade facade;
+    int numPedidos = 0;
 
     public void initialize(IPedido_facade facade){
-        this.facade = facade;
+        this.facade = new FacadeGeneral();
+        actualizarTabla();
+    }
+
+    public void actualizarTabla(){
+        pedidos = facade.listarPedidos();
+        if(pedidos == null) return;
+        final ObservableList<PedidoObservable> data = FXCollections.observableArrayList();
+        numPedidos = pedidos.size();
+        buttonsVer = new Button[numPedidos];
+        buttonsAct = new Button[numPedidos];
+        buttonsArch = new Button[numPedidos];
+        buttonsGenerar = new Button[numPedidos];
+
+        for(int i = 0; i < numPedidos; i++){
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsArch[i] = new Button();
+            buttonsArch[i].setText("Archivar");
+            buttonsArch[i].setOnAction(this::onActionElim);
+        }
+
+        int i = 0;
+        for(Pedido p : pedidos){
+            if (p.getArchivado() == 0) {
+                data.add(new PedidoObservable(
+                        p.getNumero(),
+                        p.getNombre(),
+                        p.getFecha(),
+                        p.getValor(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsArch[i]
+                ));
+            }
+            i++;
+        }
+        numeroColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("numero"));
+        nombreColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("nombre"));
+        fechaColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("fecha"));
+        totalColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, String>("valor"));
+        verColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonVer"));
+        actualizarColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonActualizar"));
+        archivarColumna.setCellValueFactory(new PropertyValueFactory<PedidoObservable, Button>("botonArchivar"));
+        tableViewListaPedidos.setItems(data);
+    }
+
+    public void onActionVer(ActionEvent event){
+        try {
+            for(int i = 0; i < numPedidos; i++){
+                if(event.getSource() == buttonsVer[i]){
+                    cargarVer(pedidos.get(i));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void onActionElim(ActionEvent event){
+        try {
+            for(int i = 0; i < numPedidos; i++){
+                if(event.getSource() == buttonsArch[i]){
+                    if (facade.eliminarPedido(pedidos.get(i).getNumero())) {
+
+                        //Actualizar tabla con los datos de manera respectiva.
+                        actualizarTabla();
+
+                        //Arrojar la confirmación del proceso.
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setHeaderText("Pedido Archivado Exitosamente");
+                        alert.setTitle("Exito en el proceso");
+                        alert.setContentText("El pedido seleccionado se ha archivado de manera satisfactoria.");
+                        alert.show();
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void onActionActualizar(ActionEvent event){
+        try {
+            for(int i = 0; i < numPedidos; i++){
+                if(event.getSource() == buttonsAct[i]){
+                    cargarActualizar(pedidos.get(i));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cargarActualizar(Pedido pedido) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupActualizarPedido.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Actualizar_Pedido controller_actualizar_pedido = fxmlLoader.getController();
+        controller_actualizar_pedido.setStage(stage);
+        controller_actualizar_pedido.initialize((IPedido_facade) this.facade, pedido);
+        stage.show();
+        this.stage.close();
+    }
+
+    public void cargarVer(Pedido pedido) throws IOException {
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupVerPedido.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Ver_Pedido controller_ver_pedido = fxmlLoader.getController();
+        controller_ver_pedido.setStage(stage);
+        controller_ver_pedido.initialize((IPedido_facade) this.facade, pedido);
+        stage.show();
+        this.stage.close();
     }
 
     @FXML
@@ -212,10 +347,10 @@ public class Controller_Lista_Pedidos {
      */
     private Stage stage;
     @FXML
-    private TableColumn<?, ?> actualizarColumna;
+    private TableColumn<PedidoObservable, Button> actualizarColumna;
 
     @FXML
-    private TableColumn<?, ?> archivarColumna;
+    private TableColumn<PedidoObservable, Button> archivarColumna;
 
     @FXML
     private Button botonBuscar;
@@ -248,23 +383,29 @@ public class Controller_Lista_Pedidos {
     private DatePicker dateSeleccionar;
 
     @FXML
-    private TableColumn<?, ?> fechaColumna;
+    private TableColumn<PedidoObservable, String> fechaColumna;
 
     @FXML
     private ComboBox<?> filtrarComboBox;
 
     @FXML
-    private TableColumn<?, ?> nombreColumna;
+    private TableColumn<PedidoObservable, String> nombreColumna;
 
     @FXML
-    private TableColumn<?, ?> numeroColumna;
+    private TableColumn<PedidoObservable, String> numeroColumna;
 
     @FXML
-    private TableColumn<?, ?> totalColumna;
+    private TableColumn<PedidoObservable, String> totalColumna;
 
     @FXML
-    private TableColumn<?, ?> verColumna;
+    private TableColumn<PedidoObservable, Button> verColumna;
 
     @FXML
-    private TableView<?> tableViewListaPedidos;
+    private TableView<PedidoObservable> tableViewListaPedidos;
+
+    ArrayList<Pedido> pedidos;
+    Button[] buttonsVer;
+    Button[] buttonsAct;
+    Button[] buttonsGenerar;
+    Button[] buttonsArch;
 }
