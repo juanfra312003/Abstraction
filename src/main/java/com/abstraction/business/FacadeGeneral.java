@@ -318,4 +318,11 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         return user;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

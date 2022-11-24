@@ -1,5 +1,7 @@
 package com.abstraction.business;
 
+import com.abstraction.entities.Usuario;
+
 import java.util.ArrayList;
 
 public interface IDashboard_facade {
@@ -9,4 +11,5 @@ public interface IDashboard_facade {
     float verCreditos();
     float verCrecimientoProducto(Long idProd, int periodo);
     float verCrecimientoVentas(int periodo);
+    public Usuario getUsuario();
 }

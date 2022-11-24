@@ -2,6 +2,7 @@ package com.abstraction.business;
 
 import com.abstraction.entities.Cotizacion;
 import com.abstraction.entities.CotizacionProducto;
+import com.abstraction.entities.Usuario;
 
 import java.util.ArrayList;
 
@@ -13,4 +14,5 @@ public interface ICotizacion_facade {
     boolean archivarCotizacion(Long id);
     boolean crearPedido(Cotizacion cotizacion);
     Long nextCotId();
+    public Usuario getUsuario();
 }

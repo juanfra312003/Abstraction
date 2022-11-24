@@ -7,4 +7,5 @@ import com.abstraction.persistence.impl.UsuarioDAO;
 public interface IUsuario_facade {
     public boolean create(Usuario usuario);
     public Usuario validar(Usuario usuario);
+    public Usuario getUsuario();
 }
