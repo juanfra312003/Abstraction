@@ -2,32 +2,62 @@ package com.abstraction.controllers.Controllers_Pedido;
 
 import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_Cotizacion.ObservableClasses.CotProductoObservable;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_Sesion;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.CotizacionProducto;
 import com.abstraction.entities.Pedido;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Controller_Actualizar_Pedido {
 
     public IPedido_facade facade;
+    Pedido pedido;
 
     public void initialize(IPedido_facade facade, Pedido pedido){
         this.facade = facade;
+        actualizarTabla(pedido);
     }
 
+    public void actualizarTabla(Pedido pedido){
+        ArrayList<CotizacionProducto> productos = pedido.getCotizacionPedido().getProductos();
+        if(productos == null) return;
+        final ObservableList<CotProductoObservable> data = FXCollections.observableArrayList();
 
+        for(CotizacionProducto p : productos){
+            data.add(new CotProductoObservable(
+                    p.getProducto().getReferencia(),
+                    p.getProducto().getNombre(),
+                    p.getCantidad(),
+                    p.getProducto().getPrecio(),
+                    p.getSubtotal()
+            ));
+        }
+
+        referenciaColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("referencia"));
+        nombreProductoColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("nombre"));
+        numProductosColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("cantidad"));
+        precioUnitarioColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("precioUnitario"));
+        subTotalColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("subtotal"));
+
+        tableViewActPedido.setItems(data);
+    }
     @FXML
     void onActionActualizarGeneral(ActionEvent event) {
 
@@ -266,22 +296,22 @@ public class Controller_Actualizar_Pedido {
     private Text numeroDePedidoText;
 
     @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
+    private TableColumn<CotProductoObservable, String> nombreProductoColumna;
 
     @FXML
-    private TableColumn<?, ?> numProductosColumna;
+    private TableColumn<CotProductoObservable, String> numProductosColumna;
 
     @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
+    private TableColumn<CotProductoObservable, String> precioUnitarioColumna;
 
     @FXML
-    private TableColumn<?, ?> referenciaColumna;
+    private TableColumn<CotProductoObservable, String> referenciaColumna;
 
     @FXML
-    private TableColumn<?, ?> subTotalColumna;
+    private TableColumn<CotProductoObservable, String> subTotalColumna;
 
     @FXML
-    private TableView<?> tableViewActPedido;
+    private TableView<CotProductoObservable> tableViewActPedido;
 
     @FXML
     private ChoiceBox<?> choiceBoxEstadoPedido;
