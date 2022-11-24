@@ -89,7 +89,63 @@ public class Controller_Lista_Cotizaciones {
 
     @FXML
     void onActionBuscar(ActionEvent event) {
+        String bufferBusqueda = textoBusqueda.getText();
+        actualizarTablaBusqueda(bufferBusqueda);
+    }
 
+    void actualizarTablaBusqueda (String referenciaBusqueda){
+        cotizaciones = facade.listarCotizaciones();
+        if(cotizaciones == null) return;
+        final ObservableList<CotizacionObservable> data = FXCollections.observableArrayList();
+        numCots = cotizaciones.size();
+        buttonsVer = new Button[numCots];
+        buttonsAct = new Button[numCots];
+        buttonsArch = new Button[numCots];
+        buttonsGenerar = new Button[numCots];
+
+        for(int i = 0; i < numCots; i++){
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsArch[i] = new Button();
+            buttonsArch[i].setText("Archivar");
+            buttonsArch[i].setOnAction(this::onActionElim);
+
+            buttonsGenerar[i] = new Button();
+            buttonsGenerar[i].setText("Generar");
+            buttonsGenerar[i].setOnAction(this::onActionGenerar);
+        }
+
+        int i = 0;
+        for(Cotizacion cotizacion : cotizaciones){
+            if ((cotizacion.getArchivado() == 0) && (String.valueOf(cotizacion.getNumero())).contains(referenciaBusqueda)) {
+                data.add(new CotizacionObservable(
+                        cotizacion.getNumero(),
+                        cotizacion.getNombre(),
+                        cotizacion.getFecha(),
+                        cotizacion.getPrecio(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsGenerar[i],
+                        buttonsArch[i]
+                ));
+            }
+            i++;
+        }
+        numeroColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("numero"));
+        nombreColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("nombre"));
+        fechaColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("fecha"));
+        precioColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, String>("precio"));
+        verColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, Button>("botonVer"));
+        actualizarColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, Button>("botonActualizar"));
+        generarColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, Button>("botonGenerarPedido"));
+        archivarColumna.setCellValueFactory(new PropertyValueFactory<CotizacionObservable, Button>("botonArchivar"));
+        tableViewListaCotizaciones.setItems(data);
     }
 
     @FXML

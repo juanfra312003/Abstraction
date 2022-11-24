@@ -162,7 +162,6 @@ public class Controller_Lista_Pedidos {
 
     @FXML
     void onActionBuscar(ActionEvent event) {
-
     }
 
     @FXML
