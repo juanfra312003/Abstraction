@@ -244,15 +244,24 @@ public class Controller_Lista_Cotizaciones {
 
     @FXML
     public void onActionGenerar(ActionEvent event) {
-        try {
-            for(int i = 0; i < numCots; i++){
-                if(event.getSource() == buttonsVer[i]){
-                    cargarGenerar(cotizaciones.get(i));
+        for(int i = 0; i < numCots; i++){
+            if(event.getSource() == buttonsVer[i]){
+                Cotizacion cotizacion = cotizaciones.get(i);
+                if(facade.crearPedido(cotizacion)){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Exito en el proceso");
+                    alert.setTitle("Pedido generado correctamente");
+                    alert.setContentText("Se ha generado un pedido a partir de la cotizacion dada");
+                    alert.show();
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Fallo en el proceso");
+                    alert.setTitle("No se pudo generar el pedido");
+                    alert.setContentText("Error desconocido.");
+                    alert.show();
                 }
             }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
     }
 
@@ -416,20 +425,6 @@ public class Controller_Lista_Cotizaciones {
         this.stage.close();
     }
 
-    public void cargarGenerar(Cotizacion cotizacion) throws IOException {
-        /*Stage stage = new Stage();
-        URL fxmlLocation = getClass().getResource("/presentation/View_Cotizaciones/mockupCrearCotizacion.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Abstraction");
-        stage.setScene(scene);
-        Controller_Crear_Cotizacion controller_crear_cotizacion = fxmlLoader.getController();
-        controller_crear_cotizacion.facade = this.facade;
-        controller_crear_cotizacion.actualizarTabla();
-        controller_crear_cotizacion.setStage(stage);
-        stage.show();
-        this.stage.close();*/
-    }
     //cargar cerrar sesion
     void cargarCerrarSesion() {
         try {
