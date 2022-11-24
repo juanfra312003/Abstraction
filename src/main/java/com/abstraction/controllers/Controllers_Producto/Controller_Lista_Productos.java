@@ -39,8 +39,13 @@ public class Controller_Lista_Productos {
 
         //Validacion roles
         String rolUsuario = facade.getUsuario().getRol();
+        if(rolUsuario.equals("bodeguero")){
+            botonCotizaciones.setVisible(false);
+            botonFacturacion.setVisible(false);
+            botonDashBoard.setVisible(false);
+        }
         if(rolUsuario.equals("vendedor")){
-            //botonProductos.
+            botonProductos.setVisible(false);
         }
     }
 

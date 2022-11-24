@@ -1,6 +1,5 @@
 package com.abstraction.business;
 
-import com.abstraction.controllers.Controllers_DashBoard.ObservableClasses.ObservableLeads;
 import com.abstraction.entities.*;
 import com.abstraction.persistence.ICotizacionDAO;
 import com.abstraction.persistence.IFacturaDAO;
@@ -12,23 +11,21 @@ import com.abstraction.persistence.impl.FacturaDAO;
 import com.abstraction.persistence.impl.PedidoDAO;
 import com.abstraction.persistence.impl.ProductoDAO;
 import com.abstraction.persistence.impl.UsuarioDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade, IUsuarioDAO {
+public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade, IUsuario_facade {
 
     public ArrayList<Producto> inventarioProductos;
     public ArrayList<Cotizacion> listaCotizaciones;
     public ArrayList<Pedido> listaPedidos;
     public ArrayList<Factura> listaFacturas;
     public Dashboard dashboard1;
+    public Usuario usuario;
 
     @Override
     public boolean crearProducto(Producto product) {
@@ -163,6 +160,26 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         }
     }
 
+    public ArrayList<ArrayList<String>> verLeads() {
+        ArrayList<ArrayList<String>> listaRetorno = new ArrayList<>();
+
+        //Recuperar las facturas desde la base de datos.
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        ArrayList<Factura> facturas = facturaDAO.findAll();
+
+        if (facturas == null) return listaRetorno;
+
+        //Mirar las facturas, si tienen relacionadas un pedido y por consiguiente cotizacion, ingresar el valor a la lista.
+        for (int i = 0; i < facturas.size(); i++){
+            ArrayList<String> valorIngresarIndividual = new ArrayList<>();
+            valorIngresarIndividual.add(String.valueOf(facturas.get(i).getNumero())); //Ingresar numero de factura.
+            valorIngresarIndividual.add(String.valueOf(facturas.get(i).getPedidoFactura().getCotizacionPedido().getNumero())); //Ingresar numero de cotizacion.
+            valorIngresarIndividual.add(String.valueOf(facturas.get(i).getValorTotal())); //Ingresar total facturado.
+            listaRetorno.add(valorIngresarIndividual);
+        }
+        return listaRetorno;
+    }
+
     @Override
     public float valorTransaccionPromedio() {
         return 0;
@@ -292,8 +309,12 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     }
 
     @Override
-    public boolean validar(Usuario usuario) {
-        return false;
+    public Usuario validar(Usuario usuario) {
+        IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario user = usuarioDAO.validar(usuario);
+        if(user != null) this.usuario = user;
+        else user = null;
+        return user;
     }
 
     public Usuario getUsuario() {
