@@ -35,19 +35,27 @@ public class Controller_Crear_Producto {
     @FXML
     void OnActionCrearBoton(ActionEvent event) {
         if(!textReferenciaProducto.getText().isBlank()&& !textCantidadesExistentes.getText().isBlank()&&!textNombreProducto.getText().isBlank()&&!textPrecioProducto.getText().isBlank()&&!textDescripcion.getText().isBlank()){
-            facade.crearProducto(
+            if(facade.crearProducto(
                     new Producto(parseLong(textReferenciaProducto.getText()),
                             textNombreProducto.getText(),
                             parseFloat(textPrecioProducto.getText()),
                             parseInt(textCantidadesExistentes.getText()),
                             textDescripcion.getText(),
                             0)
-            );
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Exito en el proceso");
-            alert.setTitle("Producto Creado correctamente");
-            alert.setContentText("Se ha creado el producto especificado correctamente.");
-            alert.show();
+            )) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Exito en el proceso");
+                alert.setTitle("Producto Creado correctamente");
+                alert.setContentText("Se ha creado el producto especificado correctamente.");
+                alert.show();
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Fallo en el proceso");
+                alert.setTitle("Producto no creado");
+                alert.setContentText("Error desconocido. Verifique que no exista un producto con la referencia ingresada");
+                alert.show();
+            }
         }
         else if(textReferenciaProducto.getText().isBlank()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
