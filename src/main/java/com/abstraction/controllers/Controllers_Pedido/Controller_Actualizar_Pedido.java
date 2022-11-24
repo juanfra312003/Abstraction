@@ -4,6 +4,7 @@ import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
+import com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_Sesion;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import com.abstraction.entities.Pedido;
@@ -41,7 +42,7 @@ public class Controller_Actualizar_Pedido {
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
-
+        cargarCerrarSesion();
     }
 
     @FXML
@@ -196,7 +197,25 @@ public class Controller_Actualizar_Pedido {
             System.out.printf(e.getMessage());
         }
     }
-
+    //cargar cerrar sesion
+    void cargarCerrarSesion() {
+        try {
+            URL fxmlLocation = getClass().getResource("/presentation/View_IniciarSesion/mockupIniciarSesion.fxml");
+            System.out.println(fxmlLocation);
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Abstraction");
+            stage.setScene(scene);
+            Controller_Iniciar_Sesion controladorIniciarSesion= fxmlLoader.getController();
+            controladorIniciarSesion.setStage(stage);
+            controladorIniciarSesion.initialize(new FacadeGeneral());
+            stage.show();
+        }
+        catch (Exception e){
+            System.out.println("y tho");
+            e.printStackTrace();
+        }
+    }
     /**
      * Getters y Setters
      */
