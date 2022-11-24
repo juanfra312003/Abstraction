@@ -25,7 +25,6 @@ USE `Abstraction` ;
 -- Table `Abstraction`.`Producto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Abstraction`.`Producto` ;
-
 CREATE TABLE IF NOT EXISTS `Abstraction`.`Producto` (
   `referencia` INT UNSIGNED NOT NULL,
   `nombre` VARCHAR(245) NOT NULL,
@@ -43,7 +42,6 @@ ENGINE = InnoDB;
 -- Table `Abstraction`.`Cotizacion`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Abstraction`.`Cotizacion` ;
-
 CREATE TABLE IF NOT EXISTS `Abstraction`.`Cotizacion` (
   `numero` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
@@ -59,7 +57,6 @@ ENGINE = InnoDB;
 -- Table `Abstraction`.`CotizacionProducto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Abstraction`.`CotizacionProducto` ;
-
 CREATE TABLE IF NOT EXISTS `Abstraction`.`CotizacionProducto` (
   `Cotizacion_numero` INT NOT NULL,
   `Producto_referencia` INT UNSIGNED NOT NULL,
@@ -84,7 +81,6 @@ ENGINE = InnoDB;
 -- Table `Abstraction`.`Pedido`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Abstraction`.`Pedido` ;
-
 CREATE TABLE IF NOT EXISTS `Abstraction`.`Pedido` (
   `numero` INT NOT NULL AUTO_INCREMENT,
   `Cotizacion_numero` INT NOT NULL,
@@ -107,7 +103,6 @@ ENGINE = InnoDB;
 -- Table `Abstraction`.`Factura`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Abstraction`.`Factura` ;
-
 CREATE TABLE IF NOT EXISTS `Abstraction`.`Factura` (
   `numero` VARCHAR(45) NOT NULL,
   `Pedido_numero` INT NOT NULL,
@@ -121,6 +116,19 @@ CREATE TABLE IF NOT EXISTS `Abstraction`.`Factura` (
     REFERENCES `Abstraction`.`Pedido` (`numero`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Abstraction`.`CotizacionProducto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Abstraction`.`Usuario` ;
+CREATE TABLE IF NOT EXISTS `Abstraction`.`Usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `correo` VARCHAR(45) NOT NULL,
+  `pass` VARCHAR(45) NOT NULL,
+  `rol` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`)
+)
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
