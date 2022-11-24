@@ -12,10 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,6 +26,7 @@ public class Controller_Actualizar_Pedido {
     public void initialize(IPedido_facade facade, Pedido pedido){
         this.facade = facade;
     }
+
 
     @FXML
     void onActionActualizarGeneral(ActionEvent event) {
@@ -228,26 +226,11 @@ public class Controller_Actualizar_Pedido {
         this.stage = stage;
     }
 
-    public TableColumn<?, ?> getAddColumna() {
-        return addColumna;
-    }
-
-    public void setAddColumna(TableColumn<?, ?> addColumna) {
-        this.addColumna = addColumna;
-    }
-
-
     /**
      * FXML Elements
      */
 
     private Stage stage;
-
-    @FXML
-    private TableColumn<?, ?> addColumna;
-
-    @FXML
-    private Button botonActNombreCliente;
 
     @FXML
     private Button botonActualizarGeneral;
@@ -277,26 +260,30 @@ public class Controller_Actualizar_Pedido {
     private Button botonRegresar;
 
     @FXML
-    private TableColumn<?, ?> eliminarColumna;
-
-    @FXML
-    private TableColumn<?, ?> existenciasColumna;
-
-    @FXML
     private TextField nombreClienteText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
 
     @FXML
     private Text numeroDePedidoText;
 
     @FXML
-    private TableColumn<?, ?> precioColumna;
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TableColumn<?, ?> numProductosColumna;
+
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
 
     @FXML
     private TableColumn<?, ?> referenciaColumna;
 
     @FXML
+    private TableColumn<?, ?> subTotalColumna;
+
+    @FXML
     private TableView<?> tableViewActPedido;
+
+    @FXML
+    private ChoiceBox<?> choiceBoxEstadoPedido;
+
 }

@@ -2,23 +2,31 @@ package com.abstraction.controllers.Controllers_Pedido;
 
 import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_Cotizacion.ObservableClasses.CotProductoObservable;
 import com.abstraction.controllers.Controllers_DashBoard.Controller_DashBoard;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
 import com.abstraction.controllers.Controllers_IniciarSesion.Controller_Iniciar_Sesion;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import com.abstraction.entities.CotizacionProducto;
 import com.abstraction.entities.Factura;
 import com.abstraction.entities.Pedido;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Controller_Ver_Pedido {
@@ -30,8 +38,47 @@ public class Controller_Ver_Pedido {
         this.facade = facade;
         this.pedido = pedido;
 
-        //Implementar la función para ver pedido.
+        mostrarPedido(pedido);
     }
+
+    public void mostrarPedido(Pedido pedido){
+        String pattern = "dd/MM/YYYY";
+        DateFormat df = new SimpleDateFormat(pattern);
+        String dateToString = df.format(pedido.getFecha());
+
+        nombreClienteText.setText(pedido.getNombreCliente());
+        estadoPedidoText.setText(pedido.getEstado());
+        numeroDePedidoText.setText(pedido.getNumero().toString());
+        precioTotalText.setText(String.valueOf(pedido.getValor()));
+        fechaCotizacionText.setText(dateToString);
+
+        actualizarTablaPedidos(pedido);
+    }
+
+    public void actualizarTablaPedidos(Pedido pedido){
+        ArrayList<CotizacionProducto> productos = pedido.getCotizacionPedido().getProductos();
+        if(productos == null) return;
+        final ObservableList<CotProductoObservable> data = FXCollections.observableArrayList();
+
+        for(CotizacionProducto p : productos){
+            data.add(new CotProductoObservable(
+                    p.getProducto().getReferencia(),
+                    p.getProducto().getNombre(),
+                    p.getCantidad(),
+                    p.getProducto().getPrecio(),
+                    p.getSubtotal()
+            ));
+        }
+
+        referenciaColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("referencia"));
+        nombreProductoColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("nombre"));
+        numProductosColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("cantidad"));
+        precioUnitarioColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("precioUnitario"));
+        subTotalColumna.setCellValueFactory(new PropertyValueFactory<CotProductoObservable, String>("subtotal"));
+
+        tableViewVerProducto.setItems(data);
+    }
+
 
     @FXML
     void onActionCerrarSesion(ActionEvent event) {
@@ -276,10 +323,10 @@ public class Controller_Ver_Pedido {
     private Text nombreClienteText;
 
     @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
+    private TableColumn<CotProductoObservable, String> nombreProductoColumna;
 
     @FXML
-    private TableColumn<?, ?> numProductosColumna;
+    private TableColumn<CotProductoObservable, String> numProductosColumna;
 
     @FXML
     private Text numeroDePedidoText;
@@ -288,16 +335,16 @@ public class Controller_Ver_Pedido {
     private Text precioTotalText;
 
     @FXML
-    private TableColumn<?, ?> precioUnitarioColumna;
+    private TableColumn<CotProductoObservable, String> precioUnitarioColumna;
 
     @FXML
-    private TableColumn<?, ?> referenciaColumna;
+    private TableColumn<CotProductoObservable, String> referenciaColumna;
 
     @FXML
-    private TableColumn<?, ?> subTotalColumna;
+    private TableColumn<CotProductoObservable, String> subTotalColumna;
 
     @FXML
-    private TableView<?> tableViewVerProducto;
+    private TableView<CotProductoObservable> tableViewVerProducto;
 
     public void onActionGenerarFactura(ActionEvent actionEvent) {
         //Crea una factura con la informacion del pedido correspondiente, en donde asigna el mismo numero de factura con relación a su pedido antecesor.

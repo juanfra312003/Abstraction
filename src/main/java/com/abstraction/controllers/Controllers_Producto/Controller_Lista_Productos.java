@@ -100,7 +100,56 @@ public class Controller_Lista_Productos {
 
     @FXML
     void onActionBuscar(ActionEvent event) {
+        String bufferBusqueda = textoBusqueda.getText();
+        actualizarTablaBusqueda(bufferBusqueda);
+    }
 
+    void actualizarTablaBusqueda (String referenciaBusqueda){
+        productos = facade.listarProductos();
+        if(productos == null) return;
+        final ObservableList<ProductoObservable> data = FXCollections.observableArrayList();
+        numProds = productos.size();
+        buttonsVer = new Button[productos.size()];
+        buttonsAct = new Button[productos.size()];
+        buttonsBorrar = new Button[productos.size()];
+
+        for (int i = 0; i < productos.size(); i++) {
+            buttonsVer[i] = new Button();
+            buttonsVer[i].setText("Ver");
+            buttonsVer[i].setOnAction(this::onActionVer);
+
+            buttonsAct[i] = new Button();
+            buttonsAct[i].setText("Actualizar");
+            buttonsAct[i].setOnAction(this::onActionActualizar);
+
+            buttonsBorrar[i] = new Button();
+            buttonsBorrar[i].setText("Eliminar");
+            buttonsBorrar[i].setOnAction(this::onActionBorrar);
+        }
+
+        int i = 0;
+        for (Producto producto : productos) {
+            if((producto.getArchivado()==0)&&(String.valueOf(producto.getReferencia())).contains(referenciaBusqueda)) {
+                data.add(new ProductoObservable(
+                        producto.getReferencia(),
+                        producto.getNombre(),
+                        producto.getPrecio(),
+                        producto.getExistencias(),
+                        buttonsVer[i],
+                        buttonsAct[i],
+                        buttonsBorrar[i]
+                ));
+            }
+            i++;
+        }
+        columnaReferencia.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("referencia"));
+        columnaNombre.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("nombre"));
+        columnaPrecio.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("precio"));
+        columnaNumeroExistencias.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("existencias"));
+        columnaVerProducto.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("botonVer"));
+        columnaActualizarP.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("botonActualizar"));
+        columnaEliminarP.setCellValueFactory(new PropertyValueFactory<ProductoObservable, String>("botonBorrar"));
+        tableViewListarProductos.setItems(data);
     }
 
     @FXML
@@ -396,13 +445,6 @@ public class Controller_Lista_Productos {
         this.botonBuscar = botonBuscar;
     }
 
-    public Text getTextFieldBusquedaProducto() {
-        return textFieldBusquedaProducto;
-    }
-
-    public void setTextFieldBusquedaProducto(Text textFieldBusquedaProducto) {
-        this.textFieldBusquedaProducto = textFieldBusquedaProducto;
-    }
 
     /**
      * FXML Elements
@@ -462,7 +504,7 @@ public class Controller_Lista_Productos {
     private ComboBox<?> comboBoxFiltrar;
 
     @FXML
-    private Text textFieldBusquedaProducto;
+    private TextField textoBusqueda;
 
 
     @FXML

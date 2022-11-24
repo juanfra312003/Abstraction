@@ -19,7 +19,7 @@ public class MySQL {
         this.port = "3306";
         this.user = "abstraction_SU";
         this.pass = "Abstraction";
-        this.database = "abstraction";
+        this.database = "Abstraction";
         this.parameters = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         this.connection = null;
     }

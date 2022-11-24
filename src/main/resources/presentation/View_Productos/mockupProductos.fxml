@@ -42,7 +42,7 @@
                   <Font name="Franklin Gothic Medium Cond" size="27.0" />
                </font>
             </Button>
-            <TextField layoutX="557.0" layoutY="23.0" prefHeight="25.0" prefWidth="683.0">
+            <TextField fx:id="textoBusqueda" layoutX="557.0" layoutY="23.0" prefHeight="25.0" prefWidth="683.0">
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
@@ -77,11 +77,6 @@
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
             </Button>
-            <Text fx:id="textFieldBusquedaProducto" fill="#bfbfbf" layoutX="563.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referencia de producto a buscar" wrappingWidth="417.8408203125">
-               <font>
-                  <Font name="Franklin Gothic Book" size="18.0" />
-               </font>
-            </Text>
             <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="18.0" layoutY="43.0">
                <image>
                   <Image url="@../ImagenesRecurso/abstraction.png" />

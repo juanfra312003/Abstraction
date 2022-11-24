@@ -264,6 +264,7 @@ public class CotizacionDAO implements ICotizacionDAO {
             Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String query = "SELECT * FROM cotizacion;";
             ResultSet rs = stmt.executeQuery(query);
+            if(!rs.next()) return 1L;
             while(rs.next());
             rs.previous();
 

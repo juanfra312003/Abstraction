@@ -26,7 +26,7 @@ public class FacturaDAO implements IFacturaDAO {
     @Override
     public boolean create(Factura factura) {
         try{
-            String pattern = "DD/MM/YYYY";
+            String pattern = "dd/MM/YYYY";
             DateFormat df = new SimpleDateFormat(pattern);
             String dateToString = df.format(factura.getFecha());
             
@@ -61,14 +61,13 @@ public class FacturaDAO implements IFacturaDAO {
     @Override
     public boolean edit(Long numero, Factura factura) {
 
-        String pattern = "DD/MM/YYYY";
+        String pattern = "dd/MM/YYYY";
         DateFormat df = new SimpleDateFormat(pattern);
         String dateToString = df.format(factura.getFecha());
 
         try{
             this.mysql.conectar();
             String query = "UPDATE factura SET "+
-                    "numero = '" + factura.getNumero() + "'," +
                     "Pedido_numero.nombreCliente = '" + factura.getPedidoFactura().getNombreCliente() + "'," +
                     "abonosTotal = '" + factura.getAbonoTotal()+ "'" +
                     " WHERE numero = '" + numero + "';";
