@@ -50,8 +50,6 @@ public class Controller_Actualizar_Producto {
         int cantExistentes;
         String descripcionProducto;
         String productosFalla = "";
-        String productosBlancos = "";
-
 
         if(!nombreProductoText.getText().isBlank()&&!precioProductoText.getText().isBlank()&&!cantidadesExistentesText.getText().isBlank()&&!descripcionProductoText.getText().isBlank()){
             nombreActualizar=String.valueOf(nombreProductoText.getText());
@@ -71,9 +69,6 @@ public class Controller_Actualizar_Producto {
             if(cantExistentes>0){
                 producto.setExistencias(cantExistentes);
             }
-            else {
-                productosFalla=productosFalla+producto.getNombre()+" ";
-            }
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Producto Actualizado");
@@ -82,11 +77,14 @@ public class Controller_Actualizar_Producto {
             alert.show();
         }
         else {
+             /*
+             -- ERRORES EN LA EJECUCION
+             */
 
             if(nombreProductoText.getText().isBlank()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Producto No Actualizado");
-                alert.setTitle("Fallo en el proceso");
+                alert.setTitle("GUAGUI en el proceso");
                 alert.setContentText("El producto no fue creado exitosamente, indique el nombre del producto a actualizar.");
                 alert.show();
             }
@@ -112,10 +110,6 @@ public class Controller_Actualizar_Producto {
                 alert.show();
             }
 
-            productosBlancos = productosBlancos + producto.getNombre() + " ";
-            /*
-             -- ERRORES EN LA EJECUCION
-         */
 
         }
         facade.actualizarProducto(producto);
