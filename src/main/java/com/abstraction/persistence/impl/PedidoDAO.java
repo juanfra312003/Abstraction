@@ -35,9 +35,9 @@ public class PedidoDAO implements IPedidoDAO {
                     "'" + pedido.getNumero() + "'," +
                     "'" + pedido.getCotizacionPedido().getNumero() + "'," +
                     "'" + pedido.getNombre() + "'," +
-                    "TO_DATE('" + dateToString + "','" + pattern + "')," +
+                    "STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
                     "'" + pedido.getValor() + "'," +
-                    "'" + pedido.getEstado() + "'" +
+                    "'" + pedido.getEstado() + "'," +
                     "'0');";
             System.out.println(query);
 
@@ -206,6 +206,24 @@ public class PedidoDAO implements IPedidoDAO {
         }
         catch (SQLException ex) {
             Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    @Override
+    public Long nextId() {
+        try{
+            this.mysql.conectar();
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT * FROM pedido;";
+            ResultSet rs = stmt.executeQuery(query);
+            if(!rs.next()) return 1L;
+            while(rs.next());
+            rs.previous();
+
+            return rs.getLong("numero")+1;
+        }catch (SQLException ex){
+            Logger.getLogger(CotizacionDAO.class.getName()).log(Level.SEVERE,null,ex);
             return null;
         }
     }
