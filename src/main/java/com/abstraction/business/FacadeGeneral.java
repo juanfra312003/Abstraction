@@ -293,10 +293,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     @Override
     public Usuario validar(Usuario usuario) {
         IUsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario user = usuarioDAO.validar(usuario);
-        if(user != null) this.usuario = user;
-        else user = null;
-        return user;
+        this.usuario = usuarioDAO.validar(usuario);
+        return this.usuario;
     }
 
     public Usuario getUsuario() {
