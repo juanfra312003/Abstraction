@@ -103,6 +103,13 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
     @Override
     public boolean crearPedido(Cotizacion cotizacion) {
         IPedidoDAO pedidoDAO = new PedidoDAO();
+        ArrayList<CotizacionProducto> productos = cotizacion.getProductos();
+        Producto producto;
+        for(CotizacionProducto productoCot : productos){
+            producto = productoCot.getProducto();
+            producto.setExistencias(producto.getExistencias()-productoCot.getCantidad());
+            actualizarProducto(producto);
+        }
         return pedidoDAO.create(new Pedido(pedidoDAO.nextId(), cotizacion.getNombre(), new Date(), cotizacion.getPrecio(), "En preparacion", 0, cotizacion));
     }
 
@@ -210,7 +217,8 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public ArrayList<Factura> listarFacturas() {
-        return null;
+        IFacturaDAO facturaDAO = new FacturaDAO();
+        return facturaDAO.findAll();
     }
 
     @Override

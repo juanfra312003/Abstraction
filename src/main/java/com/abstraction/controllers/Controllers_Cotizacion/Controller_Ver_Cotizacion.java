@@ -10,6 +10,7 @@ import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
 import com.abstraction.entities.Cotizacion;
 import com.abstraction.entities.CotizacionProducto;
+import com.abstraction.entities.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -91,7 +92,25 @@ public class Controller_Ver_Cotizacion {
 
     @FXML
     void onActionGenerarPedido(ActionEvent event) {
-        if(facade.crearPedido(cotizacion)){
+        ArrayList<CotizacionProducto> productos = cotizacion.getProductos();
+        Producto producto;
+        boolean cantidadesSuficientes = true;
+        String faltantes = "No hay cantidades suficientes de:";
+        for(CotizacionProducto productoCot : productos){
+            producto = productoCot.getProducto();
+            if(producto.getExistencias()-productoCot.getCantidad() < 0){
+                cantidadesSuficientes = false;
+                faltantes = faltantes + " " + producto.getNombre();
+            }
+        }
+        if(!cantidadesSuficientes){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Fallo en el proceso");
+            alert.setTitle("No se pudo generar el pedido");
+            alert.setContentText(faltantes);
+            alert.show();
+        }
+        else if(facade.crearPedido(cotizacion)){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Exito en el proceso");
             alert.setTitle("Pedido generado correctamente");

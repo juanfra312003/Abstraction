@@ -34,10 +34,10 @@ public class FacturaDAO implements IFacturaDAO {
             this.mysql.conectar();
             String query = "INSERT INTO factura(numero, Pedido_numero, fecha, valor, abonosTotal, archivado) VALUES("+
                     "'" + factura.getNumero()+ "'," +
-                    "'" + factura.getPedidoFactura() + "'," +
-                    "TO_DATE('" + dateToString + "','" + pattern + "')," +
+                    "'" + factura.getPedidoFactura().getNumero() + "'," +
+                    "STR_TO_DATE('" + dateToString + "','%d/%m/%Y')," +
                     "'" + factura.getValorTotal() + "'," +
-                    "'" + factura.getAbonoTotal() + "'" +
+                    "'" + factura.getAbonoTotal() + "'," +
                     "'0');";
             System.out.println(query);
 
@@ -204,8 +204,8 @@ public class FacturaDAO implements IFacturaDAO {
                 rs.next();
                 Factura factura = new Factura(rs.getLong("numero"),
                         rs.getDate("fecha"),
-                        rs.getFloat("valorTotal"),
-                        rs.getFloat("abonoTotal"),
+                        rs.getFloat("valor"),
+                        rs.getFloat("abonosTotal"),
                         rs.getInt("archivado"),
                         pedidoDAO.findById(rs.getLong("Pedido_numero")));                facturas.add(factura);
             }
