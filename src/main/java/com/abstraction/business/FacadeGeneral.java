@@ -230,8 +230,14 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
 
     @Override
     public boolean archivarFactura(Long id) {
+        Factura factura = null;
         IFacturaDAO facturaDAO = new FacturaDAO();
-        Factura factura = facturaDAO.findById(id);
+        ArrayList<Factura> facturas = facturaDAO.findAll();
+        for (int i = 0; i < facturas.size(); i++){
+            if (facturas.get(i).getNumero() == id){
+                factura = facturas.get(i);
+            }
+        }
         factura.setArchivado(1);
         return facturaDAO.archivar(factura);
     }

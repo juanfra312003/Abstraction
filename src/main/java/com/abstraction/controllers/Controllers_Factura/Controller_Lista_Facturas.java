@@ -95,7 +95,9 @@ public class Controller_Lista_Facturas {
     public void actualizarTablaBusqueda (String numeroBusqueda){
         facturas = facade.listarFacturas();
         if (facturas == null) return;
+
         final ObservableList<FacturaObservable> data = FXCollections.observableArrayList();
+
         numFacts = facturas.size();
         buttonsVer = new Button[numFacts];
         buttonsAct = new Button[numFacts];
