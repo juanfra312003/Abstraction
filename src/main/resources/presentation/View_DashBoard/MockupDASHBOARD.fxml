@@ -81,9 +81,9 @@
                            </font>
                         </Text>
                         <Text layoutX="141.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Text fx:id="ingresosPeriodoTiempoText" layoutX="138.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ingresos" textAlignment="CENTER">
+                        <Text fx:id="ingresosPeriodoTiempoText" layoutX="92.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ingresos" textAlignment="CENTER">
                            <font>
-                              <Font name="Franklin Gothic Demi Cond" size="16.0" />
+                              <Font name="Franklin Gothic Demi Cond" size="45.0" />
                            </font>
                         </Text>
                      </children></AnchorPane>
@@ -104,9 +104,9 @@
                               <Font name="Franklin Gothic Medium Cond" size="16.0" />
                            </font>
                         </Text>
-                        <Text fx:id="valorTransaccionPromedioText" layoutX="149.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" textAlignment="CENTER">
+                        <Text fx:id="valorTransaccionPromedioText" layoutX="120.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" textAlignment="CENTER">
                            <font>
-                              <Font name="Franklin Gothic Demi Cond" size="16.0" />
+                              <Font name="Franklin Gothic Demi Cond" size="35.0" />
                            </font>
                         </Text>
                      </children>
@@ -252,7 +252,7 @@
                   <Font name="Franklin Gothic Medium Cond" size="16.0" />
                </font>
             </Text>
-            <Button layoutX="716.0" layoutY="544.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="172.0" text="Calcular Valor Promedio" />
+            <Button fx:id="botonValorPromedio" layoutX="716.0" layoutY="544.0" mnemonicParsing="false" onAction="#onActionValorPromedio" prefHeight="26.0" prefWidth="172.0" text="Calcular Valor Promedio" />
             <Button fx:id="botonCalcularLeads" layoutX="719.0" layoutY="774.0" mnemonicParsing="false" onAction="#onActionCalcularLeads" text="Calcular Conversión Leads" />
             <Button fx:id="botonCalcularRendimiento" layoutX="1319.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionCalcularRendimiento" text="Calcular Rendimiento" />
             <Button fx:id="botonCrecVentas" layoutX="1303.0" layoutY="556.0" mnemonicParsing="false" onAction="#onActionCrecVentas" text="Calcular Crecimiento de Ventas" />
@@ -266,9 +266,9 @@
                   <Font name="Franklin Gothic Medium Cond" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="creditosOtorgadosText" layoutX="1098.0" layoutY="748.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cred" textAlignment="CENTER" wrappingWidth="81.00000000000006">
+            <Text fx:id="creditosOtorgadosText" layoutX="1098.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cred" textAlignment="CENTER" wrappingWidth="81.00000000000006">
                <font>
-                  <Font name="Franklin Gothic Demi Cond" size="16.0" />
+                  <Font name="Franklin Gothic Demi Cond" size="33.0" />
                </font>
             </Text>
             <Text layoutX="716.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo de análisis">

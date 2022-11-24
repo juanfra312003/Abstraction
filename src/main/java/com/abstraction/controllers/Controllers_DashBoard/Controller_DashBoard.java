@@ -148,7 +148,7 @@ public class Controller_DashBoard {
     }
 
     @FXML
-    void onActionValorTransaccionPromedio(ActionEvent event) {
+    void onActionValorPromedio(ActionEvent event) {
         valorTransaccionPromedioText.setText("$"+String.valueOf(facade.valorTransaccionPromedio(choiceBoxYearValorPromedio.getValue(), choiceBoxPeriodoValorPromedio.getValue())));
     }
 
@@ -360,6 +360,10 @@ public class Controller_DashBoard {
 
     @FXML
     private LineChart<?, ?> graficaCrecimientoVentas;
+
+    @FXML
+    private Button botonValorPromedio;
+
 
     @FXML
     private LineChart<?, ?> graficaRendimientoProducto;

@@ -187,12 +187,12 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
             int cantidadFacturas = 0;
             for(Factura factura : listaFacturas){
                 fechaFactura = factura.getFecha();
-                if(year == "00" && periodo == "00"){
-                    ingresos += factura.getAbonoTotal();
+                if((year == "00" && periodo == "00") && factura.getArchivado() == 0){
+                    ingresos += factura.getValorTotal();
                     cantidadFacturas++;
                 }
-                else if(fechaFactura.equals(inicio) || fechaFactura.equals(fin) || (fechaFactura.after(inicio) && fechaFactura.before(fin))){
-                    ingresos += factura.getAbonoTotal();
+                else if(fechaFactura.equals(inicio) || fechaFactura.equals(fin) || (fechaFactura.after(inicio) && fechaFactura.before(fin)) &&  factura.getArchivado() == 0){
+                    ingresos += factura.getValorTotal();
                     cantidadFacturas++;
                 }
             }
