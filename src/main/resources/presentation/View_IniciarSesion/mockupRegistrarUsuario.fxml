@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abstraction.controllers.Controllers_IniciarSesion.Controller_Registrar_Usuario">
+   <children>
+      <DialogPane layoutX="221.0" layoutY="98.0" prefHeight="109.0" prefWidth="641.0" />
+      <Text layoutX="277.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro Aplicativo Abstraction" textAlignment="CENTER" wrappingWidth="572.630859375">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="58.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textoUsuario" layoutX="147.0" layoutY="303.0" prefHeight="25.0" prefWidth="348.0" />
+      <Text layoutX="146.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el usuario para el aplicativo">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="146.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese su contraseña">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="19.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="278.0" fitWidth="284.0" layoutX="708.0" layoutY="296.0">
+         <image>
+            <Image url="@../ImagenesRecurso/registro.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="botonRegistrar" layoutX="146.0" layoutY="626.0" mnemonicParsing="false" onAction="#onActionRegistrar" prefHeight="25.0" prefWidth="162.0" text="Registrar usuario">
+         <font>
+            <Font name="Franklin Gothic Book" size="16.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="PasswordField" layoutX="147.0" layoutY="422.0" prefHeight="23.0" prefWidth="348.0" />
+      <ChoiceBox fx:id="choiceBoxRol" layoutX="146.0" layoutY="527.0" prefWidth="150.0" />
+      <Text layoutX="146.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el rol en el aplicativo">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="19.0" />
+         </font>
+      </Text>
+      <Button fx:id="botonVolverIngreso" layoutX="773.0" layoutY="626.0" mnemonicParsing="false" onAction="#onActionVolverIngreso" prefHeight="29.0" prefWidth="196.0" text="Volver al inicio de sesión">
+         <font>
+            <Font name="Franklin Gothic Book" size="16.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="84.0" fitWidth="98.0" layoutX="147.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ImagenesRecurso/abstraction.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="84.0" fitWidth="98.0" layoutX="895.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ImagenesRecurso/abstraction.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

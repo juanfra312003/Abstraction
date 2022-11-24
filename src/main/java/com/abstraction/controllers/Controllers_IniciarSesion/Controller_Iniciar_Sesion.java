@@ -57,6 +57,11 @@ public class Controller_Iniciar_Sesion {
     @FXML
     private Button botonIngresar;
 
+
+    @FXML
+    private Button botonRegistro;
+
+
     @FXML
     private TextField textoUsuario;
 
@@ -64,12 +69,31 @@ public class Controller_Iniciar_Sesion {
     private PasswordField PasswordField;
 
     @FXML
+    void onActionRegistro(ActionEvent event) {
+        try{
+        Stage stage = new Stage();
+        URL fxmlLocation = getClass().getResource("/presentation/View_IniciarSesion/mockupRegistrarUsuario.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Abstraction");
+        stage.setScene(scene);
+        Controller_Registrar_Usuario controller_registrar_usuario = fxmlLoader.getController();
+        controller_registrar_usuario.initialize((FacadeGeneral) this.facade);
+        controller_registrar_usuario.setStage(stage);
+        stage.show();
+        this.stage.close();
+    } catch (IOException e) {
+        System.out.printf(e.getMessage());
+        }
+    }
+
+    @FXML
     void onActionIngresar(ActionEvent event) {
         textoUsuario.getText();
-        String passwordWrote="";
-        passwordWrote=PasswordField.getText();
+        String passwordWrote = "";
+        passwordWrote = PasswordField.getText();
         System.out.println(passwordWrote);
-        String username=textoUsuario.getText();
+        String username = textoUsuario.getText();
         Usuario usuario = facade.validar(new Usuario(username, passwordWrote, "superusuario"));
 
         if (usuario != null) {
@@ -112,100 +136,7 @@ public class Controller_Iniciar_Sesion {
             System.out.printf(e.getMessage());
         }
     }
-    void cargarActualizar(Producto producto) {
-        try {
-            Stage stage = new Stage();
-            URL fxmlLocation = getClass().getResource("/presentation/View_Productos/mockupActualizarPrdocuto.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Abstraction");
-            stage.setScene(scene);
-            Controller_Actualizar_Producto controller_actualizar_producto= fxmlLoader.getController();
-            controller_actualizar_producto.initialize((FacadeGeneral) this.facade,producto);
-            controller_actualizar_producto.setStage(stage);
-            stage.show();
-            this.stage.close();
-        } catch (IOException e) {
-            System.out.printf(e.getMessage());
-        }
-    }
 
-    //Cambio a perfil
-    void cargarPerfil() {
-        try {
-            Stage stage = new Stage();
-            URL fxmlLocation = getClass().getResource("/presentation/View_Perfil_Aux/mockupVerPerfil.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Abstraction");
-            stage.setScene(scene);
-            Controller_Ver_Perfil controller_ver_perfil = fxmlLoader.getController();
-            controller_ver_perfil.initialize((FacadeGeneral) this.facade);
-            controller_ver_perfil.setStage(stage);
-            stage.show();
-            this.stage.close();
-        } catch (IOException e) {
-            System.out.printf(e.getMessage());
-        }
-    }
-    //cambio a Cerrar Sesion
-    void cargarCerrarSesion() {
-        try {
-            URL fxmlLocation = getClass().getResource("/presentation/View_IniciarSesion/mockupIniciarSesion.fxml");
-            System.out.println(fxmlLocation);
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Abstraction");
-            stage.setScene(scene);
-            Controller_Iniciar_Sesion controladorIniciarSesion= fxmlLoader.getController();
-            controladorIniciarSesion.setStage(stage);
-            controladorIniciarSesion.initialize(new FacadeGeneral());
-            stage.show();
-        }
-        catch (Exception e){
-            System.out.println("y tho");
-            e.printStackTrace();
-        }
-    }
-
-
-    //Cambio a Lista_pedidos
-    void cargarListaPedidos() {
-        try {
-            Stage stage = new Stage();
-            URL fxmlLocation = getClass().getResource("/presentation/View_Pedidos/mockupListaPedidos.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Abstraction");
-            stage.setScene(scene);
-            Controller_Lista_Pedidos controller_lista_pedidos = fxmlLoader.getController();
-            controller_lista_pedidos.initialize((IPedido_facade) this.facade);
-            controller_lista_pedidos.setStage(stage);
-            stage.show();
-            this.stage.close();
-        } catch (IOException e) {
-            System.out.printf(e.getMessage());
-        }
-    }
-
-    //Cargar Lista_facturas
-    void cargarListaFacturas() {
-        try {
-            Stage stage = new Stage();
-            URL fxmlLocation = getClass().getResource("/presentation/View_Facturas/mockupListaFacturas.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Abstraction");
-            stage.setScene(scene);
-            Controller_Lista_Facturas controller_lista_facturas = fxmlLoader.getController();
-            controller_lista_facturas.initialize((IFactura_facade) this.facade);
-            controller_lista_facturas.setStage(stage);
-            stage.show();
-            this.stage.close();
-        } catch (IOException e) {
-            System.out.printf(e.getMessage());
-        }
-    }
 
     //Cargar Dashboard
     void cargarDashboard() {
