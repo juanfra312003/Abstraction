@@ -2,22 +2,34 @@ package com.abstraction.controllers.Controllers_DashBoard;
 
 import com.abstraction.business.*;
 import com.abstraction.controllers.Controllers_Cotizacion.Controller_Lista_Cotizaciones;
+import com.abstraction.controllers.Controllers_DashBoard.ObservableClasses.ObservableLeads;
 import com.abstraction.controllers.Controllers_Factura.Controller_Lista_Facturas;
+import com.abstraction.controllers.Controllers_Factura.ObservableClasses.FacturaObservable;
 import com.abstraction.controllers.Controllers_Pedido.Controller_Lista_Pedidos;
 import com.abstraction.controllers.Controllers_Perfil_Aux.Controller_Ver_Perfil;
 import com.abstraction.controllers.Controllers_Producto.Controller_Lista_Productos;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class Controller_DashBoard {
@@ -28,6 +40,11 @@ public class Controller_DashBoard {
         this.facade = new FacadeGeneral();
         choiceBoxYearIngresosTiempo.getItems().addAll("2021", "2022");
         choiceBoxPeriodoIngresosTiempo.getItems().addAll("Periodo 1","Periodo 2");
+        actualizarTextCreditos();
+    }
+
+    public void actualizarTextCreditos (){
+        creditosOtorgadosText.setText("$" + String.valueOf(facade.verCreditos()));
     }
 
     @FXML
@@ -39,9 +56,27 @@ public class Controller_DashBoard {
 
     @FXML
     void onActionCalcularLeads(ActionEvent event) {
-
+        actualizarTablaLeads();
     }
 
+    void actualizarTablaLeads(){
+        ArrayList<ArrayList<String>> valoresTabla;
+        valoresTabla = facade.verLeads();
+        if (valoresTabla.isEmpty()) return;
+        final ObservableList<ObservableLeads> data = FXCollections.observableArrayList();
+
+        for (int i = 0; i < valoresTabla.size(); i++){
+            data.add(new ObservableLeads(
+                valoresTabla.get(i).get(0),
+                valoresTabla.get(i).get(1),
+                valoresTabla.get(i).get(2)
+            ));
+        }
+        numeroCotizacionColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("numeroFactura"));
+        numeroFacturaColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("numeroCotizacion"));
+        valorFacturacionColumna.setCellValueFactory(new PropertyValueFactory<ObservableLeads, String>("total"));
+        tablaConversionLeads.setItems(data);
+    }
     @FXML
     void onActionCalcularRendimiento(ActionEvent event) {
 
@@ -310,10 +345,13 @@ public class Controller_DashBoard {
     private Text ingresosPeriodoTiempoText;
 
     @FXML
-    private TableColumn<?, ?> numeroCotizacionColumna;
+    private Text creditosOtorgadosText;
 
     @FXML
-    private TableColumn<?, ?> numeroFacturaColumna;
+    private TableColumn<ObservableLeads, String> numeroCotizacionColumna;
+
+    @FXML
+    private TableColumn<ObservableLeads, String> numeroFacturaColumna;
 
     @FXML
     private TitledPane panelConversionLeads;
@@ -325,10 +363,10 @@ public class Controller_DashBoard {
     private TitledPane panelVerIngresos;
 
     @FXML
-    private TableView<?> tablaConversionLeads;
+    private TableView<ObservableLeads> tablaConversionLeads;
 
     @FXML
-    private TableColumn<?, ?> valorFacturacionColumna;
+    private TableColumn<ObservableLeads, String> valorFacturacionColumna;
 
     @FXML
     private Text valorTransaccionPromedioText;

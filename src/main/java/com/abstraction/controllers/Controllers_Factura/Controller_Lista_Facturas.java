@@ -391,7 +391,7 @@ public class Controller_Lista_Facturas {
     private DatePicker dateSeleccionar;
 
     @FXML
-    private Text facturaBuscar;
+    private TextField textoBusqueda;
 
     @FXML
     private TableColumn<FacturaObservable, String> fechaColumna;

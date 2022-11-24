@@ -209,26 +209,11 @@ public class Controller_Actualizar_Pedido {
         this.stage = stage;
     }
 
-    public TableColumn<?, ?> getAddColumna() {
-        return addColumna;
-    }
-
-    public void setAddColumna(TableColumn<?, ?> addColumna) {
-        this.addColumna = addColumna;
-    }
-
-
     /**
      * FXML Elements
      */
 
     private Stage stage;
-
-    @FXML
-    private TableColumn<?, ?> addColumna;
-
-    @FXML
-    private Button botonActNombreCliente;
 
     @FXML
     private Button botonActualizarGeneral;
@@ -258,26 +243,28 @@ public class Controller_Actualizar_Pedido {
     private Button botonRegresar;
 
     @FXML
-    private TableColumn<?, ?> eliminarColumna;
-
-    @FXML
-    private TableColumn<?, ?> existenciasColumna;
-
-    @FXML
     private TextField nombreClienteText;
-
-    @FXML
-    private TableColumn<?, ?> nombreProductoColumna;
 
     @FXML
     private Text numeroDePedidoText;
 
     @FXML
-    private TableColumn<?, ?> precioColumna;
+    private TableColumn<?, ?> nombreProductoColumna;
+
+    @FXML
+    private TableColumn<?, ?> numProductosColumna;
+
+    @FXML
+    private TableColumn<?, ?> precioUnitarioColumna;
 
     @FXML
     private TableColumn<?, ?> referenciaColumna;
 
     @FXML
+    private TableColumn<?, ?> subTotalColumna;
+
+    @FXML
     private TableView<?> tableViewActPedido;
+
+
 }
