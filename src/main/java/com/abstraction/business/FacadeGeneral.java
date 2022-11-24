@@ -5,10 +5,12 @@ import com.abstraction.persistence.ICotizacionDAO;
 import com.abstraction.persistence.IFacturaDAO;
 import com.abstraction.persistence.IPedidoDAO;
 import com.abstraction.persistence.IProductoDAO;
+import com.abstraction.persistence.IUsuarioDAO;
 import com.abstraction.persistence.impl.CotizacionDAO;
 import com.abstraction.persistence.impl.FacturaDAO;
 import com.abstraction.persistence.impl.PedidoDAO;
 import com.abstraction.persistence.impl.ProductoDAO;
+import com.abstraction.persistence.impl.UsuarioDAO;
 import javafx.scene.control.Alert;
 
 import java.text.ParseException;
@@ -16,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade{
+public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPedido_facade, IFactura_facade, IDashboard_facade, IUsuarioDAO {
 
     public ArrayList<Producto> inventarioProductos;
     public ArrayList<Cotizacion> listaCotizaciones;
@@ -277,4 +279,11 @@ public class FacadeGeneral implements IProducto_facade, ICotizacion_facade, IPed
         IFacturaDAO facturaDAO = new FacturaDAO();
         return facturaDAO.create(factura);
     }
+
+    @Override
+    public boolean create(Usuario usuario) {
+        IUsuarioDAO usuarioDAO=new UsuarioDAO();
+        return usuarioDAO.create(usuario);
+    }
+
 }
