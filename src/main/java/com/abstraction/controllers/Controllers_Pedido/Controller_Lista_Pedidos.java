@@ -242,7 +242,7 @@ public class Controller_Lista_Pedidos {
     private Button botonProducto;
 
     @FXML
-    private Text cotizacionBuscar;
+    private TextField textoBusqueda;
 
     @FXML
     private DatePicker dateSeleccionar;

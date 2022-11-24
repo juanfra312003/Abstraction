@@ -311,6 +311,9 @@ public class Controller_DashBoard {
     private Text ingresosPeriodoTiempoText;
 
     @FXML
+    private Text creditosOtorgadosText;
+
+    @FXML
     private TableColumn<?, ?> numeroCotizacionColumna;
 
     @FXML

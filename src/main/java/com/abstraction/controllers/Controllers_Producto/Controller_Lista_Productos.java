@@ -375,13 +375,6 @@ public class Controller_Lista_Productos {
         this.botonBuscar = botonBuscar;
     }
 
-    public Text getTextFieldBusquedaProducto() {
-        return textFieldBusquedaProducto;
-    }
-
-    public void setTextFieldBusquedaProducto(Text textFieldBusquedaProducto) {
-        this.textFieldBusquedaProducto = textFieldBusquedaProducto;
-    }
 
     /**
      * FXML Elements
@@ -441,7 +434,7 @@ public class Controller_Lista_Productos {
     private ComboBox<?> comboBoxFiltrar;
 
     @FXML
-    private Text textFieldBusquedaProducto;
+    private TextField textoBusqueda;
 
 
     @FXML

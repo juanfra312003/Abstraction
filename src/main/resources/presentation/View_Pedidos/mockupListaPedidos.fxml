@@ -67,15 +67,10 @@
                   <Font name="Franklin Gothic Demi" size="38.0" />
                </font>
             </Text>
-            <TextField layoutX="563.0" layoutY="57.0" prefHeight="26.0" prefWidth="707.0" />
+            <TextField fx:id="textoBusqueda" layoutX="563.0" layoutY="57.0" prefHeight="26.0" prefWidth="707.0" />
             <Text fill="#8d8d8d" layoutX="373.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="21.0" />
-               </font>
-            </Text>
-            <Text fx:id="cotizacionBuscar" fill="#bfbfbf" layoutX="570.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número de pedido a buscar" wrappingWidth="585.9075317382812">
-               <font>
-                  <Font name="Franklin Gothic Book" size="18.0" />
                </font>
             </Text>
             <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="35.0" layoutY="52.0">
